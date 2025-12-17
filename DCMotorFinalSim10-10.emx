@@ -7,25 +7,2336 @@
     <Version>5.1</Version>
     <IsMainModel>0</IsMainModel>
     <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>C:\Users\Minseo\Downloads\DCMotorFinalSim10-10.emx</LibraryPath>
-    <TimeStamp>2025-12-16 06:32:41</TimeStamp>
+    <LibraryPath>C:\Users\0905l\Downloads\DCMotorFinalSim10-10.emx</LibraryPath>
+    <TimeStamp>2025-12-17 10:22:37</TimeStamp>
   </Description>
 </Information>';
  type 'Mainmodel-10'
  end;
  implementation bg
   submodels
-   model 684.5 383.5
-    description '<Information>
-  <Description>
-    <Version>5.1</Version>
-    <IsMainModel>0</IsMainModel>
-    <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>C:\Users\0905l\Documents\Pre-Project_Models\Final_Sims\DCMotorFinalSim10-10.emx</LibraryPath>
-    <TimeStamp>2025-12-12 13:46:15</TimeStamp>
-  </Description>
+   Constant 232 424
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\Constant.emx</LibraryPath>
+  <TimeStamp>2007-10-19 14:48:44</TimeStamp>
+</Description>';
+    type Constant
+     ports
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 216.1 408 247.9 440 color 0 fill 15132390;
+      line 220.9 419.6 242.9 419.6 color 16711680 width 2;
+      line 218.2 430.7 243.9 430.7 color 0;
+      line 220.5 414.7 220.5 433 color 0;
+    end;
+    implementation eq
+parameters
+	real C = 12.0;		// output value
+equations
+	output = C;
+     implementation_end;
+   C_gS 312 152
+    description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Submodel
+     ports
+      signal in u;
+      signal out y;
+    end;
+    icon bg
+     figures
+      rectangle 288 136 336 168 color 0 fill 15132390;
+      text 'name' 312 152 color 0 16;
+    end;
+    implementation bg
+     submodels
+      LinearSystem2 961.5 304
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
+  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
+  <AllowLibraryUpdate>False</AllowLibraryUpdate>
+</Description>
+';
+       type LinearSystem
+        ports
+         signal in u;
+         signal out y;
+       end;
+       icon bg bottom
+        figures
+         rectangle 935 287 988 321 color 0 fill 15132390;
+         text 's' 951 296 color 0;
+         text '+' 961 296 color 0;
+         text '3' 973 296 color 8388608;
+         text 's' 942 314 color 0;
+         text '+' 952 314 color 0;
+         text '13.04' 973 314 color 8388608;
+         line 939 304 986 304 color 9211020;
+       end;
+       implementation eq
+// 20-sim Linear System Editor
+// tf
+parameters
+	real hidden A [1, 1] = [-13.04];
+	real hidden B [1, 1] = [1.0];
+	real hidden C [1, 1] = [-10.04];
+	real hidden D [1, 1] = [1.0];
+	real hidden x0 [1] = [0.0];
+variables
+	real x [1];
+equations
+	ddt (x, x0) = A * x + B * u;
+	y = C * x + D * u;
+implementation_end;
+      LinearSystem3 752.5 304
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
+  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
+  <AllowLibraryUpdate>False</AllowLibraryUpdate>
+</Description>
+';
+       type LinearSystem
+        ports
+         signal in u;
+         signal out y;
+       end;
+       icon bg bottom
+        figures
+         rectangle 732 287 773 321 color 0 fill 15132390;
+         text '-' 739 296 color 0;
+         text '30.02' 758 296 color 8388608;
+         text '1' 754 314 color 8388608;
+         line 736 304 771 304 color 9211020;
+       end;
+       implementation eq
+// 20-sim Linear System Editor
+// tf
+parameters
+	real hidden D [1, 1] = [-30.02];
+equations
+	y = D * u;
+implementation_end;
+      LinearSystem6 856.5 304
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
+  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
+  <AllowLibraryUpdate>False</AllowLibraryUpdate>
+</Description>
+';
+       type LinearSystem
+        ports
+         signal in u;
+         signal out y;
+       end;
+       icon bg bottom
+        figures
+         rectangle 830 287 883 321 color 0 fill 15132390;
+         text 's' 842 296 color 0;
+         text '+' 852 296 color 0;
+         text '0.5' 868 296 color 8388608;
+         text 's' 837 314 color 0;
+         text '+' 847 314 color 0;
+         text '0.136' 868 314 color 8388608;
+         line 834 304 881 304 color 9211020;
+       end;
+       implementation eq
+// 20-sim Linear System Editor
+// tf
+parameters
+	real hidden A [1, 1] = [-0.136];
+	real hidden B [1, 1] = [1.0];
+	real hidden C [1, 1] = [0.364];
+	real hidden D [1, 1] = [1.0];
+	real hidden x0 [1] = [0.0];
+variables
+	real x [1];
+equations
+	ddt (x, x0) = A * x + B * u;
+	y = C * x + D * u;
+implementation_end;
+      plug u 568 304;
+      plug y 1056 304;
+     end;
+     connections
+      LinearSystem2\y -> y;
+      LinearSystem3\y -> LinearSystem6\u;
+      LinearSystem6\y -> LinearSystem2\u;
+      u -> LinearSystem3\u;
+     end;
+    implementation_end;
+   feedback 376 200
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Gain
+     ports
+      signal in input;
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 360.1 184 391.9 216 color 0 fill 15132390;
+      text 'K' 376 200 color 16711680 16 bold;
+    end;
+    implementation eq
+parameters
+	real K = 1;		// gain
+equations
+	output = K * input;
+    implementation_end;
+   FeedForward 248 96
+    description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Submodel
+     ports
+      signal in input;
+      signal out output;
+    end;
+    icon bg
+     figures
+      rectangle 200 80 296 112 color 0 fill 15132390;
+      text 'name' 248 96 color 0 16;
+    end;
+    implementation bg
+     submodels
+      DiscreteDifferential 608 80
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
+</Description>';
+       type DiscreteDifferential
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 592 63.7 624 96.3 color 0 fill 15132390;
+         text '-1' 617.3 86 color 16711680 10;
+         text 'z' 610.7 89.8 color 16711680 13;
+         group
+          text 'd' 602.2 72.7 color 16711680 14;
+          text 'dt' 602.2 85.8 color 16711680 14;
+          line 596.2 79.3 607 79.3 color 16711680;
+         end;
+       end;
+       implementation eq
+parameters
+	real initial = 0.0;  	// initial output value
+variables
+	real hidden initial_input;
+	boolean hidden initialized;
+initialequations
+	initialized = false;
+equations
+	if not initialized then 
+		initial_input = initial - input/sampletime; 
+		initialized = true;
+	else
+		initial_input = 0;
+	end;
+	output = (input - previous (input,0))/sampletime + initial_input;
+implementation_end;
+      DiscreteDifferential1 664 144
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
+</Description>';
+       type DiscreteDifferential
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 648 127.7 680 160.3 color 0 fill 15132390;
+         text '-1' 673.3 150 color 16711680 10;
+         text 'z' 666.7 153.8 color 16711680 13;
+         group
+          text 'd' 658.2 136.7 color 16711680 14;
+          text 'dt' 658.2 149.8 color 16711680 14;
+          line 652.2 143.3 663 143.3 color 16711680;
+         end;
+       end;
+       implementation eq
+parameters
+	real initial = 0.0;  	// initial output value
+variables
+	real hidden initial_input;
+	boolean hidden initialized;
+initialequations
+	initialized = false;
+equations
+	if not initialized then 
+		initial_input = initial - input/sampletime; 
+		initialized = true;
+	else
+		initial_input = 0;
+	end;
+	output = (input - previous (input,0))/sampletime + initial_input;
+implementation_end;
+      DiscreteDifferential2 720 208
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
+</Description>';
+       type DiscreteDifferential
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 704 191.7 736 224.3 color 0 fill 15132390;
+         text '-1' 729.3 214 color 16711680 10;
+         text 'z' 722.7 217.8 color 16711680 13;
+         group
+          text 'd' 714.2 200.7 color 16711680 14;
+          text 'dt' 714.2 213.8 color 16711680 14;
+          line 708.2 207.3 719 207.3 color 16711680;
+         end;
+       end;
+       implementation eq
+parameters
+	real initial = 0.0;  	// initial output value
+variables
+	real hidden initial_input;
+	boolean hidden initialized;
+initialequations
+	initialized = false;
+equations
+	if not initialized then 
+		initial_input = initial - input/sampletime; 
+		initialized = true;
+	else
+		initial_input = 0;
+	end;
+	output = (input - previous (input,0))/sampletime + initial_input;
+implementation_end;
+      DiscreteDifferential3 608 144
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
+</Description>';
+       type DiscreteDifferential
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 592 127.7 624 160.3 color 0 fill 15132390;
+         text '-1' 617.3 150 color 16711680 10;
+         text 'z' 610.7 153.8 color 16711680 13;
+         group
+          text 'd' 602.2 136.7 color 16711680 14;
+          text 'dt' 602.2 149.8 color 16711680 14;
+          line 596.2 143.3 607 143.3 color 16711680;
+         end;
+       end;
+       implementation eq
+parameters
+	real initial = 0.0;  	// initial output value
+variables
+	real hidden initial_input;
+	boolean hidden initialized;
+initialequations
+	initialized = false;
+equations
+	if not initialized then 
+		initial_input = initial - input/sampletime; 
+		initialized = true;
+	else
+		initial_input = 0;
+	end;
+	output = (input - previous (input,0))/sampletime + initial_input;
+implementation_end;
+      DiscreteDifferential4 664 208
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
+</Description>';
+       type DiscreteDifferential
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 648 191.7 680 224.3 color 0 fill 15132390;
+         text '-1' 673.3 214 color 16711680 10;
+         text 'z' 666.7 217.8 color 16711680 13;
+         group
+          text 'd' 658.2 200.7 color 16711680 14;
+          text 'dt' 658.2 213.8 color 16711680 14;
+          line 652.2 207.3 663 207.3 color 16711680;
+         end;
+       end;
+       implementation eq
+parameters
+	real initial = 0.0;  	// initial output value
+variables
+	real hidden initial_input;
+	boolean hidden initialized;
+initialequations
+	initialized = false;
+equations
+	if not initialized then 
+		initial_input = initial - input/sampletime; 
+		initialized = true;
+	else
+		initial_input = 0;
+	end;
+	output = (input - previous (input,0))/sampletime + initial_input;
+implementation_end;
+      DiscreteDifferential5 608 208
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
+</Description>';
+       type DiscreteDifferential
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 592 191.7 624 224.3 color 0 fill 15132390;
+         text '-1' 617.3 214 color 16711680 10;
+         text 'z' 610.7 217.8 color 16711680 13;
+         group
+          text 'd' 602.2 200.7 color 16711680 14;
+          text 'dt' 602.2 213.8 color 16711680 14;
+          line 596.2 207.3 607 207.3 color 16711680;
+         end;
+       end;
+       implementation eq
+parameters
+	real initial = 0.0;  	// initial output value
+variables
+	real hidden initial_input;
+	boolean hidden initialized;
+initialequations
+	initialized = false;
+equations
+	if not initialized then 
+		initial_input = initial - input/sampletime; 
+		initialized = true;
+	else
+		initial_input = 0;
+	end;
+	output = (input - previous (input,0))/sampletime + initial_input;
+implementation_end;
+      Hold 944 240
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\Hold.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:20:15</TimeStamp>
+</Description>';
+       type Hold
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 928 224 960 256 color 0 fill 15132390;
+         text 'ZOH' 945.1 238.9 color 16711680 14;
+       end;
+       implementation eq
+parameters
+	real initial = 0;
+equations
+	output = hold (input, initial);
+         implementation_end;
+      plug output 944 328;
+      plug input 552 323.7;
+      PlusMinus3 856 144
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+       knot PlusMinus
+        ports
+         signal knot duplicatable in plus [1];
+         signal knot duplicatable in minus [1];
+         signal knot out output [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 848 136 864 152 color 0 fill 16777215;
+       end;
+       implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+      Sample 552 256
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\Sample.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:20:31</TimeStamp>
+</Description>';
+       type Sample
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 536 240 568 272 color 0 fill 15132390;
+         line 538.3 246.8 541.2 246.8 541.2 242.9 545.3 242.9 545.3 246.8 549.2 246.8 549.2 242.9 551.1 242.9 color 16711680 fill 15132390;
+         line 551.5 248.4 553.7 248.4 553.7 254.4 554.6 252.9 color 0 fill 15132390;
+         line 553 253.1 553.7 254.4 color 0 fill 15132390;
+         line 539.9 259.9 547.9 259.9 560 256 color 0 fill 15132390 width 2;
+       end;
+       implementation eq
+equations
+	output = sample (input);
+      implementation_end;
+      Splitter2 552 208
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse bottom
+        figures
+         ellipse 548.8 204.8 555.2 211.2 color -1 fill 0;
+         ellipse 547.7 203.7 556.3 212.3 color -1;
+        terminals
+         input 552 208 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter3 552 144
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 548.8 140.8 555.2 147.2 color -1 fill 0;
+         ellipse 547.7 139.7 556.3 148.3 color -1;
+        terminals
+         input 552 144 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter4 552 80
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 548.8 76.8 555.2 83.2 color -1 fill 0;
+         ellipse 547.7 75.7 556.3 84.3 color -1;
+        terminals
+         input 552 80 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      weight 792 80
+       description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+       type Gain
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 776.1 64 807.9 96 color 0 fill 15132390;
+         text 'K' 792 80 color 16711680 16 bold;
+       end;
+       implementation eq
+parameters
+	real K = 1746;		// gain
+equations
+	output = K * input;
+    implementation_end;
+      weight1 792 144
+       description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+       type Gain
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 776.1 128 807.9 160 color 0 fill 15132390;
+         text 'K' 792 144 color 16711680 16 bold;
+       end;
+       implementation eq
+parameters
+	real K = 772;		// gain
+equations
+	output = K * input;
+    implementation_end;
+      weight2 792 208
+       description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+       type Gain
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 776.1 192 807.9 224 color 0 fill 15132390;
+         text 'K' 792 208 color 16711680 16 bold;
+       end;
+       implementation eq
+parameters
+	real K = 1;		// gain
+equations
+	output = K * input;
+    implementation_end;
+      weight3 944 184
+       description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+       type Gain
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 928.1 168 959.9 200 color 0 fill 15132390;
+         text 'K' 944 184 color 16711680 16 bold;
+       end;
+       implementation eq
+parameters
+	real K = -1/1381;		// gain
+equations
+	output = K * input;
+    implementation_end;
+     end;
+     connections
+      DiscreteDifferential\output -> weight\input;
+      DiscreteDifferential1\output -> weight1\input;
+      DiscreteDifferential2\output -> weight2\input;
+      DiscreteDifferential3\output -> DiscreteDifferential1\input;
+      DiscreteDifferential4\output -> DiscreteDifferential2\input;
+      DiscreteDifferential5\output -> DiscreteDifferential4\input;
+      Hold\output -> output;
+      input -> Sample\input;
+      PlusMinus3\output -> weight3\input 944 144;
+      PlusMinus3\plus <- weight1\output;
+      Sample\output -> Splitter2\input;
+      Splitter2\output -> DiscreteDifferential5\input;
+      Splitter2\output -> Splitter3\input;
+      Splitter3\output -> DiscreteDifferential3\input;
+      Splitter3\output -> Splitter4\input;
+      Splitter4\output -> DiscreteDifferential\input 552 80;
+      weight\output -> PlusMinus3\plus 856 80;
+      weight2\output -> PlusMinus3\plus 856 208;
+      weight3\output -> Hold\input;
+     end;
+    implementation_end;
+   Limit2 432 152
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram Non-Linear\SignalLimiter-Limit.emx</LibraryPath>
+  <TimeStamp>2007-9-26 12:47:40</TimeStamp>
+</Description>';
+    type SignalLimiter
+     ports
+      signal in input;
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      group
+       rectangle 416 136 448 168 color 0 fill 15132390;
+       line 431.9 140.5 431.9 165 color 0 fill 15132390;
+       line 419 152.2 444.7 152.2 color 0 fill 15132390;
+       spline 425.9 159.1 437.9 145.4 color 16711680 fill 15132390 width 2;
+       spline 437.3 146.2 445.9 145.8 color 16711680 fill 15132390 width 2;
+       spline 419 159.6 425.9 159.1 color 16711680 fill 15132390 width 2;
+      end;
+    end;
+    implementation eq
+parameters
+	real maximum = 12;
+	real minimum = -12;
+equations
+	output = limit (input, minimum, maximum);
+  implementation_end;
+   LinearSystem3 360.5 424
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
+  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
+  <AllowLibraryUpdate>False</AllowLibraryUpdate>
+</Description>
+';
+    type LinearSystem
+     ports
+      signal in u;
+      signal out y;
+    end;
+    icon bg bottom
+     figures
+      rectangle 314 404 407 444 color 0 fill 15132390;
+      text '-' 348 413 color 0;
+      text '1381' 366 413 color 8388608;
+      text 's' 321 437 color 0;
+      text '2' 327 431 color 0 10;
+      text '+' 335 437 color 0;
+      text '772' 352 437 color 8388608;
+      text 's' 364 437 color 0;
+      text '+' 374 437 color 0;
+      text '1746' 394 437 color 8388608;
+      line 318 422 405 422 color 9211020;
+    end;
+    implementation eq
+// 20-sim Linear System Editor
+// tf
+parameters
+	real hidden A [2, 2] = [0.0, 1.0; -1746.0, -772.0];
+	real hidden B [2, 1] = [0.0; -1381.0];
+	real hidden C [1, 2] = [1.0, 0.0];
+	real hidden x0 [2] = [0.0; 0.0];
+variables
+	real x [2];
+equations
+	ddt (x, x0) = A * x + B * u;
+	y = C * x;
+implementation_end;
+   OutputAngle 664 192
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath><TimeStamp>2007-9-26 12:14:4</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type SignalMonitor
+     ports
+      signal in input;
+    end;
+    icon bg bottom
+     figures
+      rectangle 648 176 680 208 color 0 fill 15132390;
+      rectangle 653.7 181.8 674.3 202.6 color 16711680 fill 11776947 width 2;
+      rectangle 655.8 184.4 671.9 200 color -1 fill 16777215;
+      line 657.9 186.7 657.9 198 color 0 fill 16777215;
+      line 656 196.4 668.5 196.4 color 0 fill 16777215;
+      line 657.5 196.1 670.4 189.7 color 255 fill 16777215;
+    end;
+    implementation eq
+variables
+	real interesting plot;
+equations
+	plot = input;
+   implementation_end;
+   OutputVelocity 656 64
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath><TimeStamp>2007-9-26 12:14:4</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type SignalMonitor
+     ports
+      signal in input;
+    end;
+    icon bg bottom
+     figures
+      rectangle 640 48 672 80 color 0 fill 15132390;
+      rectangle 645.7 53.8 666.3 74.6 color 16711680 fill 11776947 width 2;
+      rectangle 647.8 56.4 663.9 72 color -1 fill 16777215;
+      line 649.9 58.7 649.9 70 color 0 fill 16777215;
+      line 648 68.4 660.5 68.4 color 0 fill 16777215;
+      line 649.5 68.1 662.4 61.7 color 255 fill 16777215;
+    end;
+    implementation eq
+variables
+	real interesting plot;
+equations
+	plot = input;
+   implementation_end;
+   PhysicalModel 568 152
+    description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Submodel
+     ports
+      signal in u {V} ;
+      signal out phi {rad} ;
+    end;
+    implementation bg
+     submodels
+      Bearing 1008 304
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Bearing.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:26:02</TimeStamp>
+</Description>';
+       type Bearing
+        ports
+         rotation psi duplicatable in p;
+       end;
+       icon bg bottom
+        figures
+         group
+          line 996.8 318 1000.5 313.9 color 0;
+          line 1000.5 318 1004.4 313.9 color 0;
+          line 1004.4 318 1008.1 313.9 color 0;
+          line 1008.1 318 1012.1 313.9 color 0;
+          line 1012.1 318 1015.8 313.9 color 0;
+          line 998.4 314.2 1018.1 314.2 color 0 width 2;
+         end;
+         group
+          group
+           line 1000.9 297.1 1005.3 301.9 color 0;
+           line 1000.9 301.9 1005.3 297.1 color 0;
+           line 1009.8 297.1 1014.3 301.9 color 0;
+           line 1009.8 301.9 1014.3 297.1 color 0;
+           line 1005.3 297.1 1009.8 301.9 color 0;
+           line 1005.1 301.9 1009.8 297.1 color 0;
+          end;
+          group
+           line 1000.9 306.1 1005.3 310.9 color 0;
+           line 1000.9 310.9 1005.3 306.1 color 0;
+           line 1009.8 306.1 1014.3 310.9 color 0;
+           line 1009.8 310.9 1014.3 306.1 color 0;
+           line 1005.3 306.1 1009.8 310.7 color 0;
+           line 1005.1 310.9 1009.9 306 color 0;
+          end;
+         end;
+         line 992 304 1024 304 color 0;
+         group
+          line 1017 294.1 998 294.1 color 0 width 2;
+          line 1018.6 290 1014.7 294.1 color 0;
+          line 1014.7 290 1011 294.1 color 0;
+          line 1011 290 1007 294.1 color 0;
+          line 1007 290 1003.3 294.1 color 0;
+          line 1003.3 290 999.6 294.1 color 0;
+         end;
+        terminals
+         p 991 304;
+         p 991 304;
+         p 1025 304;
+       end;
+       implementation eq
+parameters
+	real d = 9.695e-4   {N.m.s/rad};
+equations
+	p.T = d * p.omega;implementation_end;
+      Bearing1 832 280
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Bearing.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:26:02</TimeStamp>
+</Description>';
+       type Bearing
+        ports
+         rotation psi duplicatable in p;
+       end;
+       icon bg bottom
+        figures
+         group
+          line 820.8 294 824.5 289.9 color 0;
+          line 824.5 294 828.4 289.9 color 0;
+          line 828.4 294 832.1 289.9 color 0;
+          line 832.1 294 836.1 289.9 color 0;
+          line 836.1 294 839.8 289.9 color 0;
+          line 822.4 290.2 842.1 290.2 color 0 width 2;
+         end;
+         group
+          group
+           line 824.9 273.1 829.3 277.9 color 0;
+           line 824.9 277.9 829.3 273.1 color 0;
+           line 833.8 273.1 838.3 277.9 color 0;
+           line 833.8 277.9 838.3 273.1 color 0;
+           line 829.3 273.1 833.8 277.9 color 0;
+           line 829.1 277.9 833.8 273.1 color 0;
+          end;
+          group
+           line 824.9 282.1 829.3 286.9 color 0;
+           line 824.9 286.9 829.3 282.1 color 0;
+           line 833.8 282.1 838.3 286.9 color 0;
+           line 833.8 286.9 838.3 282.1 color 0;
+           line 829.3 282.1 833.8 286.7 color 0;
+           line 829.1 286.9 833.9 282 color 0;
+          end;
+         end;
+         line 816 280 848 280 color 0;
+         group
+          line 841 270.1 822 270.1 color 0 width 2;
+          line 842.6 266 838.7 270.1 color 0;
+          line 838.7 266 835 270.1 color 0;
+          line 835 266 831 270.1 color 0;
+          line 831 266 827.3 270.1 color 0;
+          line 827.3 266 823.6 270.1 color 0;
+         end;
+        terminals
+         p 815 280;
+         p 815 280;
+         p 849 280;
+       end;
+       implementation eq
+parameters
+	real d = 3.333e-6   {N.m.s/rad};
+equations
+	p.T = d * p.omega;implementation_end;
+      DCmotor 782.1 279.5
+						specifications active 'default'
+							specification 'default'
+ description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Actuators\DCMotor.emx</LibraryPath>
+  <TimeStamp>2008-1-15 15:27:48</TimeStamp>
+</Description>';
+ type DCMotor
+  ports
+   electric delta in p1;
+   rotation psi out p2;
+  restrictions
+   causality constraint equal p1 p2;
+ end;
+ icon bg bottom
+  figures
+   line 776 303.5 776 255.5 color 0;
+   rectangle 770.7 263.5 781.4 295.5 color 0 fill 0;
+   ellipse 763.2 267.2 788.8 292.8 color 0 fill 16777215;
+   line 800 280 776 280 color 0 fill 0;
+  terminals
+   p1 high 776 256 fixed;
+   p1 low 776 304 fixed;
+   p2 800 280 fixed;
+ end;
+ implementation eq
+parameters
+	real k = 2.56e-2 {N.m/A};		// motor constant
+equations
+	p2.T = k * p1.i;
+	p1.u = k * p2.omega;
+implementation_end;
+specification_end;
+							specification 'IR'
+description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Actuators\DCMotor.emx</LibraryPath>
+  <TimeStamp>2008-1-15 15:27:48</TimeStamp>
+</Description>';
+ type DCMotor
+  ports
+   electric delta in p1;
+   rotation psi out p2;
+  restrictions
+   causality constraint equal p1 p2;
+ end;
+ icon bg bottom
+  figures
+   line 120 567.5 120 519.5;
+   rectangle 114.7 527.5 125.4 559.5 fill 0;
+   ellipse 107.2 531.2 132.8 556.8 fill 16777215;
+   line 144 544 120 544 fill 0;
+  terminals
+   p1 high 120 520 fixed;
+   p1 low 120 568 fixed;
+   p2 144 544 fixed;
+ end;
+ implementation eq
+parameters
+	real k = 0.01 {N.m/A};		// motor constant
+	real L = 1e-3  {H};			// inductance
+	real R = 2  {ohm};			// resistance
+variables
+	real hidden ur {V};
+	real hidden ui {V};
+	real hidden um {V};
+equations
+	p1.i = (1/L)*int(ui,0);
+	ur = R*p1.i;
+	p2.T = k * p1.i;
+	um = k * p2.omega;
+	ui = p1.u - ur - um;implementation_end;
+specification_end;
+						end;
+      Gear 952 297.2
+						specifications active 'Ideal'
+							specification 'Efficiency'
+description '<Information>
+ <Description>
+    <Version>4.5</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
+  <TimeStamp>2014-11-4 20:07:27</TimeStamp>
+</Description>
 </Information>';
-    type 'Mainmodel-89DE'
+ type Gear
+  ports
+   rotation psi in p_in;
+   rotation psi out p_out;
+  restrictions
+   orientation constraint not_equal p_in p_out;
+   causality constraint not_equal p_in p_out;
+ end;
+ icon ipm bottom
+  figures
+   line 80 104 96 104 color 0;
+   line 96 128 128 128 color 0;
+   line 93.3 96 97.6 96 color -1;
+   line 92.8 97 99.2 97 color 0 width 2;
+   line 96 97 96 109.2 color 0 width 2;
+   line 92.8 109.2 99.2 109.2 color 0 width 2;
+   line 92.8 112.8 99.2 112.8 color 0 width 2;
+   line 96 111.8 96 146.4 color 0 width 2;
+   line 92.8 145.4 99.2 145.4 color 0 width 2;
+   text '1' 102.9 102.5 color 0;
+   text 'i' 102.9 118.3 color 16711680;
+   group
+    line 107.1 125.5 111.3 121.3 color 0;
+    line 107.1 121.3 111.3 125.5 color 0;
+    line 113.5 121.3 117.7 125.5 color 0;
+    line 113.5 125.5 117.7 121.3 color 0;
+   end;
+   group
+    line 107.1 134.1 111.3 129.8 color 0;
+    line 107.1 129.8 111.3 134.1 color 0;
+    line 113.5 129.8 117.7 134.1 color 0;
+    line 113.5 134.1 117.7 129.8 color 0;
+   end;
+  terminals
+   p_in 80 104 fixed;
+   p_out 128 128 fixed;
+ end;
+ implementation eq
+parameters
+	real i = 10.0 {};				// gearbox ratio
+	real eff = 0.97 {};			// gearbox efficiency (0 < eff <= 1)
+variables
+	real dyn_eff;
+initialequations
+	dyn_eff = eff;
+equations
+	p_out.T = -p_in.T*i*dyn_eff;
+	p_out.omega = -p_in.omega/i;
+	dyn_eff = if (sign(dly(p_in.T,0.0))*sign(dly(p_in.omega,0.0))) >= 0 then eff else 1/eff end;
+	implementation_end;
+specification_end;
+							specification 'Ideal'
+ description '<Information>
+ <Description>
+    <Version>4.5</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
+  <TimeStamp>2014-9-26 12:10:30</TimeStamp>
+<AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>';
+ type Gear
+  ports
+   rotation psi in p_in;
+   rotation psi out p_out;
+  restrictions
+   orientation constraint not_equal p_in p_out;
+   causality constraint not_equal p_in p_out;
+ end;
+ icon ipm bottom
+  figures
+   line 936 280 952 280 color 0;
+   line 952 304 968 304 color 0;
+   line 949.3 271 953.6 271 color -1;
+   line 948.8 272 955.2 272 color 0 width 2;
+   line 952 272 952 284.2 color 0 width 2;
+   line 948.8 284.2 955.2 284.2 color 0 width 2;
+   line 948.8 287.8 955.2 287.8 color 0 width 2;
+   line 952 287.8 952 322.4 color 0 width 2;
+   line 948.8 322.4 955.2 322.4 color 0 width 2;
+   text '1' 957.9 276.5 color 0;
+   text 'i' 958.9 294.3 color 16711680;
+  terminals
+   p_in 936 280 fixed;
+   p_out 968 304 fixed;
+ end;
+ implementation eq
+parameters
+	real i = 361/5625 {};				// gearbox ratio
+equations
+	p_out.T = -p_in.T*i;
+	p_out.omega = -p_in.omega/i;implementation_end;
+specification_end;
+							specification 'Lossy'
+description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
+ <TimeStamp>2008-1-24 10:10:10</TimeStamp>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+ type Gear
+  ports
+   rotation psi in p_in;
+   rotation psi out p_out;
+  restrictions
+   orientation constraint not_equal p_in p_out;
+   causality preferred in p_in;
+   causality preferred in p_out;
+ end;
+ icon ipm bottom
+  figures
+   line 688 304 744 304;
+   line 744 328 776 328;
+   rectangle 700.3 287.8 732.3 319.8 fill 13421772;
+   text 'J' 715.9 304 15 italic;
+   line 740.1 297.5 744.4 297.5 color -1;
+   line 739.6 298.5 746 298.5 width 2;
+   line 742.8 298.5 742.8 309.2 width 2;
+   line 739.6 309.2 746 309.2 width 2;
+   line 739.6 312.4 746 312.4 width 2;
+   line 742.8 313.3 742.8 344.2 width 2;
+   line 739.6 343.3 746 343.3 width 2;
+   text '1' 750.7 305.2;
+   text 'i' 751.3 319.1 color 16711680;
+   group
+    line 757.1 325.5 761.3 321.3;
+    line 757.1 321.3 761.3 325.5;
+    line 763.5 321.3 767.7 325.5;
+    line 763.5 325.5 767.7 321.3;
+   end;
+   group
+    line 757.1 334.1 761.3 329.8;
+    line 757.1 329.8 761.3 334.1;
+    line 763.5 329.8 767.7 334.1;
+    line 763.5 334.1 767.7 329.8;
+   end;
+  terminals
+   p_in 688 304 fixed;
+   p_out 776 328 fixed;
+ end;
+ implementation eq
+parameters
+	real i = 10.0 {};					// gearbox ratio
+	real eff = 0.97 {};					// gearbox efficiency (0 < eff <= 1)
+	real J = 1.0e-5 {kg.m2/rad};		// rotational inertia
+variables
+	real p_in_T;
+	real dyn_eff;
+initialequations
+	dyn_eff = eff;
+equations
+	p_in.omega = (1/J)*int(p_in.T - p_in_T);
+	p_out.T = -p_in_T*i*dyn_eff;
+	p_out.omega = -p_in.omega/i;
+	dyn_eff = if (sign(dly(p_in_T,0.0))*sign(dly(p_in.omega,0.0))) >= 0 then eff else 1/eff end;
+implementation_end;
+specification_end;
+						end;
+      Ground 696 328
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Ground.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:57:33</TimeStamp>
+</Description>';
+       type Ground
+        ports
+         electric psi duplicatable in p;
+        restrictions
+         causality fixed out p;
+       end;
+       icon ipm bottom
+        figures
+         line 688 328 704 328 color 0;
+         line 690.7 332.3 701.3 332.3 color 0;
+         line 693.3 336 698.7 336 color 0;
+         line 696 320 696 328 color 0;
+        terminals
+         p 696 320 fixed;
+         p 696 320 fixed;
+         p 696 320 fixed;
+       end;
+       implementation eq
+equations
+	p.u = 0;
+ implementation_end;
+      Inductor 664 256
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Inductor.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:57:43</TimeStamp>
+</Description>';
+       type Inductor
+        ports
+         electric delta in p;
+        restrictions
+         causality preferred in p;
+       end;
+       icon ipm ellipse bottom
+        figures
+         ellipse 658.1 248 670.9 263.5 color 0;
+         ellipse 670.9 248 683.7 263.5 color 0;
+         ellipse 645.3 248 658.1 263.5 color 0;
+         rectangle 645.3 257.1 683.7 264 color 16777215 fill 16777215;
+         line 640 256 645.3 256 color 0;
+         line 682.7 256 688 256 color 0;
+        terminals
+         p high 640 256 fixed;
+         p low 688 256 fixed;
+       end;
+       implementation eq
+parameters
+	real L = 2.78e-3  {H};			// inductance
+equations
+	p.u = L * ddt(p.i);
+    implementation_end;
+      Inertia 1072 304
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Inertia.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:21:36</TimeStamp>
+</Description>';
+       type Inertia
+        ports
+         rotation psi duplicatable in p;
+        restrictions
+         causality preferred in p;
+       end;
+       icon ipm bottom
+        figures
+         rectangle 1056 288 1088 320 color 0 fill 13421772;
+         text 'J' 1072 304 color 0 15 italic;
+        terminals
+         p 1056 304;
+         p 1056 304;
+         p 1072 320;
+       end;
+       implementation eq
+parameters
+	real J = 4.28e-4  {kg.m2/rad};
+variables
+	real interesting phi {rad};
+	real alpha {rad/s2};
+equations
+	alpha = p.T / J;
+	p.omega = int (alpha);
+	phi = int (p.omega); implementation_end;
+      Inertia1 888 280
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Inertia.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:21:36</TimeStamp>
+</Description>';
+       type Inertia
+        ports
+         rotation psi duplicatable in p;
+        restrictions
+         causality preferred in p;
+       end;
+       icon ipm bottom
+        figures
+         rectangle 872 264 904 296 color 0 fill 13421772;
+         text 'J' 888 280 color 0 15 italic;
+        terminals
+         p 904 280;
+         p 904 280;
+         p 872 280;
+       end;
+       implementation eq
+parameters
+	real J = 1.49e-6 {kg.m2/rad};
+variables
+	real interesting phi {rad};
+	real alpha {rad/s2};
+equations
+	alpha = p.T / J;
+	p.omega = int (alpha);
+	phi = int (p.omega); implementation_end;
+      ModulatedVoltageSource 617.9 280
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Sources\ModulatedVoltageSource.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:55:32</TimeStamp>
+</Description>';
+       type ModulatedVoltageSource
+        ports
+         electric delta out p;
+         signal in u {V} ;
+        restrictions
+         causality fixed out p;
+       end;
+       icon ipm bottom
+        figures
+         line 601.1 280 613 280 color 0 end;
+         line 624 256 624 304 color 0;
+         ellipse 613.4 269.3 635.8 291.7 color 0 fill 16777215;
+         line 617.6 260.8 617.6 268.3 color 0;
+         line 614.4 264 621.9 264 color 0;
+        terminals
+         p high 624 256 fixed;
+         p low 624 304 fixed;
+         u 600.6 280 fixed;
+       end;
+       implementation eq
+variables
+	real hidden current {A};
+equations
+	p.u = u;
+	current = p.i;implementation_end;
+      plug phi 1136 376;
+      plug u 546.9 275.1;
+      Node1 695.9 303.9
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Node.emx</LibraryPath>
+  <TimeStamp>2007-10-31 11:27:14</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Node
+        ports
+         electric knot psi duplicatable none p [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 692.8 300.8 699.2 307.2 color -1 fill 0;
+         ellipse 691.7 299.7 700.2 308.2 color -1;
+        terminals
+         p 696 304 fixed;
+         p 696 304 fixed;
+         p 696 304 fixed;
+         p 696 304 fixed;
+       end;
+       implementation eq
+equations
+	sum (direct (p.t)) = 0;
+	equal (collect (p.a));
+  implementation_end;
+      PositionSensor 1072 361.4
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Sensors\PositionSensor-Absolute.emx</LibraryPath>
+  <TimeStamp>2007-9-25 16:59:15</TimeStamp>
+</Description>';
+       type PositionSensor
+        ports
+         rotation psi in p;
+         signal out phi {rad} ;
+        restrictions
+         causality fixed out p;
+       end;
+       icon bg bottom
+        figures
+         line 1072 344 1071.5 368 color 0;
+         ellipse 1060.8 357.4 1083.2 379.8 color 0 fill 16777215;
+         text 'P' 1072 368.6 color 0 15;
+        terminals
+         p 1072 344 fixed;
+         phi 1072 368 fixed;
+       end;
+       implementation eq
+equations
+	p.T = 0;
+	phi = int (p.omega);             implementation_end;
+      Resistor 728 256
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Resistor.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:58:20</TimeStamp>
+</Description>';
+       type Resistor
+        ports
+         electric delta in p;
+       end;
+       icon ipm bottom
+        figures
+         line 704 256 752 256 color 0;
+         rectangle 712 248 744 264 color 0 fill 16777215;
+        terminals
+         p high 704 256 fixed;
+         p low 752 256 fixed;
+       end;
+       implementation eq
+parameters
+	real R = 2.14 {ohm};		// resistance
+equations
+	p.u = R * p.i;
+      implementation_end;
+     end;
+     connections
+      Bearing1\p <= DCmotor\p2;
+      DCmotor\p1_low => Node1\p;
+      Gear\p_in <= Inertia1\p;
+      Gear\p_out => Bearing\p;
+      Ground\p => Node1\p;
+      Inductor\p_low => Resistor\p_high;
+      Inertia\p => Bearing\p;
+      Inertia1\p => Bearing1\p;
+      ModulatedVoltageSource\p_high => Inductor\p_high;
+      Node1\p => ModulatedVoltageSource\p_low;
+      PositionSensor\p <= Inertia\p;
+      PositionSensor\phi -> phi;
+      Resistor\p_low => DCmotor\p1_high;
+      u -> ModulatedVoltageSource\u;
+     end;
+    implementation_end;
+   PhysicalModel1 488 64
+    description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Submodel
+     ports
+      signal in u {V} ;
+      signal out v {rad} ;
+    end;
+    implementation bg
+     submodels
+      Bearing 1008 304
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Bearing.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:26:02</TimeStamp>
+</Description>';
+       type Bearing
+        ports
+         rotation psi duplicatable in p;
+       end;
+       icon bg bottom
+        figures
+         group
+          line 996.8 318 1000.5 313.9 color 0;
+          line 1000.5 318 1004.4 313.9 color 0;
+          line 1004.4 318 1008.1 313.9 color 0;
+          line 1008.1 318 1012.1 313.9 color 0;
+          line 1012.1 318 1015.8 313.9 color 0;
+          line 998.4 314.2 1018.1 314.2 color 0 width 2;
+         end;
+         group
+          group
+           line 1000.9 297.1 1005.3 301.9 color 0;
+           line 1000.9 301.9 1005.3 297.1 color 0;
+           line 1009.8 297.1 1014.3 301.9 color 0;
+           line 1009.8 301.9 1014.3 297.1 color 0;
+           line 1005.3 297.1 1009.8 301.9 color 0;
+           line 1005.1 301.9 1009.8 297.1 color 0;
+          end;
+          group
+           line 1000.9 306.1 1005.3 310.9 color 0;
+           line 1000.9 310.9 1005.3 306.1 color 0;
+           line 1009.8 306.1 1014.3 310.9 color 0;
+           line 1009.8 310.9 1014.3 306.1 color 0;
+           line 1005.3 306.1 1009.8 310.7 color 0;
+           line 1005.1 310.9 1009.9 306 color 0;
+          end;
+         end;
+         line 992 304 1024 304 color 0;
+         group
+          line 1017 294.1 998 294.1 color 0 width 2;
+          line 1018.6 290 1014.7 294.1 color 0;
+          line 1014.7 290 1011 294.1 color 0;
+          line 1011 290 1007 294.1 color 0;
+          line 1007 290 1003.3 294.1 color 0;
+          line 1003.3 290 999.6 294.1 color 0;
+         end;
+        terminals
+         p 991 304;
+         p 991 304;
+         p 1025 304;
+       end;
+       implementation eq
+parameters
+	real d = 9.695e-4   {N.m.s/rad};
+equations
+	p.T = d * p.omega;implementation_end;
+      Bearing1 832 280
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Bearing.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:26:02</TimeStamp>
+</Description>';
+       type Bearing
+        ports
+         rotation psi duplicatable in p;
+       end;
+       icon bg bottom
+        figures
+         group
+          line 820.8 294 824.5 289.9 color 0;
+          line 824.5 294 828.4 289.9 color 0;
+          line 828.4 294 832.1 289.9 color 0;
+          line 832.1 294 836.1 289.9 color 0;
+          line 836.1 294 839.8 289.9 color 0;
+          line 822.4 290.2 842.1 290.2 color 0 width 2;
+         end;
+         group
+          group
+           line 824.9 273.1 829.3 277.9 color 0;
+           line 824.9 277.9 829.3 273.1 color 0;
+           line 833.8 273.1 838.3 277.9 color 0;
+           line 833.8 277.9 838.3 273.1 color 0;
+           line 829.3 273.1 833.8 277.9 color 0;
+           line 829.1 277.9 833.8 273.1 color 0;
+          end;
+          group
+           line 824.9 282.1 829.3 286.9 color 0;
+           line 824.9 286.9 829.3 282.1 color 0;
+           line 833.8 282.1 838.3 286.9 color 0;
+           line 833.8 286.9 838.3 282.1 color 0;
+           line 829.3 282.1 833.8 286.7 color 0;
+           line 829.1 286.9 833.9 282 color 0;
+          end;
+         end;
+         line 816 280 848 280 color 0;
+         group
+          line 841 270.1 822 270.1 color 0 width 2;
+          line 842.6 266 838.7 270.1 color 0;
+          line 838.7 266 835 270.1 color 0;
+          line 835 266 831 270.1 color 0;
+          line 831 266 827.3 270.1 color 0;
+          line 827.3 266 823.6 270.1 color 0;
+         end;
+        terminals
+         p 815 280;
+         p 815 280;
+         p 849 280;
+       end;
+       implementation eq
+parameters
+	real d = 3.333e-6   {N.m.s/rad};
+equations
+	p.T = d * p.omega;implementation_end;
+      DCmotor 782.1 279.5
+						specifications active 'default'
+							specification 'default'
+ description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Actuators\DCMotor.emx</LibraryPath>
+  <TimeStamp>2008-1-15 15:27:48</TimeStamp>
+</Description>';
+ type DCMotor
+  ports
+   electric delta in p1;
+   rotation psi out p2;
+  restrictions
+   causality constraint equal p1 p2;
+ end;
+ icon bg bottom
+  figures
+   line 776 303.5 776 255.5 color 0;
+   rectangle 770.7 263.5 781.4 295.5 color 0 fill 0;
+   ellipse 763.2 267.2 788.8 292.8 color 0 fill 16777215;
+   line 800 280 776 280 color 0 fill 0;
+  terminals
+   p1 high 776 256 fixed;
+   p1 low 776 304 fixed;
+   p2 800 280 fixed;
+ end;
+ implementation eq
+parameters
+	real k = 2.56e-2 {N.m/A};		// motor constant
+equations
+	p2.T = k * p1.i;
+	p1.u = k * p2.omega;
+implementation_end;
+specification_end;
+							specification 'IR'
+description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Actuators\DCMotor.emx</LibraryPath>
+  <TimeStamp>2008-1-15 15:27:48</TimeStamp>
+</Description>';
+ type DCMotor
+  ports
+   electric delta in p1;
+   rotation psi out p2;
+  restrictions
+   causality constraint equal p1 p2;
+ end;
+ icon bg bottom
+  figures
+   line 120 567.5 120 519.5;
+   rectangle 114.7 527.5 125.4 559.5 fill 0;
+   ellipse 107.2 531.2 132.8 556.8 fill 16777215;
+   line 144 544 120 544 fill 0;
+  terminals
+   p1 high 120 520 fixed;
+   p1 low 120 568 fixed;
+   p2 144 544 fixed;
+ end;
+ implementation eq
+parameters
+	real k = 0.01 {N.m/A};		// motor constant
+	real L = 1e-3  {H};			// inductance
+	real R = 2  {ohm};			// resistance
+variables
+	real hidden ur {V};
+	real hidden ui {V};
+	real hidden um {V};
+equations
+	p1.i = (1/L)*int(ui,0);
+	ur = R*p1.i;
+	p2.T = k * p1.i;
+	um = k * p2.omega;
+	ui = p1.u - ur - um;implementation_end;
+specification_end;
+						end;
+      Gear 952 297.2
+						specifications active 'Ideal'
+							specification 'Efficiency'
+description '<Information>
+ <Description>
+    <Version>4.5</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
+  <TimeStamp>2014-11-4 20:07:27</TimeStamp>
+</Description>
+</Information>';
+ type Gear
+  ports
+   rotation psi in p_in;
+   rotation psi out p_out;
+  restrictions
+   orientation constraint not_equal p_in p_out;
+   causality constraint not_equal p_in p_out;
+ end;
+ icon ipm bottom
+  figures
+   line 80 104 96 104 color 0;
+   line 96 128 128 128 color 0;
+   line 93.3 96 97.6 96 color -1;
+   line 92.8 97 99.2 97 color 0 width 2;
+   line 96 97 96 109.2 color 0 width 2;
+   line 92.8 109.2 99.2 109.2 color 0 width 2;
+   line 92.8 112.8 99.2 112.8 color 0 width 2;
+   line 96 111.8 96 146.4 color 0 width 2;
+   line 92.8 145.4 99.2 145.4 color 0 width 2;
+   text '1' 102.9 102.5 color 0;
+   text 'i' 102.9 118.3 color 16711680;
+   group
+    line 107.1 125.5 111.3 121.3 color 0;
+    line 107.1 121.3 111.3 125.5 color 0;
+    line 113.5 121.3 117.7 125.5 color 0;
+    line 113.5 125.5 117.7 121.3 color 0;
+   end;
+   group
+    line 107.1 134.1 111.3 129.8 color 0;
+    line 107.1 129.8 111.3 134.1 color 0;
+    line 113.5 129.8 117.7 134.1 color 0;
+    line 113.5 134.1 117.7 129.8 color 0;
+   end;
+  terminals
+   p_in 80 104 fixed;
+   p_out 128 128 fixed;
+ end;
+ implementation eq
+parameters
+	real i = 10.0 {};				// gearbox ratio
+	real eff = 0.97 {};			// gearbox efficiency (0 < eff <= 1)
+variables
+	real dyn_eff;
+initialequations
+	dyn_eff = eff;
+equations
+	p_out.T = -p_in.T*i*dyn_eff;
+	p_out.omega = -p_in.omega/i;
+	dyn_eff = if (sign(dly(p_in.T,0.0))*sign(dly(p_in.omega,0.0))) >= 0 then eff else 1/eff end;
+	implementation_end;
+specification_end;
+							specification 'Ideal'
+ description '<Information>
+ <Description>
+    <Version>4.5</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
+  <TimeStamp>2014-9-26 12:10:30</TimeStamp>
+<AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>';
+ type Gear
+  ports
+   rotation psi in p_in;
+   rotation psi out p_out;
+  restrictions
+   orientation constraint not_equal p_in p_out;
+   causality constraint not_equal p_in p_out;
+ end;
+ icon ipm bottom
+  figures
+   line 936 280 952 280 color 0;
+   line 952 304 968 304 color 0;
+   line 949.3 271 953.6 271 color -1;
+   line 948.8 272 955.2 272 color 0 width 2;
+   line 952 272 952 284.2 color 0 width 2;
+   line 948.8 284.2 955.2 284.2 color 0 width 2;
+   line 948.8 287.8 955.2 287.8 color 0 width 2;
+   line 952 287.8 952 322.4 color 0 width 2;
+   line 948.8 322.4 955.2 322.4 color 0 width 2;
+   text '1' 957.9 276.5 color 0;
+   text 'i' 958.9 294.3 color 16711680;
+  terminals
+   p_in 936 280 fixed;
+   p_out 968 304 fixed;
+ end;
+ implementation eq
+parameters
+	real i = 361/5625 {};				// gearbox ratio
+equations
+	p_out.T = -p_in.T*i;
+	p_out.omega = -p_in.omega/i;implementation_end;
+specification_end;
+							specification 'Lossy'
+description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
+ <TimeStamp>2008-1-24 10:10:10</TimeStamp>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+ type Gear
+  ports
+   rotation psi in p_in;
+   rotation psi out p_out;
+  restrictions
+   orientation constraint not_equal p_in p_out;
+   causality preferred in p_in;
+   causality preferred in p_out;
+ end;
+ icon ipm bottom
+  figures
+   line 688 304 744 304;
+   line 744 328 776 328;
+   rectangle 700.3 287.8 732.3 319.8 fill 13421772;
+   text 'J' 715.9 304 15 italic;
+   line 740.1 297.5 744.4 297.5 color -1;
+   line 739.6 298.5 746 298.5 width 2;
+   line 742.8 298.5 742.8 309.2 width 2;
+   line 739.6 309.2 746 309.2 width 2;
+   line 739.6 312.4 746 312.4 width 2;
+   line 742.8 313.3 742.8 344.2 width 2;
+   line 739.6 343.3 746 343.3 width 2;
+   text '1' 750.7 305.2;
+   text 'i' 751.3 319.1 color 16711680;
+   group
+    line 757.1 325.5 761.3 321.3;
+    line 757.1 321.3 761.3 325.5;
+    line 763.5 321.3 767.7 325.5;
+    line 763.5 325.5 767.7 321.3;
+   end;
+   group
+    line 757.1 334.1 761.3 329.8;
+    line 757.1 329.8 761.3 334.1;
+    line 763.5 329.8 767.7 334.1;
+    line 763.5 334.1 767.7 329.8;
+   end;
+  terminals
+   p_in 688 304 fixed;
+   p_out 776 328 fixed;
+ end;
+ implementation eq
+parameters
+	real i = 10.0 {};					// gearbox ratio
+	real eff = 0.97 {};					// gearbox efficiency (0 < eff <= 1)
+	real J = 1.0e-5 {kg.m2/rad};		// rotational inertia
+variables
+	real p_in_T;
+	real dyn_eff;
+initialequations
+	dyn_eff = eff;
+equations
+	p_in.omega = (1/J)*int(p_in.T - p_in_T);
+	p_out.T = -p_in_T*i*dyn_eff;
+	p_out.omega = -p_in.omega/i;
+	dyn_eff = if (sign(dly(p_in_T,0.0))*sign(dly(p_in.omega,0.0))) >= 0 then eff else 1/eff end;
+implementation_end;
+specification_end;
+						end;
+      Ground 696 328
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Ground.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:57:33</TimeStamp>
+</Description>';
+       type Ground
+        ports
+         electric psi duplicatable in p;
+        restrictions
+         causality fixed out p;
+       end;
+       icon ipm bottom
+        figures
+         line 688 328 704 328 color 0;
+         line 690.7 332.3 701.3 332.3 color 0;
+         line 693.3 336 698.7 336 color 0;
+         line 696 320 696 328 color 0;
+        terminals
+         p 696 320 fixed;
+         p 696 320 fixed;
+         p 696 320 fixed;
+       end;
+       implementation eq
+equations
+	p.u = 0;
+ implementation_end;
+      Inductor 664 256
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Inductor.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:57:43</TimeStamp>
+</Description>';
+       type Inductor
+        ports
+         electric delta in p;
+        restrictions
+         causality preferred in p;
+       end;
+       icon ipm ellipse bottom
+        figures
+         ellipse 658.1 248 670.9 263.5 color 0;
+         ellipse 670.9 248 683.7 263.5 color 0;
+         ellipse 645.3 248 658.1 263.5 color 0;
+         rectangle 645.3 257.1 683.7 264 color 16777215 fill 16777215;
+         line 640 256 645.3 256 color 0;
+         line 682.7 256 688 256 color 0;
+        terminals
+         p high 640 256 fixed;
+         p low 688 256 fixed;
+       end;
+       implementation eq
+parameters
+	real L = 2.78e-3  {H};			// inductance
+equations
+	p.u = L * ddt(p.i);
+    implementation_end;
+      Inertia 1072 304
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Inertia.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:21:36</TimeStamp>
+</Description>';
+       type Inertia
+        ports
+         rotation psi duplicatable in p;
+        restrictions
+         causality preferred in p;
+       end;
+       icon ipm bottom
+        figures
+         rectangle 1056 288 1088 320 color 0 fill 13421772;
+         text 'J' 1072 304 color 0 15 italic;
+        terminals
+         p 1056 304;
+         p 1056 304;
+         p 1072 320;
+         p 1088 292.2;
+       end;
+       implementation eq
+parameters
+	real J = 4.28e-4  {kg.m2/rad};
+variables
+	real interesting phi {rad};
+	real alpha {rad/s2};
+equations
+	alpha = p.T / J;
+	p.omega = int (alpha);
+	phi = int (p.omega); implementation_end;
+      Inertia1 888 280
+       description '<Description>
+   <Version>4.0</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Inertia.emx</LibraryPath>
+  <TimeStamp>2008-2-26 12:21:36</TimeStamp>
+</Description>';
+       type Inertia
+        ports
+         rotation psi duplicatable in p;
+        restrictions
+         causality preferred in p;
+       end;
+       icon ipm bottom
+        figures
+         rectangle 872 264 904 296 color 0 fill 13421772;
+         text 'J' 888 280 color 0 15 italic;
+        terminals
+         p 904 280;
+         p 904 280;
+         p 872 280;
+       end;
+       implementation eq
+parameters
+	real J = 1.49e-6 {kg.m2/rad};
+variables
+	real interesting phi {rad};
+	real alpha {rad/s2};
+equations
+	alpha = p.T / J;
+	p.omega = int (alpha);
+	phi = int (p.omega); implementation_end;
+      ModulatedVoltageSource 617.9 280
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Sources\ModulatedVoltageSource.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:55:32</TimeStamp>
+</Description>';
+       type ModulatedVoltageSource
+        ports
+         electric delta out p;
+         signal in u {V} ;
+        restrictions
+         causality fixed out p;
+       end;
+       icon ipm bottom
+        figures
+         line 601.1 280 613 280 color 0 end;
+         line 624 256 624 304 color 0;
+         ellipse 613.4 269.3 635.8 291.7 color 0 fill 16777215;
+         line 617.6 260.8 617.6 268.3 color 0;
+         line 614.4 264 621.9 264 color 0;
+        terminals
+         p high 624 256 fixed;
+         p low 624 304 fixed;
+         u 600.6 280 fixed;
+       end;
+       implementation eq
+variables
+	real hidden current {A};
+equations
+	p.u = u;
+	current = p.i;implementation_end;
+      plug v 1136 376;
+      plug u 546.9 275.1;
+      Node1 695.9 303.9
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Node.emx</LibraryPath>
+  <TimeStamp>2007-10-31 11:27:14</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Node
+        ports
+         electric knot psi duplicatable none p [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 692.8 300.8 699.2 307.2 color -1 fill 0;
+         ellipse 691.7 299.7 700.2 308.2 color -1;
+        terminals
+         p 696 304 fixed;
+         p 696 304 fixed;
+         p 696 304 fixed;
+         p 696 304 fixed;
+       end;
+       implementation eq
+equations
+	sum (direct (p.t)) = 0;
+	equal (collect (p.a));
+  implementation_end;
+      Resistor 728 256
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Electric\Components\Resistor.emx</LibraryPath>
+  <TimeStamp>2007-9-25 11:58:20</TimeStamp>
+</Description>';
+       type Resistor
+        ports
+         electric delta in p;
+       end;
+       icon ipm bottom
+        figures
+         line 704 256 752 256 color 0;
+         rectangle 712 248 744 264 color 0 fill 16777215;
+        terminals
+         p high 704 256 fixed;
+         p low 752 256 fixed;
+       end;
+       implementation eq
+parameters
+	real R = 2.14 {ohm};		// resistance
+equations
+	p.u = R * p.i;
+      implementation_end;
+      Torque 1135.2 290.1
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Actuators\Torque.emx</LibraryPath>
+  <TimeStamp>2007-9-25 10:54:20</TimeStamp>
+</Description>';
+       type Torque
+        ports
+         rotation psi out p;
+        restrictions
+         causality fixed out p;
+       end;
+       icon ipm bottom
+        figures
+         line 1125.8 292.2 1112 292.2 color 0 end open;
+         line 1125.8 292.2 1116.2 292.2 color 0 end open;
+         text 'T' 1131.2 292.2 color 0 14;
+         line 1152.5 302.9 1152.5 276.2 color 0 width 2;
+         line 1158.4 305 1152.5 299.7 color 0 fill 2005303;
+         line 1158.4 299.7 1152.5 294.3 color 0 fill 2005303;
+         line 1158.4 294.3 1152.5 289 color 0 fill 2005303;
+         line 1158.4 289 1152.5 283.7 color 0 fill 2005303;
+         line 1158.4 283.7 1152.5 278.3 color 0 fill 2005303;
+         line 1139.7 292.2 1151.4 292.2 color 0 end open;
+         line 1139.7 292.2 1147.2 292.2 color 0 end open;
+        terminals
+         p 1110.4 292.2 fixed;
+       end;
+       implementation eq
+parameters
+	real T = 0.001  {N.m};		// Torque
+variables
+	real hidden omega {rad/s};
+equations
+	p.T = T;
+	omega = p.omega;implementation_end;
+      VelocitySensor 1072 369.4
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Sensors\VelocitySensor-Absolute.emx</LibraryPath>
+  <TimeStamp>2007-9-25 17:0:6</TimeStamp>
+</Description>';
+       type 'VelocitySensor-Absolute'
+        ports
+         rotation psi in p;
+         signal out omega {rad/s} ;
+        restrictions
+         causality fixed out p;
+       end;
+       icon bg bottom
+        figures
+         line 1072 352 1071.5 376 color 0;
+         ellipse 1060.8 365.4 1083.2 387.8 color 0 fill 16777215;
+         text 'V' 1072 376.6 color 0 15;
+        terminals
+         p 1072 352 fixed;
+         omega 1072 376 fixed;
+       end;
+       implementation eq
+equations
+	p.T = 0;
+	omega = p.omega;             implementation_end;
+     end;
+     connections
+      Bearing1\p <= DCmotor\p2;
+      DCmotor\p1_low => Node1\p;
+      Gear\p_in <= Inertia1\p;
+      Gear\p_out => Bearing\p;
+      Ground\p => Node1\p;
+      Inductor\p_low => Resistor\p_high;
+      Inertia\p => Bearing\p;
+      Inertia1\p => Bearing1\p;
+      ModulatedVoltageSource\p_high => Inductor\p_high;
+      Node1\p => ModulatedVoltageSource\p_low;
+      Resistor\p_low => DCmotor\p1_high;
+      Torque\p => Inertia\p;
+      u -> ModulatedVoltageSource\u;
+      VelocitySensor\omega -> v;
+      VelocitySensor\p <= Inertia\p;
+     end;
+    implementation_end;
+   PlusMinus 224 152
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+    knot PlusMinus
+     ports
+      signal knot duplicatable in plus [1];
+      signal knot duplicatable in minus [1];
+      signal knot out output [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 216 144 232 160 color 0 fill 16777215;
+    end;
+    implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+   PlusMinus2 376 152
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+    knot PlusMinus
+     ports
+      signal knot duplicatable in plus [1];
+      signal knot duplicatable in minus [1];
+      signal knot out output [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 368 144 384 160 color 0 fill 16777215;
+    end;
+    implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+   Ramp 72 152
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\SignalGenerator-Ramp.emx</LibraryPath>
+  <TimeStamp>2007-9-27 16:1:50</TimeStamp>
+</Description>';
+    type 'SignalGenerator-Ramp'
+     ports
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 56 136 88 168 color 0 fill 15132390;
+      line 58.9 160 85.1 160 color 0;
+      line 61.3 159.8 65.7 160.1 79.1 147.4 color 16711680 width 2;
+      line 61.1 144 61.1 162.2 color 0;
+    end;
+    implementation eq
+parameters
+	real slope = 9 {1/s};
+	real start_time = 1.0 {s};
+variables
+	boolean hidden change;
+equations
+	"calculate at least at the start time"
+	change = timeevent (start_time);
+
+	"calculate the ramp signal"
+	output = slope * ramp (start_time);
+     implementation_end;
+   SignalMonitor 456 424
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+  <LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath>
+  <TimeStamp>2007-9-26 12:14:4</TimeStamp>
+</Description>
+';
+    type SignalMonitor
+     ports
+      signal in input;
+    end;
+    icon bg bottom
+     figures
+      rectangle 440 408 472 440 color 0 fill 15132390;
+      rectangle 445.7 413.8 466.3 434.6 color 16711680 fill 11776947 width 2;
+      rectangle 447.8 416.4 463.9 432 color -1 fill 16777215;
+      line 449.9 418.7 449.9 430 color 0 fill 16777215;
+      line 448 428.4 460.5 428.4 color 0 fill 16777215;
+      line 449.5 428.1 462.4 421.7 color 255 fill 16777215;
+    end;
+    implementation eq
+variables
+	real interesting plot;
+equations
+	plot = input;
+   implementation_end;
+   Splitter1 128 152
+    description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+    knot Splitter
+     ports
+      signal knot duplicatable out output [1];
+      signal knot in input [1];
+    end;
+    icon bg ellipse bottom
+     figures
+      ellipse 124.8 148.8 131.2 155.2 color -1 fill 0;
+      ellipse 123.7 147.7 132.3 156.3 color -1;
+     terminals
+      input 128 152 fixed;
+    end;
+    implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+   Splitter2 568 200
+    description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+    knot Splitter
+     ports
+      signal knot duplicatable out output [1];
+      signal knot in input [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 564.8 196.8 571.2 203.2 color -1 fill 0;
+      ellipse 563.7 195.7 572.3 204.3 color -1;
+     terminals
+      input 568 200 fixed;
+    end;
+    implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+   Splitter3 128 96
+    description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+    knot Splitter
+     ports
+      signal knot duplicatable out output [1];
+      signal knot in input [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 124.8 92.8 131.2 99.2 color -1 fill 0;
+      ellipse 123.7 91.7 132.3 100.3 color -1;
+     terminals
+      input 128 96 fixed;
+    end;
+    implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+   Splitter4 376 96
+    description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+    knot Splitter
+     ports
+      signal knot duplicatable out output [1];
+      signal knot in input [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 372.8 92.8 379.2 99.2 color -1 fill 0;
+      ellipse 371.7 91.7 380.3 100.3 color -1;
+     terminals
+      input 376 96 fixed;
+    end;
+    implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+   Splitter5 480 152
+    description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+    knot Splitter
+     ports
+      signal knot duplicatable out output [1];
+      signal knot in input [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 476.8 148.8 483.2 155.2 color -1 fill 0;
+      ellipse 475.7 147.7 484.3 156.3 color -1;
+     terminals
+      input 480 152 fixed;
+    end;
+    implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+   Submodel4 40 -16
+    description '<Description>
+	<Version>5.1</Version>
+	<IsMainModel>1</IsMainModel>
+	</Description>';
+    type Submodel
     end;
     implementation bg
      submodels
@@ -117,52 +2428,12 @@ parameters
 equations
 	output = int (input, initial);
      implementation_end;
-      ModelOutput 544 64
-       description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath><TimeStamp>2007-9-26 12:14:4</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-       type SignalMonitor
-        ports
-         signal in input;
-       end;
-       icon bg bottom
-        figures
-         rectangle 528 48 560 80 color 0 fill 15132390;
-         rectangle 533.7 53.8 554.3 74.6 color 16711680 fill 11776947 width 2;
-         rectangle 535.8 56.4 551.9 72 color -1 fill 16777215;
-         line 537.9 58.7 537.9 70 color 0 fill 16777215;
-         line 536 68.4 548.5 68.4 color 0 fill 16777215;
-         line 537.5 68.1 550.4 61.7 color 255 fill 16777215;
-       end;
-       implementation eq
-variables
-	real interesting plot;
-equations
-	plot = input;
-   implementation_end;
-      PlusMinus 280 56
-       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
-  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
-</Description>';
-       knot PlusMinus
-        ports
-         signal knot duplicatable in plus [1];
-         signal knot duplicatable in minus [1];
-         signal knot out output [1];
-       end;
-       icon bg ellipse
-        figures
-         ellipse 272 48 288 64 color 0 fill 16777215;
-       end;
-       implementation eq
-equations
-    output = sum (collect (plus)) - sum (collect (minus));
-    implementation_end;
       Saw1 200 504
        description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
    <LibraryPath>Signal\Sources\WaveGenerator-Saw.emx</LibraryPath>
   <TimeStamp>2007-9-27 16:11:0</TimeStamp>
 </Description>';
-       type 'WaveGenerator-Saw'
+       type WaveGenerator
         ports
          signal out output;
        end;
@@ -192,39 +2463,6 @@ equations
 	"calculate the saw wave"
 	output =  (amplitude / period) * (ramp (0.0) mod period);
 implementation_end;
-      Sine 200 56
-       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Sources\WaveGenerator-Sine.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:12:6</TimeStamp>
-</Description>';
-       type 'WaveGenerator-Sine'
-        ports
-         signal out output;
-       end;
-       icon bg bottom
-        figures
-         group
-          rectangle 184 40 216 72 color 0 fill 15132390;
-          line 188.5 46.4 188.5 65.6 color 0;
-          line 214.1 56 185.3 56 color 0;
-          spline 188.9 55.9 192.1 47.8 195.3 55.9 198.6 64 201.7 55.9 204.8 47.8 208.1 55.9 211.6 64.2 214.8 56.2 color 16711680;
-         end;
-       end;
-       implementation eq
-parameters
-	real amplitude = 1;			// amplitude of the wave
-	real omega = 1 {rad/s};		// angular frequency of the wave
-variables
-	boolean hidden change;
-	real hidden half;
-equations
-	"calculate at least 2 points per cycle to get a triangle"
-	half = pi / omega;
-	change = frequencyevent (half, half / 2);
-
-	"calculate the sine wave"
-	output = amplitude * sin ( omega * time);
-implementation_end;
       Submodel1 352.1 504
        description '<Description>
  <Version>4.0</Version>
@@ -237,6 +2475,11 @@ implementation_end;
         ports
          signal in InputBG;
          signal out OutputBG;
+       end;
+       icon bg
+        figures
+         rectangle 312.1 488 392.1 520 color 0 fill 15132390;
+         text 'name' 352.1 504 color 0 16;
        end;
        implementation bg
         submodels
@@ -638,1841 +2881,36 @@ implementation_end;
          TF\p2 => OneJunction2\p;
         end;
        implementation_end;
-      System 336 64
-       description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-       type Submodel
-        ports
-         signal in input;
-         signal out OUTPUT;
-         signal out OUTPUT2;
-       end;
-       implementation bg
-        submodels
-         Gain 232 64
-          description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath>
-  <TimeStamp>2007-9-26 12:15:12</TimeStamp>
-</Description>';
-          type Gain
-           ports
-            signal in input;
-            signal out output;
-          end;
-          icon bg bottom
-           figures
-            rectangle 216.1 48 247.9 80 color 0 fill 15132390;
-            text 'K' 232 64 color 16711680 16 bold;
-          end;
-          implementation eq
-parameters
-	real K = 12.3;		// gain
-equations
-	output = K * input;
-    implementation_end;
-         model1 319.5 64.5
-          description '<Information>
-  <Description>
-    <Version>5.1</Version>
-    <IsMainModel>0</IsMainModel>
-    <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>C:\Users\0905l\Documents\Pre-Project_Models\DCMotor.emx</LibraryPath>
-    <TimeStamp>2025-12-5 10:18:34</TimeStamp>
-  </Description>
-</Information>';
-          type Mainmodel
-           ports
-            signal in INPUT;
-            signal out OUTPUT;
-            signal out OUTPUT2;
-          end;
-          implementation bg
-           submodels
-            Bearing 584 80
-             description '<Description>
-   <Version>4.0</Version>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Bearing.emx</LibraryPath>
-  <TimeStamp>2008-2-26 12:26:02</TimeStamp>
-</Description>';
-             type Bearing
-              ports
-               rotation psi duplicatable in p;
-             end;
-             icon bg bottom
-              figures
-               group
-                line 572.8 94 576.5 89.9 color 0;
-                line 576.5 94 580.4 89.9 color 0;
-                line 580.4 94 584.1 89.9 color 0;
-                line 584.1 94 588.1 89.9 color 0;
-                line 588.1 94 591.8 89.9 color 0;
-                line 574.4 90.2 594.1 90.2 color 0 width 2;
-               end;
-               group
-                group
-                 line 576.9 73.1 581.3 77.9 color 0;
-                 line 576.9 77.9 581.3 73.1 color 0;
-                 line 585.8 73.1 590.3 77.9 color 0;
-                 line 585.8 77.9 590.3 73.1 color 0;
-                 line 581.3 73.1 585.8 77.9 color 0;
-                 line 581.1 77.9 585.8 73.1 color 0;
-                end;
-                group
-                 line 576.9 82.1 581.3 86.9 color 0;
-                 line 576.9 86.9 581.3 82.1 color 0;
-                 line 585.8 82.1 590.3 86.9 color 0;
-                 line 585.8 86.9 590.3 82.1 color 0;
-                 line 581.3 82.1 585.8 86.7 color 0;
-                 line 581.1 86.9 585.9 82 color 0;
-                end;
-               end;
-               line 568 80 600 80 color 0;
-               group
-                line 593 70.1 574 70.1 color 0 width 2;
-                line 594.6 66 590.7 70.1 color 0;
-                line 590.7 66 587 70.1 color 0;
-                line 587 66 583 70.1 color 0;
-                line 583 66 579.3 70.1 color 0;
-                line 579.3 66 575.6 70.1 color 0;
-               end;
-              terminals
-               p 567 80;
-               p 567 80;
-               p 601 80;
-             end;
-             implementation eq
-parameters
-	real d = 9.695e-4   {N.m.s/rad};
-equations
-	p.T = d * p.omega;implementation_end;
-            Bearing1 408 56
-             description '<Description>
-   <Version>4.0</Version>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Bearing.emx</LibraryPath>
-  <TimeStamp>2008-2-26 12:26:02</TimeStamp>
-</Description>';
-             type Bearing
-              ports
-               rotation psi duplicatable in p;
-             end;
-             icon bg bottom
-              figures
-               group
-                line 396.8 70 400.5 65.9 color 0;
-                line 400.5 70 404.4 65.9 color 0;
-                line 404.4 70 408.1 65.9 color 0;
-                line 408.1 70 412.1 65.9 color 0;
-                line 412.1 70 415.8 65.9 color 0;
-                line 398.4 66.2 418.1 66.2 color 0 width 2;
-               end;
-               group
-                group
-                 line 400.9 49.1 405.3 53.9 color 0;
-                 line 400.9 53.9 405.3 49.1 color 0;
-                 line 409.8 49.1 414.3 53.9 color 0;
-                 line 409.8 53.9 414.3 49.1 color 0;
-                 line 405.3 49.1 409.8 53.9 color 0;
-                 line 405.1 53.9 409.8 49.1 color 0;
-                end;
-                group
-                 line 400.9 58.1 405.3 62.9 color 0;
-                 line 400.9 62.9 405.3 58.1 color 0;
-                 line 409.8 58.1 414.3 62.9 color 0;
-                 line 409.8 62.9 414.3 58.1 color 0;
-                 line 405.3 58.1 409.8 62.7 color 0;
-                 line 405.1 62.9 409.9 58 color 0;
-                end;
-               end;
-               line 392 56 424 56 color 0;
-               group
-                line 417 46.1 398 46.1 color 0 width 2;
-                line 418.6 42 414.7 46.1 color 0;
-                line 414.7 42 411 46.1 color 0;
-                line 411 42 407 46.1 color 0;
-                line 407 42 403.3 46.1 color 0;
-                line 403.3 42 399.6 46.1 color 0;
-               end;
-              terminals
-               p 391 56;
-               p 391 56;
-               p 425 56;
-             end;
-             implementation eq
-parameters
-	real d = 3.333e-6   {N.m.s/rad};
-equations
-	p.T = d * p.omega;implementation_end;
-            DCmotor 358.1 55.5
-												specifications active 'default'
-													specification 'default'
- description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Electric\Actuators\DCMotor.emx</LibraryPath>
-  <TimeStamp>2008-1-15 15:27:48</TimeStamp>
-</Description>';
- type DCMotor
-  ports
-   electric delta in p1;
-   rotation psi out p2;
-  restrictions
-   causality constraint equal p1 p2;
- end;
- icon bg bottom
-  figures
-   line 352 79.5 352 31.5 color 0;
-   rectangle 346.7 39.5 357.4 71.5 color 0 fill 0;
-   ellipse 339.2 43.2 364.8 68.8 color 0 fill 16777215;
-   line 376 56 352 56 color 0 fill 0;
-  terminals
-   p1 high 352 32 fixed;
-   p1 low 352 80 fixed;
-   p2 376 56 fixed;
- end;
- implementation eq
-parameters
-	real k = 2.56e-2 {N.m/A};		// motor constant
-equations
-	p2.T = k * p1.i;
-	p1.u = k * p2.omega;
-implementation_end;
-specification_end;
-													specification 'IR'
-description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Electric\Actuators\DCMotor.emx</LibraryPath>
-  <TimeStamp>2008-1-15 15:27:48</TimeStamp>
-</Description>';
- type DCMotor
-  ports
-   electric delta in p1;
-   rotation psi out p2;
-  restrictions
-   causality constraint equal p1 p2;
- end;
- icon bg bottom
-  figures
-   line 120 567.5 120 519.5;
-   rectangle 114.7 527.5 125.4 559.5 fill 0;
-   ellipse 107.2 531.2 132.8 556.8 fill 16777215;
-   line 144 544 120 544 fill 0;
-  terminals
-   p1 high 120 520 fixed;
-   p1 low 120 568 fixed;
-   p2 144 544 fixed;
- end;
- implementation eq
-parameters
-	real k = 0.01 {N.m/A};		// motor constant
-	real L = 1e-3  {H};			// inductance
-	real R = 2  {ohm};			// resistance
-variables
-	real hidden ur {V};
-	real hidden ui {V};
-	real hidden um {V};
-equations
-	p1.i = (1/L)*int(ui,0);
-	ur = R*p1.i;
-	p2.T = k * p1.i;
-	um = k * p2.omega;
-	ui = p1.u - ur - um;implementation_end;
-specification_end;
-												end;
-            Gear 528 73.2
-												specifications active 'Ideal'
-													specification 'Efficiency'
-description '<Information>
- <Description>
-    <Version>4.5</Version>
-<IsMainModel>1</IsMainModel>
-  <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
-  <TimeStamp>2014-11-4 20:07:27</TimeStamp>
-</Description>
-</Information>';
- type Gear
-  ports
-   rotation psi in p_in;
-   rotation psi out p_out;
-  restrictions
-   orientation constraint not_equal p_in p_out;
-   causality constraint not_equal p_in p_out;
- end;
- icon ipm bottom
-  figures
-   line 80 104 96 104 color 0;
-   line 96 128 128 128 color 0;
-   line 93.3 96 97.6 96 color -1;
-   line 92.8 97 99.2 97 color 0 width 2;
-   line 96 97 96 109.2 color 0 width 2;
-   line 92.8 109.2 99.2 109.2 color 0 width 2;
-   line 92.8 112.8 99.2 112.8 color 0 width 2;
-   line 96 111.8 96 146.4 color 0 width 2;
-   line 92.8 145.4 99.2 145.4 color 0 width 2;
-   text '1' 102.9 102.5 color 0;
-   text 'i' 102.9 118.3 color 16711680;
-   group
-    line 107.1 125.5 111.3 121.3 color 0;
-    line 107.1 121.3 111.3 125.5 color 0;
-    line 113.5 121.3 117.7 125.5 color 0;
-    line 113.5 125.5 117.7 121.3 color 0;
-   end;
-   group
-    line 107.1 134.1 111.3 129.8 color 0;
-    line 107.1 129.8 111.3 134.1 color 0;
-    line 113.5 129.8 117.7 134.1 color 0;
-    line 113.5 134.1 117.7 129.8 color 0;
-   end;
-  terminals
-   p_in 80 104 fixed;
-   p_out 128 128 fixed;
- end;
- implementation eq
-parameters
-	real i = 10.0 {};				// gearbox ratio
-	real eff = 0.97 {};			// gearbox efficiency (0 < eff <= 1)
-variables
-	real dyn_eff;
-initialequations
-	dyn_eff = eff;
-equations
-	p_out.T = -p_in.T*i*dyn_eff;
-	p_out.omega = -p_in.omega/i;
-	dyn_eff = if (sign(dly(p_in.T,0.0))*sign(dly(p_in.omega,0.0))) >= 0 then eff else 1/eff end;
-	implementation_end;
-specification_end;
-													specification 'Ideal'
- description '<Information>
- <Description>
-    <Version>4.5</Version>
-<IsMainModel>1</IsMainModel>
-  <KeepParameterValues>False</KeepParameterValues>
- <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
-  <TimeStamp>2014-9-26 12:10:30</TimeStamp>
-<AllowLibraryUpdate>True</AllowLibraryUpdate>
-  <Configuration>
-   <struct>
-    <member>
-     <name>DocumentationMask</name>
-     <value>
-      <struct></struct>
-     </value>
-    </member>
-   </struct>
-  </Configuration>
- </Description>
-</Information>';
- type Gear
-  ports
-   rotation psi in p_in;
-   rotation psi out p_out;
-  restrictions
-   orientation constraint not_equal p_in p_out;
-   causality constraint not_equal p_in p_out;
- end;
- icon ipm bottom
-  figures
-   line 512 56 528 56 color 0;
-   line 528 80 544 80 color 0;
-   line 525.3 47 529.6 47 color -1;
-   line 524.8 48 531.2 48 color 0 width 2;
-   line 528 48 528 60.2 color 0 width 2;
-   line 524.8 60.2 531.2 60.2 color 0 width 2;
-   line 524.8 63.8 531.2 63.8 color 0 width 2;
-   line 528 63.8 528 98.4 color 0 width 2;
-   line 524.8 98.4 531.2 98.4 color 0 width 2;
-   text '1' 533.9 52.5 color 0;
-   text 'i' 534.9 70.3 color 16711680;
-  terminals
-   p_in 512 56 fixed;
-   p_out 544 80 fixed;
- end;
- implementation eq
-parameters
-	real i = 361/5625 {};				// gearbox ratio
-equations
-	p_out.T = -p_in.T*i;
-	p_out.omega = -p_in.omega/i;implementation_end;
-specification_end;
-													specification 'Lossy'
-description '<Description>
- <Version>4.0</Version>
- <IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
- <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Gears\Gear.emx</LibraryPath>
- <TimeStamp>2008-1-24 10:10:10</TimeStamp>
- <AllowLibraryUpdate>True</AllowLibraryUpdate>
-   <Configuration><struct>
-  <member>
-    <name>DocumentationMask</name>
-    <value>
-      <struct>
-        <member>
-          <name>MaskChoice</name>
-          <value>
-            <int>1</int>
-          </value>
-        </member>
-        <member>
-          <name>BitmapFilename</name>
-          <value>
-            <string></string>
-          </value>
-        </member>
-        <member>
-          <name>ScriptFilename</name>
-          <value>
-            <string></string>
-          </value>
-        </member>
-        <member>
-          <name>Scaling</name>
-          <value>
-            <double>1</double>
-          </value>
-        </member>
-      </struct>
-    </value>
-  </member>
-</struct>
-</Configuration>
-</Description>';
- type Gear
-  ports
-   rotation psi in p_in;
-   rotation psi out p_out;
-  restrictions
-   orientation constraint not_equal p_in p_out;
-   causality preferred in p_in;
-   causality preferred in p_out;
- end;
- icon ipm bottom
-  figures
-   line 688 304 744 304;
-   line 744 328 776 328;
-   rectangle 700.3 287.8 732.3 319.8 fill 13421772;
-   text 'J' 715.9 304 15 italic;
-   line 740.1 297.5 744.4 297.5 color -1;
-   line 739.6 298.5 746 298.5 width 2;
-   line 742.8 298.5 742.8 309.2 width 2;
-   line 739.6 309.2 746 309.2 width 2;
-   line 739.6 312.4 746 312.4 width 2;
-   line 742.8 313.3 742.8 344.2 width 2;
-   line 739.6 343.3 746 343.3 width 2;
-   text '1' 750.7 305.2;
-   text 'i' 751.3 319.1 color 16711680;
-   group
-    line 757.1 325.5 761.3 321.3;
-    line 757.1 321.3 761.3 325.5;
-    line 763.5 321.3 767.7 325.5;
-    line 763.5 325.5 767.7 321.3;
-   end;
-   group
-    line 757.1 334.1 761.3 329.8;
-    line 757.1 329.8 761.3 334.1;
-    line 763.5 329.8 767.7 334.1;
-    line 763.5 334.1 767.7 329.8;
-   end;
-  terminals
-   p_in 688 304 fixed;
-   p_out 776 328 fixed;
- end;
- implementation eq
-parameters
-	real i = 10.0 {};					// gearbox ratio
-	real eff = 0.97 {};					// gearbox efficiency (0 < eff <= 1)
-	real J = 1.0e-5 {kg.m2/rad};		// rotational inertia
-variables
-	real p_in_T;
-	real dyn_eff;
-initialequations
-	dyn_eff = eff;
-equations
-	p_in.omega = (1/J)*int(p_in.T - p_in_T);
-	p_out.T = -p_in_T*i*dyn_eff;
-	p_out.omega = -p_in.omega/i;
-	dyn_eff = if (sign(dly(p_in_T,0.0))*sign(dly(p_in.omega,0.0))) >= 0 then eff else 1/eff end;
-implementation_end;
-specification_end;
-												end;
-            Ground 272 104
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Electric\Components\Ground.emx</LibraryPath>
-  <TimeStamp>2007-9-25 11:57:33</TimeStamp>
-</Description>';
-             type Ground
-              ports
-               electric psi duplicatable in p;
-              restrictions
-               causality fixed out p;
-             end;
-             icon ipm bottom
-              figures
-               line 264 104 280 104 color 0;
-               line 266.7 108.3 277.3 108.3 color 0;
-               line 269.3 112 274.7 112 color 0;
-               line 272 96 272 104 color 0;
-              terminals
-               p 272 96 fixed;
-               p 272 96 fixed;
-               p 272 96 fixed;
-             end;
-             implementation eq
-equations
-	p.u = 0;
- implementation_end;
-            Inductor 240 32
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Electric\Components\Inductor.emx</LibraryPath>
-  <TimeStamp>2007-9-25 11:57:43</TimeStamp>
-</Description>';
-             type Inductor
-              ports
-               electric delta in p;
-              restrictions
-               causality preferred in p;
-             end;
-             icon ipm ellipse bottom
-              figures
-               ellipse 234.1 24 246.9 39.5 color 0;
-               ellipse 246.9 24 259.7 39.5 color 0;
-               ellipse 221.3 24 234.1 39.5 color 0;
-               rectangle 221.3 33.1 259.7 40 color 16777215 fill 16777215;
-               line 216 32 221.3 32 color 0;
-               line 258.7 32 264 32 color 0;
-              terminals
-               p high 216 32 fixed;
-               p low 264 32 fixed;
-             end;
-             implementation eq
-parameters
-	real L = 2.78e-3  {H};			// inductance
-equations
-	p.u = L * ddt(p.i);
-    implementation_end;
-            Inertia 648 80
-             description '<Description>
-   <Version>4.0</Version>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Inertia.emx</LibraryPath>
-  <TimeStamp>2008-2-26 12:21:36</TimeStamp>
-</Description>';
-             type Inertia
-              ports
-               rotation psi duplicatable in p;
-              restrictions
-               causality preferred in p;
-             end;
-             icon ipm bottom
-              figures
-               rectangle 632 64 664 96 color 0 fill 13421772;
-               text 'J' 648 80 color 0 15 italic;
-              terminals
-               p 632 80;
-               p 632 80;
-               p 648 96;
-               p 648 64;
-             end;
-             implementation eq
-parameters
-	real J = 4.28e-4  {kg.m2/rad};
-variables
-	real interesting phi {rad};
-	real alpha {rad/s2};
-equations
-	alpha = p.T / J;
-	p.omega = int (alpha);
-	phi = int (p.omega); implementation_end;
-            Inertia1 464 56
-             description '<Description>
-   <Version>4.0</Version>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Components\Inertia.emx</LibraryPath>
-  <TimeStamp>2008-2-26 12:21:36</TimeStamp>
-</Description>';
-             type Inertia
-              ports
-               rotation psi duplicatable in p;
-              restrictions
-               causality preferred in p;
-             end;
-             icon ipm bottom
-              figures
-               rectangle 448 40 480 72 color 0 fill 13421772;
-               text 'J' 464 56 color 0 15 italic;
-              terminals
-               p 480 56;
-               p 480 56;
-               p 448 56;
-             end;
-             implementation eq
-parameters
-	real J = 1.49e-6 {kg.m2/rad};
-variables
-	real interesting phi {rad};
-	real alpha {rad/s2};
-equations
-	alpha = p.T / J;
-	p.omega = int (alpha);
-	phi = int (p.omega); implementation_end;
-            ModulatedVoltageSource 193.9 56
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Electric\Sources\ModulatedVoltageSource.emx</LibraryPath>
-  <TimeStamp>2007-9-25 11:55:32</TimeStamp>
-</Description>';
-             type ModulatedVoltageSource
-              ports
-               electric delta out p;
-               signal in u {V} ;
-              restrictions
-               causality fixed out p;
-             end;
-             icon ipm bottom
-              figures
-               line 177.1 56 189 56 color 0 end;
-               line 200 32 200 80 color 0;
-               ellipse 189.4 45.3 211.8 67.7 color 0 fill 16777215;
-               line 193.6 36.8 193.6 44.3 color 0;
-               line 190.4 40 197.9 40 color 0;
-              terminals
-               p high 200 32 fixed;
-               p low 200 80 fixed;
-               u 176.6 56 fixed;
-             end;
-             implementation eq
-variables
-	real hidden current {A};
-equations
-	p.u = u;
-	current = p.i;implementation_end;
-            plug OUTPUT2 712 24;
-            plug OUTPUT 712 144;
-            plug INPUT 104 56;
-            Node1 271.9 79.9
-             description '<Description><Version>4.0</Version>
-   <LibraryPath>Iconic Diagrams\Electric\Components\Node.emx</LibraryPath>
-  <TimeStamp>2007-10-31 11:27:14</TimeStamp>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-</Description>';
-             knot Node
-              ports
-               electric knot psi duplicatable none p [1];
-             end;
-             icon bg ellipse
-              figures
-               ellipse 268.8 76.8 275.2 83.2 color -1 fill 0;
-               ellipse 267.7 75.7 276.2 84.2 color -1;
-              terminals
-               p 272 80 fixed;
-               p 272 80 fixed;
-               p 272 80 fixed;
-               p 272 80 fixed;
-             end;
-             implementation eq
-equations
-	sum (direct (p.t)) = 0;
-	equal (collect (p.a));
-  implementation_end;
-            PositionSensor 648 137.4
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Sensors\PositionSensor-Absolute.emx</LibraryPath>
-  <TimeStamp>2007-9-25 16:59:15</TimeStamp>
-</Description>';
-             type 'PositionSensor-Absolute'
-              ports
-               rotation psi in p;
-               signal out phi {rad} ;
-              restrictions
-               causality fixed out p;
-             end;
-             icon bg bottom
-              figures
-               line 648 120 647.5 144 color 0;
-               ellipse 636.8 133.4 659.2 155.8 color 0 fill 16777215;
-               text 'P' 648 144.6 color 0 15;
-              terminals
-               p 648 120 fixed;
-               phi 648 144 fixed;
-             end;
-             implementation eq
-equations
-	p.T = 0;
-	phi = int (p.omega);             implementation_end;
-            PositionSensor1 648 33.4
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Mechanical\Rotation\Sensors\PositionSensor-Absolute.emx</LibraryPath>
-  <TimeStamp>2007-9-25 16:59:15</TimeStamp>
-</Description>';
-             type 'PositionSensor-Absolute'
-              ports
-               rotation psi in p;
-               signal out phi {rad} ;
-              restrictions
-               causality fixed out p;
-             end;
-             icon bg ellipse bottom
-              figures
-               line 648 50.8 648.5 26.8 color 0;
-               ellipse 636.8 15 659.2 37.4 color 0 fill 16777215;
-               text 'P' 648 26.2 color 0 15;
-              terminals
-               p 648 50.8 fixed;
-               phi 648 26.8 fixed;
-             end;
-             implementation eq
-equations
-	p.T = 0;
-	phi = int (p.omega);             implementation_end;
-            Resistor 304 32
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Iconic Diagrams\Electric\Components\Resistor.emx</LibraryPath>
-  <TimeStamp>2007-9-25 11:58:20</TimeStamp>
-</Description>';
-             type Resistor
-              ports
-               electric delta in p;
-             end;
-             icon ipm bottom
-              figures
-               line 280 32 328 32 color 0;
-               rectangle 288 24 320 40 color 0 fill 16777215;
-              terminals
-               p high 280 32 fixed;
-               p low 328 32 fixed;
-             end;
-             implementation eq
-parameters
-	real R = 2.14 {ohm};		// resistance
-equations
-	p.u = R * p.i;
-      implementation_end;
-           end;
-           connections
-            Bearing1\p <= DCmotor\p2;
-            DCmotor\p1_low => Node1\p;
-            Gear\p_in <= Inertia1\p;
-            Gear\p_out => Bearing\p;
-            Ground\p => Node1\p;
-            Inductor\p_low => Resistor\p_high;
-            Inertia\p => Bearing\p;
-            Inertia1\p => Bearing1\p;
-            INPUT -> ModulatedVoltageSource\u;
-            ModulatedVoltageSource\p_high => Inductor\p_high;
-            Node1\p => ModulatedVoltageSource\p_low;
-            PositionSensor\p <= Inertia\p;
-            PositionSensor\phi -> OUTPUT;
-            PositionSensor1\p <= Inertia\p;
-            PositionSensor1\phi -> OUTPUT2;
-            Resistor\p_low => DCmotor\p1_high;
-           end;
-          implementation_end;
-         plug input 127.9 64;
-         plug OUTPUT 528 64.2;
-         plug OUTPUT2 528 80;
-         Sine 168 224
-          description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Sources\WaveGenerator-Sine.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:12:6</TimeStamp>
-</Description>';
-          type 'WaveGenerator-Sine'
-           ports
-            signal out output;
-          end;
-          icon bg bottom
-           figures
-            group
-             rectangle 152 208 184 240 color 0 fill 15132390;
-             line 156.5 214.4 156.5 233.6 color 0;
-             line 182.1 224 153.3 224 color 0;
-             spline 156.9 223.9 160.1 215.8 163.3 223.9 166.6 232 169.7 223.9 172.8 215.8 176.1 223.9 179.6 232.2 182.8 224.2 color 16711680;
-            end;
-          end;
-          implementation eq
-parameters
-	real amplitude = 1.0;			// amplitude of the wave
-	real omega = 2 * pi {rad/s};		// angular frequency of the wave
-variables
-	boolean hidden change;
-	real hidden half;
-equations
-	"calculate at least 2 points per cycle to get a triangle"
-	half = pi / omega;
-	change = frequencyevent (half, half / 2);
-
-	"calculate the sine wave"
-	output = amplitude * sin ( omega * time);
-implementation_end;
-         Step_input 320 216
-          description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-          type Submodel
-           ports
-            signal in input_step;
-            signal out out_open;
-          end;
-          implementation bg
-           submodels
-            DiscreteDifferential 480 80
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
-</Description>';
-             type DiscreteDifferential
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 464 63.7 496 96.3 color 0 fill 15132390;
-               text '-1' 489.3 86 color 16711680 10;
-               text 'z' 482.7 89.8 color 16711680 13;
-               group
-                text 'd' 474.2 72.7 color 16711680 14;
-                text 'dt' 474.2 85.8 color 16711680 14;
-                line 468.2 79.3 479 79.3 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real initial = 0.0;  	// initial output value
-variables
-	real hidden initial_input;
-	boolean hidden initialized;
-initialequations
-	initialized = false;
-equations
-	if not initialized then 
-		initial_input = initial - input/sampletime; 
-		initialized = true;
-	else
-		initial_input = 0;
-	end;
-	output = (input - previous (input,0))/sampletime + initial_input;
-implementation_end;
-            DiscreteDifferential1 600 144
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
-</Description>';
-             type DiscreteDifferential
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 584 127.7 616 160.3 color 0 fill 15132390;
-               text '-1' 609.3 150 color 16711680 10;
-               text 'z' 602.7 153.8 color 16711680 13;
-               group
-                text 'd' 594.2 136.7 color 16711680 14;
-                text 'dt' 594.2 149.8 color 16711680 14;
-                line 588.2 143.3 599 143.3 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real initial = 0.0;  	// initial output value
-variables
-	real hidden initial_input;
-	boolean hidden initialized;
-initialequations
-	initialized = false;
-equations
-	if not initialized then 
-		initial_input = initial - input/sampletime; 
-		initialized = true;
-	else
-		initial_input = 0;
-	end;
-	output = (input - previous (input,0))/sampletime + initial_input;
-implementation_end;
-            DiscreteDifferential2 728 208
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
-</Description>';
-             type DiscreteDifferential
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 712 191.7 744 224.3 color 0 fill 15132390;
-               text '-1' 737.3 214 color 16711680 10;
-               text 'z' 730.7 217.8 color 16711680 13;
-               group
-                text 'd' 722.2 200.7 color 16711680 14;
-                text 'dt' 722.2 213.8 color 16711680 14;
-                line 716.2 207.3 727 207.3 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real initial = 0.0;  	// initial output value
-variables
-	real hidden initial_input;
-	boolean hidden initialized;
-initialequations
-	initialized = false;
-equations
-	if not initialized then 
-		initial_input = initial - input/sampletime; 
-		initialized = true;
-	else
-		initial_input = 0;
-	end;
-	output = (input - previous (input,0))/sampletime + initial_input;
-implementation_end;
-            DiscreteDifferential3 544 144
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
-</Description>';
-             type DiscreteDifferential
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 528 127.7 560 160.3 color 0 fill 15132390;
-               text '-1' 553.3 150 color 16711680 10;
-               text 'z' 546.7 153.8 color 16711680 13;
-               group
-                text 'd' 538.2 136.7 color 16711680 14;
-                text 'dt' 538.2 149.8 color 16711680 14;
-                line 532.2 143.3 543 143.3 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real initial = 0.0;  	// initial output value
-variables
-	real hidden initial_input;
-	boolean hidden initialized;
-initialequations
-	initialized = false;
-equations
-	if not initialized then 
-		initial_input = initial - input/sampletime; 
-		initialized = true;
-	else
-		initial_input = 0;
-	end;
-	output = (input - previous (input,0))/sampletime + initial_input;
-implementation_end;
-            DiscreteDifferential4 664 208
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
-</Description>';
-             type DiscreteDifferential
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 648 191.7 680 224.3 color 0 fill 15132390;
-               text '-1' 673.3 214 color 16711680 10;
-               text 'z' 666.7 217.8 color 16711680 13;
-               group
-                text 'd' 658.2 200.7 color 16711680 14;
-                text 'dt' 658.2 213.8 color 16711680 14;
-                line 652.2 207.3 663 207.3 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real initial = 0.0;  	// initial output value
-variables
-	real hidden initial_input;
-	boolean hidden initialized;
-initialequations
-	initialized = false;
-equations
-	if not initialized then 
-		initial_input = initial - input/sampletime; 
-		initialized = true;
-	else
-		initial_input = 0;
-	end;
-	output = (input - previous (input,0))/sampletime + initial_input;
-implementation_end;
-            DiscreteDifferential5 608 208
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\DiscreteDifferential.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:21:20</TimeStamp>
-</Description>';
-             type DiscreteDifferential
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 592 191.7 624 224.3 color 0 fill 15132390;
-               text '-1' 617.3 214 color 16711680 10;
-               text 'z' 610.7 217.8 color 16711680 13;
-               group
-                text 'd' 602.2 200.7 color 16711680 14;
-                text 'dt' 602.2 213.8 color 16711680 14;
-                line 596.2 207.3 607 207.3 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real initial = 0.0;  	// initial output value
-variables
-	real hidden initial_input;
-	boolean hidden initialized;
-initialequations
-	initialized = false;
-equations
-	if not initialized then 
-		initial_input = initial - input/sampletime; 
-		initialized = true;
-	else
-		initial_input = 0;
-	end;
-	output = (input - previous (input,0))/sampletime + initial_input;
-implementation_end;
-            feedback 912 432
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 896.1 416 927.9 448 color 0 fill 15132390;
-               text 'K' 912 432 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = 1;		// gain
-equations
-	output = K * input;
-    implementation_end;
-            feedback1 928 696
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 912.1 680 943.9 712 color 0 fill 15132390;
-               text 'K' 928 696 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = 1;		// gain
-equations
-	output = K * input;
-    implementation_end;
-            feedback2 888 592
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 872.1 576 903.9 608 color 0 fill 15132390;
-               text 'K' 888 592 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = -2900;		// gain
-equations
-	output = K * input;
-    implementation_end;
-            G_s 760 840
-             description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Submodel
-              ports
-               signal in u;
-               signal out y;
-             end;
-             implementation bg
-              submodels
-               LinearSystem4 720.5 536
-                description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-                type LinearSystem
-                 ports
-                  signal in u;
-                  signal out y;
-                end;
-                icon bg bottom
-                 figures
-                  rectangle 670 516 771 556 color 0 fill 15132390;
-                  text '-' 708 525 color 0;
-                  text '1381' 726 525 color 8388608;
-                  text 's' 677 549 color 0;
-                  text '3' 683 543 color 0 10;
-                  text '+' 691 549 color 0;
-                  text '772' 708 549 color 8388608;
-                  text 's' 720 549 color 0;
-                  text '2' 726 543 color 0 10;
-                  text '+' 734 549 color 0;
-                  text '1746' 754 549 color 8388608;
-                  text 's' 768 549 color 0;
-                  line 674 534 769 534 color 9211020;
-                end;
-                implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [3, 3] = [0.0, 1.0, 0.0; 0.0, 0.0, 1.0; -0.0, -1746.0, -772.0];
-	real hidden B [3, 1] = [0.0; 0.0; -1381.0];
-	real hidden C [1, 3] = [1.0, 0.0, 0.0];
-	real hidden x0 [3] = [0.0; 0.0; 0.0];
-variables
-	real x [3];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x;
-implementation_end;
-               LinearSystem5 585.5 536
-                description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-                type LinearSystem
-                 ports
-                  signal in u;
-                  signal out y;
-                end;
-                icon bg bottom
-                 figures
-                  rectangle 559 519 612 553 color 0 fill 15132390;
-                  text 's' 575 528 color 0;
-                  text '+' 585 528 color 0;
-                  text '3' 597 528 color 8388608;
-                  text 's' 566 546 color 0;
-                  text '+' 576 546 color 0;
-                  text '13.04' 597 546 color 8388608;
-                  line 563 536 610 536 color 9211020;
-                end;
-                implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [1, 1] = [-13.04];
-	real hidden B [1, 1] = [1.0];
-	real hidden C [1, 1] = [-10.04];
-	real hidden D [1, 1] = [1.0];
-	real hidden x0 [1] = [0.0];
-variables
-	real x [1];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x + D * u;
-implementation_end;
-               LinearSystem7 313.5 536
-                description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-                type LinearSystem
-                 ports
-                  signal in u;
-                  signal out y;
-                end;
-                icon bg bottom
-                 figures
-                  rectangle 293 519 334 553 color 0 fill 15132390;
-                  text '-' 300 528 color 0;
-                  text '30.02' 319 528 color 8388608;
-                  text '1' 315 546 color 8388608;
-                  line 297 536 332 536 color 9211020;
-                end;
-                implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden D [1, 1] = [-30.02];
-equations
-	y = D * u;
-implementation_end;
-               LinearSystem8 424.5 536
-                description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-                type LinearSystem
-                 ports
-                  signal in u;
-                  signal out y;
-                end;
-                icon bg bottom
-                 figures
-                  rectangle 398 519 451 553 color 0 fill 15132390;
-                  text 's' 410 528 color 0;
-                  text '+' 420 528 color 0;
-                  text '0.5' 436 528 color 8388608;
-                  text 's' 405 546 color 0;
-                  text '+' 415 546 color 0;
-                  text '0.136' 436 546 color 8388608;
-                  line 402 536 449 536 color 9211020;
-                end;
-                implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [1, 1] = [-0.136];
-	real hidden B [1, 1] = [1.0];
-	real hidden C [1, 1] = [0.364];
-	real hidden D [1, 1] = [1.0];
-	real hidden x0 [1] = [0.0];
-variables
-	real x [1];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x + D * u;
-implementation_end;
-               plug u 144 536;
-               plug y 849.6 536;
-              end;
-              connections
-               LinearSystem4\y -> y;
-               LinearSystem5\y -> LinearSystem4\u;
-               LinearSystem7\y -> LinearSystem8\u;
-               LinearSystem8\y -> LinearSystem5\u;
-               u -> LinearSystem7\u;
-              end;
-             implementation_end;
-            Hold 1064 208
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\Hold.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:20:15</TimeStamp>
-</Description>';
-             type Hold
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 1048 192 1080 224 color 0 fill 15132390;
-               text 'ZOH' 1065.1 206.9 color 16711680 14;
-             end;
-             implementation eq
-parameters
-	real initial = 0;
-equations
-	output = hold (input, initial);
-         implementation_end;
-            Limit1 1000 592
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram Non-Linear\SignalLimiter-Limit.emx</LibraryPath>
-  <TimeStamp>2007-9-26 12:47:40</TimeStamp>
-</Description>';
-             type 'SignalLimiter-Limit'
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               group
-                rectangle 984 576 1016 608 color 0 fill 15132390;
-                line 999.9 580.5 999.9 605 color 0 fill 15132390;
-                line 987 592.2 1012.7 592.2 color 0 fill 15132390;
-                spline 993.9 599.1 1005.9 585.4 color 16711680 fill 15132390 width 2;
-                spline 1005.3 586.2 1013.9 585.8 color 16711680 fill 15132390 width 2;
-                spline 987 599.6 993.9 599.1 color 16711680 fill 15132390 width 2;
-               end;
-             end;
-             implementation eq
-parameters
-	real maximum = 12;
-	real minimum = -12;
-equations
-	output = limit (input, minimum, maximum);
-  implementation_end;
-            Limit2 1200 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram Non-Linear\SignalLimiter-Limit.emx</LibraryPath>
-  <TimeStamp>2007-9-26 12:47:40</TimeStamp>
-</Description>';
-             type 'SignalLimiter-Limit'
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               group
-                rectangle 1184 288 1216 320 color 0 fill 15132390;
-                line 1199.9 292.5 1199.9 317 color 0 fill 15132390;
-                line 1187 304.2 1212.7 304.2 color 0 fill 15132390;
-                spline 1193.9 311.1 1205.9 297.4 color 16711680 fill 15132390 width 2;
-                spline 1205.3 298.2 1213.9 297.8 color 16711680 fill 15132390 width 2;
-                spline 1187 311.6 1193.9 311.1 color 16711680 fill 15132390 width 2;
-               end;
-             end;
-             implementation eq
-parameters
-	real maximum = 12;
-	real minimum = -12;
-equations
-	output = limit (input, minimum, maximum);
-  implementation_end;
-            LinearSystem1 1336.5 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-             type LinearSystem
-              ports
-               signal in u;
-               signal out y;
-             end;
-             icon bg bottom
-              figures
-               rectangle 1286 284 1387 324 color 0 fill 15132390;
-               text '-' 1324 293 color 0;
-               text '1381' 1342 293 color 8388608;
-               text 's' 1293 317 color 0;
-               text '3' 1299 311 color 0 10;
-               text '+' 1307 317 color 0;
-               text '772' 1324 317 color 8388608;
-               text 's' 1336 317 color 0;
-               text '2' 1342 311 color 0 10;
-               text '+' 1350 317 color 0;
-               text '1746' 1370 317 color 8388608;
-               text 's' 1384 317 color 0;
-               line 1290 302 1385 302 color 9211020;
-             end;
-             implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [3, 3] = [0.0, 1.0, 0.0; 0.0, 0.0, 1.0; -0.0, -1746.0, -772.0];
-	real hidden B [3, 1] = [0.0; 0.0; -1381.0];
-	real hidden C [1, 3] = [1.0, 0.0, 0.0];
-	real hidden x0 [3] = [0.0; 0.0; 0.0];
-variables
-	real x [3];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x;
-implementation_end;
-            LinearSystem2 961.5 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-             type LinearSystem
-              ports
-               signal in u;
-               signal out y;
-             end;
-             icon bg bottom
-              figures
-               rectangle 935 287 988 321 color 0 fill 15132390;
-               text 's' 951 296 color 0;
-               text '+' 961 296 color 0;
-               text '3' 973 296 color 8388608;
-               text 's' 942 314 color 0;
-               text '+' 952 314 color 0;
-               text '13.04' 973 314 color 8388608;
-               line 939 304 986 304 color 9211020;
-             end;
-             implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [1, 1] = [-13.04];
-	real hidden B [1, 1] = [1.0];
-	real hidden C [1, 1] = [-10.04];
-	real hidden D [1, 1] = [1.0];
-	real hidden x0 [1] = [0.0];
-variables
-	real x [1];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x + D * u;
-implementation_end;
-            LinearSystem3 752.5 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-             type LinearSystem
-              ports
-               signal in u;
-               signal out y;
-             end;
-             icon bg bottom
-              figures
-               rectangle 732 287 773 321 color 0 fill 15132390;
-               text '-' 739 296 color 0;
-               text '30.02' 758 296 color 8388608;
-               text '1' 754 314 color 8388608;
-               line 736 304 771 304 color 9211020;
-             end;
-             implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden D [1, 1] = [-30.02];
-equations
-	y = D * u;
-implementation_end;
-            LinearSystem6 856.5 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-             type LinearSystem
-              ports
-               signal in u;
-               signal out y;
-             end;
-             icon bg bottom
-              figures
-               rectangle 830 287 883 321 color 0 fill 15132390;
-               text 's' 842 296 color 0;
-               text '+' 852 296 color 0;
-               text '0.5' 868 296 color 8388608;
-               text 's' 837 314 color 0;
-               text '+' 847 314 color 0;
-               text '0.136' 868 314 color 8388608;
-               line 834 304 881 304 color 9211020;
-             end;
-             implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [1, 1] = [-0.136];
-	real hidden B [1, 1] = [1.0];
-	real hidden C [1, 1] = [0.364];
-	real hidden D [1, 1] = [1.0];
-	real hidden x0 [1] = [0.0];
-variables
-	real x [1];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x + D * u;
-implementation_end;
-            LinearSystem9 1120.5 600
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Transfer Functions\LinearSystem.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:28:5</TimeStamp>
-  <AllowLibraryUpdate>False</AllowLibraryUpdate>
-</Description>
-';
-             type LinearSystem
-              ports
-               signal in u;
-               signal out y;
-             end;
-             icon bg bottom
-              figures
-               rectangle 1070 580 1171 620 color 0 fill 15132390;
-               text '-' 1108 589 color 0;
-               text '1381' 1126 589 color 8388608;
-               text 's' 1077 613 color 0;
-               text '3' 1083 607 color 0 10;
-               text '+' 1091 613 color 0;
-               text '772' 1108 613 color 8388608;
-               text 's' 1120 613 color 0;
-               text '2' 1126 607 color 0 10;
-               text '+' 1134 613 color 0;
-               text '1746' 1154 613 color 8388608;
-               text 's' 1168 613 color 0;
-               line 1074 598 1169 598 color 9211020;
-             end;
-             implementation eq
-// 20-sim Linear System Editor
-// tf
-parameters
-	real hidden A [3, 3] = [0.0, 1.0, 0.0; 0.0, 0.0, 1.0; -0.0, -1746.0, -772.0];
-	real hidden B [3, 1] = [0.0; 0.0; -1381.0];
-	real hidden C [1, 3] = [1.0, 0.0, 0.0];
-	real hidden x0 [3] = [0.0; 0.0; 0.0];
-variables
-	real x [3];
-equations
-	ddt (x, x0) = A * x + B * u;
-	y = C * x;
-implementation_end;
-            plug out_open 1080 848;
-            plug input_step 352 304;
-            PlusMinus 560 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
-  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
-</Description>';
-             knot PlusMinus
-              ports
-               signal knot duplicatable in plus [1];
-               signal knot duplicatable in minus [1];
-               signal knot out output [1];
-             end;
-             icon bg ellipse
-              figures
-               ellipse 552 296 568 312 color 0 fill 16777215;
-             end;
-             implementation eq
-equations
-    output = sum (collect (plus)) - sum (collect (minus));
-    implementation_end;
-            PlusMinus1 760 592
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
-  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
-</Description>';
-             knot PlusMinus
-              ports
-               signal knot duplicatable in plus [1];
-               signal knot duplicatable in minus [1];
-               signal knot out output [1];
-             end;
-             icon bg ellipse
-              figures
-               ellipse 752 584 768 600 color 0 fill 16777215;
-             end;
-             implementation eq
-equations
-    output = sum (collect (plus)) - sum (collect (minus));
-    implementation_end;
-            PlusMinus2 1064 304
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
-  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
-</Description>';
-             knot PlusMinus
-              ports
-               signal knot duplicatable in plus [1];
-               signal knot duplicatable in minus [1];
-               signal knot out output [1];
-             end;
-             icon bg ellipse
-              figures
-               ellipse 1056 296 1072 312 color 0 fill 16777215;
-             end;
-             implementation eq
-equations
-    output = sum (collect (plus)) - sum (collect (minus));
-    implementation_end;
-            PlusMinus3 976 112
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
-  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
-</Description>';
-             knot PlusMinus
-              ports
-               signal knot duplicatable in plus [1];
-               signal knot duplicatable in minus [1];
-               signal knot out output [1];
-             end;
-             icon bg ellipse
-              figures
-               ellipse 968 104 984 120 color 0 fill 16777215;
-             end;
-             implementation eq
-equations
-    output = sum (collect (plus)) - sum (collect (minus));
-    implementation_end;
-            Sample 472 256
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\Sample.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:20:31</TimeStamp>
-</Description>';
-             type Sample
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 456 240 488 272 color 0 fill 15132390;
-               line 458.3 246.8 461.2 246.8 461.2 242.9 465.3 242.9 465.3 246.8 469.2 246.8 469.2 242.9 471.1 242.9 color 16711680 fill 15132390;
-               line 471.5 248.4 473.7 248.4 473.7 254.4 474.6 252.9 color 0 fill 15132390;
-               line 473 253.1 473.7 254.4 color 0 fill 15132390;
-               line 459.9 259.9 467.9 259.9 480 256 color 0 fill 15132390 width 2;
-             end;
-             implementation eq
-equations
-	output = sample (input);
-      implementation_end;
-            Sine 560 592
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Sources\WaveGenerator-Sine.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:12:6</TimeStamp>
-</Description>';
-             type 'WaveGenerator-Sine'
-              ports
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               group
-                rectangle 544 576 576 608 color 0 fill 15132390;
-                line 548.5 582.4 548.5 601.6 color 0;
-                line 574.1 592 545.3 592 color 0;
-                spline 548.9 591.9 552.1 583.8 555.3 591.9 558.6 600 561.7 591.9 564.8 583.8 568.1 591.9 571.6 600.2 574.8 592.2 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real amplitude = 1.0;			// amplitude of the wave
-	real omega = 1.0 {rad/s};		// angular frequency of the wave
-variables
-	boolean hidden change;
-	real hidden half;
-equations
-	"calculate at least 2 points per cycle to get a triangle"
-	half = pi / omega;
-	change = frequencyevent (half, half / 2);
-
-	"calculate the sine wave"
-	output = amplitude * sin ( omega * time);
-implementation_end;
-            Sine1 568 848
-             description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Sources\WaveGenerator-Sine.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:12:6</TimeStamp>
-</Description>';
-             type 'WaveGenerator-Sine'
-              ports
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               group
-                rectangle 552 832 584 864 color 0 fill 15132390;
-                line 556.5 838.4 556.5 857.6 color 0;
-                line 582.1 848 553.3 848 color 0;
-                spline 556.9 847.9 560.1 839.8 563.3 847.9 566.6 856 569.7 847.9 572.8 839.8 576.1 847.9 579.6 856.2 582.8 848.2 color 16711680;
-               end;
-             end;
-             implementation eq
-parameters
-	real amplitude = 1.0;			// amplitude of the wave
-	real omega = 2 * pi {rad/s};		// angular frequency of the wave
-variables
-	boolean hidden change;
-	real hidden half;
-equations
-	"calculate at least 2 points per cycle to get a triangle"
-	half = pi / omega;
-	change = frequencyevent (half, half / 2);
-
-	"calculate the sine wave"
-	output = amplitude * sin ( omega * time);
-implementation_end;
-            Splitter1 464 304
-             description '<Description><Version>4.0</Version>
-   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
-  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-</Description>';
-             knot Splitter
-              ports
-               signal knot duplicatable out output [1];
-               signal knot in input [1];
-             end;
-             icon bg ellipse bottom
-              figures
-               ellipse 460.8 300.8 467.2 307.2 color -1 fill 0;
-               ellipse 459.7 299.7 468.3 308.3 color -1;
-              terminals
-               input 464 304 fixed;
-             end;
-             implementation eq
-equations
-    collect (output) = input;
-implementation_end;
-            Splitter2 464 208
-             description '<Description><Version>4.0</Version>
-   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
-  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-</Description>';
-             knot Splitter
-              ports
-               signal knot duplicatable out output [1];
-               signal knot in input [1];
-             end;
-             icon bg ellipse bottom
-              figures
-               ellipse 460.8 204.8 467.2 211.2 color -1 fill 0;
-               ellipse 459.7 203.7 468.3 212.3 color -1;
-              terminals
-               input 464 208 fixed;
-             end;
-             implementation eq
-equations
-    collect (output) = input;
-implementation_end;
-            weight 640 80
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 624.1 64 655.9 96 color 0 fill 15132390;
-               text 'K' 640 80 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = 1746;		// gain
-equations
-	output = K * input;
-    implementation_end;
-            weight1 680 136
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 664.1 120 695.9 152 color 0 fill 15132390;
-               text 'K' 680 136 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = 772;		// gain
-equations
-	output = K * input;
-    implementation_end;
-            weight2 792 208
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 776.1 192 807.9 224 color 0 fill 15132390;
-               text 'K' 792 208 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = 1;		// gain
-equations
-	output = K * input;
-    implementation_end;
-            weight3 1064 152
-             description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-             type Gain
-              ports
-               signal in input;
-               signal out output;
-             end;
-             icon bg bottom
-              figures
-               rectangle 1048.1 136 1079.9 168 color 0 fill 15132390;
-               text 'K' 1064 152 color 16711680 16 bold;
-             end;
-             implementation eq
-parameters
-	real K = -1/1381;		// gain
-equations
-	output = K * input;
-    implementation_end;
-           end;
-           connections
-            DiscreteDifferential\output -> weight\input;
-            DiscreteDifferential1\output -> weight1\input;
-            DiscreteDifferential2\output -> weight2\input;
-            DiscreteDifferential3\output -> DiscreteDifferential1\input;
-            DiscreteDifferential4\output -> DiscreteDifferential2\input;
-            DiscreteDifferential5\output -> DiscreteDifferential4\input;
-            feedback\output -> PlusMinus\minus 560 432;
-            feedback1\output -> PlusMinus1\minus;
-            feedback2\output -> Limit1\input;
-            G_s\y -> out_open;
-            Hold\output -> PlusMinus2\plus;
-            Limit1\output -> LinearSystem9\u;
-            Limit2\output -> LinearSystem1\u;
-            LinearSystem1\y -> feedback\input 1344 448;
-            LinearSystem3\y -> LinearSystem6\u;
-            LinearSystem6\y -> LinearSystem2\u;
-            LinearSystem9\y -> feedback1\input;
-            PlusMinus\output -> LinearSystem3\u;
-            PlusMinus\plus <- Splitter1\output;
-            PlusMinus1\output -> feedback2\input;
-            PlusMinus2\output -> Limit2\input;
-            PlusMinus2\plus <- LinearSystem2\y;
-            PlusMinus3\output -> weight3\input 1064 112;
-            Sample\output -> Splitter2\input;
-            Sine\output -> PlusMinus1\plus;
-            Sine1\output -> G_s\u;
-            Splitter1\input <- input_step;
-            Splitter1\output -> Sample\input;
-            Splitter2\output -> DiscreteDifferential\input;
-            Splitter2\output -> DiscreteDifferential3\input;
-            Splitter2\output -> DiscreteDifferential5\input;
-            weight\output -> PlusMinus3\plus 976 80;
-            weight1\output -> PlusMinus3\plus 936 136 936 112;
-            weight2\output -> PlusMinus3\plus 976 208;
-            weight3\output -> Hold\input;
-           end;
-          implementation_end;
-        end;
-        connections
-         Gain\input <- input;
-         Gain\output -> model1\INPUT;
-         model1\OUTPUT -> OUTPUT;
-         model1\OUTPUT2 -> OUTPUT2;
-         Sine\output -> Step_input\input_step;
-        end;
-       implementation_end;
      end;
      connections
       Gain1\output -> Submodel1\InputBG;
       Gain4\output -> BondGraphOutput\input;
       Integrate\output -> Gain4\input;
-      PlusMinus\output -> System\input;
       Saw1\output -> Gain1\input;
-      Sine\output -> PlusMinus\plus;
       Submodel1\OutputBG -> Integrate\input;
-      System\OUTPUT -> ModelOutput\input;
      end;
     implementation_end;
   end;
   connections
+   Constant\output -> LinearSystem3\u;
+   feedback\output -> PlusMinus\minus 224 200;
+   FeedForward\output -> Splitter4\input;
+   Limit2\output -> Splitter5\input;
+   LinearSystem3\y -> SignalMonitor\input;
+   PhysicalModel\phi -> Splitter2\input;
+   PhysicalModel1\v -> OutputVelocity\input;
+   PlusMinus\output -> C_gS\u;
+   PlusMinus\plus <- Splitter1\output;
+   PlusMinus2\output -> Limit2\input;
+   PlusMinus2\plus <- C_gS\y;
+   Ramp\output -> Splitter1\input;
+   Splitter1\output -> Splitter3\input;
+   Splitter2\output -> feedback\input 568 200;
+   Splitter2\output -> OutputAngle\input;
+   Splitter3\output -> FeedForward\input;
+   Splitter4\output -> PlusMinus2\plus;
+   Splitter5\output -> PhysicalModel\u;
+   Splitter5\output -> PhysicalModel1\u;
   end;
  implementation_end;
 ]]></Sidops>
@@ -2486,8 +2924,9 @@ equations
 <ExpData>
  <VersionNumber>5.1</VersionNumber>
  <ModelProperties>
-  <ModelProperty section="tools\linearization" entry="inputName" value="model\System\Step_input\Limit1\output"/>
-  <ModelProperty section="tools\linearization" entry="outputName" value="model\System\Step_input\LinearSystem9\y"/>
+  <ModelProperty section="tools\linearization" entry="inputName" value="Submodel5\u"/>
+  <ModelProperty section="tools\linearization" entry="outputName" value="Submodel5\PositionSensor\phi"/>
+  <ModelProperty section="tools\graph editor" entry="showTerminals" value="1"/>
  </ModelProperties>
  <RealTimeSyncTimeUs>1000</RealTimeSyncTimeUs>
  <Variables>
@@ -2495,59 +2934,47 @@ equations
   </Constants>
   <Parameters>
    <Variable>
-    <Name>model\System\model1\Gear\i</Name>
+    <Name>FeedForward\weight3\K</Name>
+    <Description><![CDATA[gain]]></Description>
+    <Value>-7.24112961622013e-4</Value>
+   </Variable>
+   <Variable>
+    <Name>PhysicalModel\Gear\i</Name>
     <Description><![CDATA[gearbox ratio]]></Description>
     <Value>0.06417777777777778</Value>
-   </Variable>
-   <Variable>
-    <Name>model\System\Sine\omega</Name>
-    <Description><![CDATA[angular frequency of the wave]]></Description>
-    <Unit>rad/s</Unit>
-    <Value>6.283185307179586</Value>
-   </Variable>
-   <Variable>
-    <Name>model\System\Step_input\Sine1\omega</Name>
-    <Description><![CDATA[angular frequency of the wave]]></Description>
-    <Unit>rad/s</Unit>
-    <Value>6.283185307179586</Value>
    </Variable>
   </Parameters>
   <Initials>
    <Variable>
-    <Name>model\System\model1\Inertia\p.omega_initial</Name>
+    <Name>PhysicalModel\Inertia\p.omega_initial</Name>
     <Unit>rad/s</Unit>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\Submodel1\I\state_initial</Name>
+    <Name>Submodel4\Submodel1\I\state_initial</Name>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\Submodel1\I1\state_initial</Name>
+    <Name>Submodel4\Submodel1\I1\state_initial</Name>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\System\model1\Inductor\p.i_initial</Name>
+    <Name>PhysicalModel\Inductor\p.i_initial</Name>
     <Unit>A</Unit>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\System\model1\Inertia\phi_initial</Name>
+    <Name>PhysicalModel\Inertia\phi_initial</Name>
     <Unit>rad</Unit>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\System\model1\Inertia1\phi_initial</Name>
+    <Name>PhysicalModel\Inertia1\phi_initial</Name>
     <Unit>rad</Unit>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\System\model1\PositionSensor\phi_initial</Name>
-    <Unit>rad</Unit>
-    <Value>0.0</Value>
-   </Variable>
-   <Variable>
-    <Name>model\System\model1\PositionSensor1\phi_initial</Name>
+    <Name>PhysicalModel\PositionSensor\phi_initial</Name>
     <Unit>rad</Unit>
     <Value>0.0</Value>
    </Variable>
@@ -2556,8 +2983,11 @@ equations
  <PlotSpecs>
   <VarNames>
    <VarName>time</VarName>
-   <VarName>model\System\Step_input\input_step</VarName>
-   <VarName>model\System\Step_input\feedback\input</VarName>
+   <VarName>OutputAngle\plot</VarName>
+   <VarName>SignalMonitor\input</VarName>
+   <VarName>OutputVelocity\input</VarName>
+   <VarName>Limit2\output</VarName>
+   <VarName>Ramp\output</VarName>
   </VarNames>
   <Plots>
    <Plot>
@@ -2640,42 +3070,44 @@ equations
     </XAxes>
     <YAxes>
      <Axis>
-      <Minimum>-2.5</Minimum>
-      <Maximum>2.5</Maximum>
+      <Minimum>-60.0</Minimum>
+      <Maximum>140.0</Maximum>
       <Linear>true</Linear>
-      <Scaling>2</Scaling>
-      <Label>ref</Label>
+      <Scaling>1</Scaling>
+      <Label>plot</Label>
      </Axis>
      <Axis>
-      <Minimum>-20.0</Minimum>
-      <Maximum>80.0</Maximum>
+      <Minimum>-30.0</Minimum>
+      <Maximum>70.0</Maximum>
       <Linear>true</Linear>
-      <Scaling>2</Scaling>
-      <Label>output</Label>
+      <Scaling>1</Scaling>
+      <Label>input</Label>
+     </Axis>
+     <Axis>
+      <Minimum>-30.0</Minimum>
+      <Maximum>70.0</Maximum>
+      <Linear>true</Linear>
+      <Scaling>1</Scaling>
+      <Label>OutputVelocity</Label>
+     </Axis>
+     <Axis>
+      <Minimum>-30.0</Minimum>
+      <Maximum>70.0</Maximum>
+      <Linear>true</Linear>
+      <Scaling>1</Scaling>
+      <Label>PlantInput</Label>
+     </Axis>
+     <Axis>
+      <Minimum>-30.0</Minimum>
+      <Maximum>70.0</Maximum>
+      <Linear>true</Linear>
+      <Scaling>1</Scaling>
+      <Label>Ramp</Label>
      </Axis>
     </YAxes>
     <ZAxes>
     </ZAxes>
     <Curves>
-     <Curve>
-      <LineColor>3355111</LineColor>
-      <LineStyle>1</LineStyle>
-      <TickColor>3355111</TickColor>
-      <TickStyle>0</TickStyle>
-      <CurveVisible>true</CurveVisible>
-      <PixelThresshold>1</PixelThresshold>
-      <LineThickness>2</LineThickness>
-      <LineOrder>1</LineOrder>
-      <ShowYValues>true</ShowYValues>
-      <XCurveData>
-       <ShowUnit>true</ShowUnit>
-       <VarName>time</VarName>
-      </XCurveData>
-      <YCurveData>
-       <ShowUnit>true</ShowUnit>
-       <VarName>model\System\Step_input\input_step</VarName>
-      </YCurveData>
-     </Curve>
      <Curve>
       <LineColor>6076255</LineColor>
       <LineStyle>1</LineStyle>
@@ -2692,7 +3124,83 @@ equations
       </XCurveData>
       <YCurveData>
        <ShowUnit>true</ShowUnit>
-       <VarName>model\System\Step_input\feedback\input</VarName>
+       <VarName>OutputAngle\plot</VarName>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>12553035</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>12553035</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>SignalMonitor\input</VarName>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>15086320</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>15086320</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>OutputVelocity\input</VarName>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>15790150</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>15790150</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>Limit2\output</VarName>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>3355111</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>15790150</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>Ramp\output</VarName>
       </YCurveData>
      </Curve>
     </Curves>
@@ -2715,9 +3223,9 @@ equations
     <ToggleState>Base</ToggleState>
    </PlotPanel>
   </PlotPanels>
-  <WindowRectangles virtualDesktopWidth="3456" virtualDesktopHeight="1080">
-   <WindowRectangle monitor="1" left="-1920" top="0" right="0" bottom="1080" plotpanelid="1">
--0.0015625 -0.0037037 1.00208 0.959259
+  <WindowRectangles virtualDesktopWidth="1536" virtualDesktopHeight="960">
+   <WindowRectangle monitor="0" left="0" top="0" right="1536" bottom="960" plotpanelid="1">
+0.00260417 0.00416667 0.997396 0.863542
    </WindowRectangle>
   </WindowRectangles>
  </PlotSpecs>
@@ -2735,6 +3243,23 @@ equations
    <AlgebraicTolerance>1.0e-7</AlgebraicTolerance>
    <SteadyStateAnalysis>false</SteadyStateAnalysis>
    <UpdateHoldInstructions>true</UpdateHoldInstructions>
+   <DiscreteSystems>
+    <DiscreteSystem>
+     <DiscreteID>FeedForward\DiscreteDifferential5\input</DiscreteID>
+     <TimeInterval>0.001</TimeInterval>
+     <InitialSampleTimeDelay>0.0</InitialSampleTimeDelay>
+     <FixedSampleTimeDelay>0.0</FixedSampleTimeDelay>
+     <VariableTimeDelayMin>0.0</VariableTimeDelayMin>
+     <VariableTimeDelayMax>0.0</VariableTimeDelayMax>
+     <VariableTimeDelayMean>0.0</VariableTimeDelayMean>
+     <VariableTimeDelayDeviation>0.0</VariableTimeDelayDeviation>
+     <UseVariableTimeDelay>false</UseVariableTimeDelay>
+     <UniformVariableTimeDelay>false</UniformVariableTimeDelay>
+     <UseGlobalTime>true</UseGlobalTime>
+     <HoldTimeDelay>0.0</HoldTimeDelay>
+     <ActionOnSampleMissed>0</ActionOnSampleMissed>
+    </DiscreteSystem>
+   </DiscreteSystems>
   </SimulatorSettings>
   <IntegrationMethods>
    <IntegrationMethod>
@@ -2862,9 +3387,6 @@ equations
  </ExportData>
  <BreakPoints>
  </BreakPoints>
- <AnimationPlayback>
-  <PlaybackSpeed>1.0</PlaybackSpeed>
- </AnimationPlayback>
 </ExpData>
   </Experiment>
 </Experiments>
