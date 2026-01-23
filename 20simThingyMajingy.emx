@@ -8,7 +8,7 @@
     <IsMainModel>0</IsMainModel>
     <KeepParameterValues>False</KeepParameterValues>
     <LibraryPath>C:\Users\0905l\Documents\Pre-Project_Models\20simThingyMajingy.emx</LibraryPath>
-    <TimeStamp>2026-1-22 12:49:30</TimeStamp>
+    <TimeStamp>2026-1-23 13:59:54</TimeStamp>
   </Description>
 </Information>';
  type 'Mainmodel-551'
@@ -29,28 +29,6 @@
     end;
     implementation bg
      submodels
-      Constant 464 552
-       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Sources\Constant.emx</LibraryPath>
-  <TimeStamp>2007-10-19 14:48:44</TimeStamp>
-</Description>';
-       type Constant
-        ports
-         signal out output;
-       end;
-       icon bg bottom
-        figures
-         rectangle 448.1 536 479.9 568 color 0 fill 15132390;
-         line 452.9 547.6 474.9 547.6 color 16711680 width 2;
-         line 450.2 558.7 475.9 558.7 color 0;
-         line 452.5 542.7 452.5 561 color 0;
-       end;
-       implementation eq
-parameters
-	real C = 1.0;		// output value
-equations
-	output = C;
-     implementation_end;
       Controller 296 176
        description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate></Description></Information>';
        type 'Submodel-Equation'
@@ -62,8 +40,8 @@ equations
        end;
        implementation eq
 parameters
-	real Kx[1, 3] = [-1.655615460129033e+08,-1.760583680349668e+04,1.226826400322220e+08];
-	real Ki = -7.276596669035497;
+	real Kx[1, 3] = [-2.646728044354090e+02,-5.948709305656044,1.723290312470687e+02];
+	real Ki = -9.844473480526533;
 
 variables
 	real x[3];
@@ -77,12 +55,12 @@ equations
 	y = input_y;
 	x = input_x;
 	
-	z = z + (u_ref - y);
-  	u = -Kx * x - Ki * z;
+	z = previous(z) + 0.001*(u_ref - y);
+  	u = -Kx * x + Ki * z;
 
 	output_u = u;
 implementation_end;
-      Cycloid 200 176
+      Cycloid 104 176
        description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
    <LibraryPath>Signal\Sources\SignalGenerator-Cycloid.emx</LibraryPath>
   <TimeStamp>2007-9-27 16:0:53</TimeStamp>
@@ -93,17 +71,17 @@ implementation_end;
        end;
        icon bg bottom
         figures
-         rectangle 184 160 216 192 color 0 fill 15132390;
-         line 186.9 184 213.1 184 color 0;
-         line 189.1 168 189.1 186.2 color 0;
-         spline 189 184 193.8 182.1 200.2 172.8 212.3 170.7 color 16711680 fill 15132390;
-         line 209.8 184 209.8 170.7 color 0 fill 15132390 dotted;
+         rectangle 88 160 120 192 color 0 fill 15132390;
+         line 90.9 184 117.1 184 color 0;
+         line 93.1 168 93.1 186.2 color 0;
+         spline 93 184 97.8 182.1 104.2 172.8 116.3 170.7 color 16711680 fill 15132390;
+         line 113.8 184 113.8 170.7 color 0 fill 15132390 dotted;
        end;
        implementation eq
 parameters
-	real amplitude = 0.01 {none};
+	real amplitude = 0.1 {none};
 	real start_time = 1.0 {s};
-	real stop_time = 2.0 {s};
+	real stop_time = 5.0 {s};
 variables 
 	real hidden tDelta, cycl;
 	boolean hidden change;
@@ -124,73 +102,218 @@ equations
 		end
 	end;
 implementation_end;
-      LinearSystem 544 240
-       type LinearSystem
+      Cycloid1 176 104
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\SignalGenerator-Cycloid.emx</LibraryPath>
+  <TimeStamp>2007-9-27 16:0:53</TimeStamp>
+</Description>';
+       type 'SignalGenerator-Cycloid'
         ports
-         signal in u;
-         signal out y;
+         signal out output;
        end;
-       icon bg
+       icon bg bottom
         figures
-         rectangle 529 225 559 255 color 0 fill 15132390;
-         text 'A B' 544 233 color 16711680 bold;
-         text 'C D' 544 246 color 16711680 bold;
+         rectangle 160 88 192 120 color 0 fill 15132390;
+         line 162.9 112 189.1 112 color 0;
+         line 165.1 96 165.1 114.2 color 0;
+         spline 165 112 169.8 110.1 176.2 100.8 188.3 98.7 color 16711680 fill 15132390;
+         line 185.8 112 185.8 98.7 color 0 fill 15132390 dotted;
        end;
        implementation eq
-// 20-sim Linear System Editor
-// abcd h 0.001
 parameters
-	real hidden A [3, 3] = [1.0000055557074674, 1.4077469779677672e-4, -0.03724946297922129; 0.33557140196434015, 1.000023619915738, -0.006249909895842499; 9.371882804452956e-7, 2.374718210590495e-5, 0.9497320350096172];
-	real hidden B [3, 1] = [-0.0012422683821324072; -2.0843429230409523e-4; -0.0016764350019361567];
-	real hidden C [1, 3] = [0.005305849739116081, 0.03162315006534316, -9.88197522084401e-5];
-	real hidden D [1, 1] = [-3.2956355308312313e-6];
-	real hidden x0 [3] = [0.0; 0.0; 0.0];
-variables
-	real x [3];
+	real amplitude = 0.1 {none};
+	real start_time = 4.0 {s};
+	real stop_time = 9.0 {s};
+variables 
+	real hidden tDelta, cycl;
+	boolean hidden change;
 equations
-	next (x, x0) = A * x + B * u;
-	y = C * x + D * u;
+	"calculate at least at the start and stop time"
+	change = timeevent (start_time) or timeevent (stop_time);
+
+	"calculate the cycliod signal"
+	tDelta = 2 * pi * (time - start_time) / (stop_time - start_time);
+	cycl = amplitude * (tDelta - sin (tDelta)) / twopi;
+	output = if tDelta < 0.0 then 
+		0
+	else
+		if tDelta >= 0.0 and tDelta <= twopi then
+			cycl
+		else
+			amplitude
+		end
+	end;
 implementation_end;
-      Observer 416 176
-       description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate></Description></Information>';
-       type 'Submodel-Equation'
-        ports
-         signal out output_xhat [3,1];
-         signal in input_u;
-         signal in input_y;
-       end;
-       implementation eq
-parameters
-			real Ad[3,3] = 
-		[1.001000505751601,	1.409151022421627e-07,	-3.728579446901374e-05;
-		3.359071461078011e-04,	1.001000523833825,	-6.262261841557294e-06;
-		9.420907188797260e-10,	2.377034406409912e-08,	1.000950183173196];
-
-	real Bd[3] = [-1.242858498112032e-06;-2.087418748599062e-07;-1.677231339091082e-06];
-	real Cd[1, 3] = [0.005305849739116,0.031623150065343,-9.881975220844010e-05];
-	real Ld[3] = [0.401300380575141, 0.062887114628014, -72.905516995984680];
-
-variables
-	real xhat[3];
-	real u;
-	real y;
-
-equations
-	u = input_u;
-	y = input_y;
-	xhat = Ad*previous(xhat) + Bd*u + Ld*(y - Cd*previous(xhat));
-	output_xhat = xhat;
- implementation_end;
-      Plant 520 552
-       description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
-       type Submodel
+      Gain1 216 176
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath>
+  <TimeStamp>2007-9-26 12:15:12</TimeStamp>
+</Description>';
+       type Gain
         ports
          signal in input;
          signal out output;
        end;
+       icon bg bottom
+        figures
+         rectangle 200.1 160 231.9 192 color 0 fill 15132390;
+         text 'K' 216 176 color 16711680 16 bold;
+       end;
+       implementation eq
+parameters
+	real K = 80;		// gain
+equations
+	output = K * input;
+    implementation_end;
+      GaussianNoise 680 288
+						specifications active 'unlimited'
+							specification 'frequency_limited_FOH'
+description '<Description>
+   <Version>4.1</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\SignalGenerator-GaussianNoise.emx</LibraryPath>
+  <TimeStamp>2009-6-18 15:42:21</TimeStamp>
+<AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type 'SignalGenerator-GaussianNoise'
+  ports
+   signal out output;
+ end;
+ icon bg bottom
+  figures
+   group
+    rectangle 240 432 272 464 color 0 fill 15132390;
+    text 'FOH' 261.7 459 color 0 8 bold;
+    line 244.3 443.9 247.2 442.7 248 440 249.3 438.3 250.7 453.5 252.2 455.2 253.5 441.7 254.8 440.8 256.7 451.7 259.5 453.8 261 439.5 262 437.5 263.2 441 263.5 445.2 265.5 446.5 267.9 446.6 color 16711680;
+    line 270.1 448 241.3 448 color 0;
+    line 244.5 438.4 244.5 457.6 color 0;
+   end;
+ end;
+ implementation eq
+parameters
+	real amplitude = 1.0;			
+	real seed = 0.0;					
+	real frequency = 100.0 {Hz};		// hold frequency on output
+variables
+	real hidden t_hit {s}, h {s}, dt {s};
+	real hidden buffer, buffer_hit, slope;		
+	boolean hidden hit; 	
+initialequations
+	h = 1 / frequency;
+	t_hit = 0;
+	buffer = 0;
+	buffer_hit = amplitude * gauss (1,seed);
+	slope = (buffer_hit - buffer) / h;
+code
+	hit = major and (time >= t_hit);
+	if hit then
+		t_hit = time + h;
+		buffer = buffer_hit;
+		buffer_hit = amplitude * gauss (1,seed);
+		slope = (buffer_hit - buffer) / h;
+	end;
+	dt = t_hit - time;
+	output = if (dt == 0) then 
+		buffer 
+	else 
+		buffer + slope * (h - dt) end;
+implementation_end;
+specification_end;
+							specification 'frequency_limited_ZOH'
+description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Signal\Sources\SignalGenerator-GaussianNoise.emx</LibraryPath>
+ <TimeStamp>2007-9-27 16:1:24</TimeStamp>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type 'SignalGenerator-GaussianNoise'
+  ports
+   signal out output;
+ end;
+ icon bg bottom
+  figures
+   group
+    rectangle 240 432 272 464 fill 15132390;
+    line 244.5 438.4 244.5 457.6;
+    line 270.1 448 241.3 448;
+    line 244.3 443.9 247.8 444 247.8 438.2 250.7 438.3 250.7 455.3 253.3 455.5 253.5 441.7 256.7 441.8 256.7 451.7 261 451.8 261 439.5 263.2 439.5 263.3 436 265.7 435.8 265.5 446.5 267.9 446.6 color 16711680;
+    text 'ZOH' 261.7 459 8 bold;
+   end;
+ end;
+ implementation eq
+parameters
+	real amplitude = 1.0;			
+	real seed = 0.0;					
+	real frequency = 100.0 {Hz};		// ZOH frequency on output
+variables
+	real hidden t_hit {s}, h {s};
+	real hidden buffer;		
+	boolean hidden hit; 	
+initialequations
+	h = 1 / frequency;
+	t_hit = 0;
+	buffer = 0;
+code
+	hit = major and (time >= t_hit);
+	if hit then
+		t_hit = time + h;
+		buffer = amplitude * gauss(1,seed);
+	end;
+	output = buffer;
+       implementation_end;
+specification_end;
+							specification 'unlimited'
+ description '<Description>
+   <Version>4.1</Version>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\SignalGenerator-GaussianNoise.emx</LibraryPath>
+  <TimeStamp>2009-6-17 13:48:46</TimeStamp>
+<AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type 'SignalGenerator-GaussianNoise'
+  ports
+   signal out output;
+ end;
+ icon bg bottom
+  figures
+   rectangle 664 272 696 304 color 0 fill 15132390;
+   line 668.5 278.4 668.5 297.6 color 0;
+   line 694.1 288 665.3 288 color 0;
+   line 668.3 283.9 670.1 278.4 672 286.6 673.8 277.9 675.7 297.8 677.3 291.2 678.4 285.3 680.7 280 682.9 300.3 684.3 296.7 685 283.2 686.6 286.9 687.5 277 689.1 280 690.9 276.5 691.9 286.6 color 16711680;
+ end;
+ implementation eq
+parameters
+	real amplitude = 0.000;
+	real seed = 0;
+equations
+	output = amplitude*gauss (1,seed);
+        implementation_end;
+specification_end;
+						end;
+      model 543.5 241.5
+       description '<Description><Version>4.0</Version>
+ <IsMainModel>0</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>System\Mainmodel.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:23:12</TimeStamp>
+</Description>';
+       type Mainmodel
+        ports
+         signal out PendAngle;
+         signal in MotorSignal;
+       end;
+       icon bg
+        figures
+         rectangle 519.5 225.5 567.5 257.5 color 0 fill 15132390;
+         text 'name' 543.5 241.5 color 0 16;
+       end;
        implementation bg
         submodels
-         Hold 600 240
+         Hold1 512 232
           description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
    <LibraryPath>Signal\Discrete\Hold.emx</LibraryPath>
   <TimeStamp>2007-9-27 15:20:15</TimeStamp>
@@ -202,8 +325,8 @@ equations
           end;
           icon bg bottom
            figures
-            rectangle 584 224 616 256 color 0 fill 15132390;
-            text 'ZOH' 601.1 238.9 color 16711680 14;
+            rectangle 496 216 528 248 color 0 fill 15132390;
+            text 'ZOH' 513.1 230.9 color 16711680 14;
           end;
           implementation eq
 parameters
@@ -211,17 +334,39 @@ parameters
 equations
 	output = hold (input, initial);
          implementation_end;
-         model 655.5 241.5
-          description '<Description><Version>4.0</Version>
- <IsMainModel>0</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>System\Mainmodel.emx</LibraryPath>
-  <TimeStamp>2007-9-27 10:23:12</TimeStamp>
+         plug PendAngle 736 232;
+         plug MotorSignal 448 232;
+         Sample1 680 232
+          description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Discrete\Sample.emx</LibraryPath>
+  <TimeStamp>2007-9-27 15:20:31</TimeStamp>
 </Description>';
-          type Mainmodel
+          type Sample
            ports
-            signal out PendAngle;
-            signal in MotorSignal;
+            signal in input;
+            signal out output;
+          end;
+          icon bg bottom
+           figures
+            rectangle 664 216 696 248 color 0 fill 15132390;
+            line 666.3 222.8 669.2 222.8 669.2 218.9 673.3 218.9 673.3 222.8 677.2 222.8 677.2 218.9 679.1 218.9 color 16711680 fill 15132390;
+            line 679.5 224.4 681.7 224.4 681.7 230.4 682.6 228.9 color 0 fill 15132390;
+            line 681 229.1 681.7 230.4 color 0 fill 15132390;
+            line 667.9 235.9 675.9 235.9 688 232 color 0 fill 15132390 width 2;
+          end;
+          implementation eq
+equations
+	output = sample (input);
+      implementation_end;
+         Submodel1 608 232
+          description '<Description>
+	<Version>5.1</Version>
+	<IsMainModel>1</IsMainModel>
+	</Description>';
+          type Submodel
+           ports
+            signal in input;
+            signal out output;
           end;
           implementation bg
            submodels
@@ -756,35 +901,8 @@ equations
 	p.e = effort;
 	flow = p.f;
 implementation_end;
-            plug MotorSignal -64 184;
-            plug PendAngle 768 240;
-            OneJunction3 488 136
-             description '<Information>
- <Description>
-    <Version>4.2</Version>
-<IsMainModel>1</IsMainModel>
-  <KeepParameterValues>False</KeepParameterValues>
-    <LibraryPath>Bond Graph\OneJunction.emx</LibraryPath>
-  <TimeStamp>2011-11-29 16:17:51</TimeStamp>
-</Description>
-</Information>';
-             knot OneJunction
-              ports
-               power knot duplicatable none p [1];
-               signal knot out flow [1];
-              restrictions
-               causality constraint one_out p;
-             end;
-             icon bg ellipse
-              figures
-               text '1' 488 136 color 0 18 bold;
-             end;
-             implementation eq
-equations
-	sum (direct (p.e)) = 0;
-	equal (collect (p.f));
-	flow = first (p.f);
-implementation_end;
+            plug output 793.7 240;
+            plug input -35.7 184;
             OneJunction4 1064 56
              description '<Information>
  <Description>
@@ -1973,9 +2091,8 @@ implementation_end;
             Demux1\output2 -> ybeam1\input;
             gearbox\p2 => OneJunction8\p;
             GY1\p2 => OneJunction7\p;
-            MotorSignal -> Splitter10\input;
+            input -> Splitter10\input;
             MSe1\p => OneJunction6\p;
-            OneJunction3\p => rot_to_transla\p1;
             OneJunction4\p => R3\p;
             OneJunction4\p => TF1\p1;
             OneJunction5\flow -> Splitter9\input;
@@ -1985,12 +2102,11 @@ implementation_end;
             OneJunction7\p => gearbox\p1;
             OneJunction7\p => I5\p;
             OneJunction7\p => R5\p;
-            OneJunction8\p => OneJunction3\p;
             OneJunction8\p => R6\p;
+            OneJunction8\p => rot_to_transla\p1;
             OneJunction8\p => Wheel_inertia_1\p;
             OneJunction9\p => cart_wheel_mass\p;
             OneJunction9\p => PowerMux\input1 616 608 968 608;
-            PendAngle <- Splitter7\output;
             pendulum_rotational_inertia\p <= OneJunction4\p;
             PowerMux\output => RF_wheel_velocity\p;
             RF_body_center_velocity\flow -> Demux1\input;
@@ -2005,6 +2121,7 @@ implementation_end;
             Splitter3\output -> Splitter4\input;
             Splitter4\output -> RTF\angle 1112 336 1112 376;
             Splitter5\output -> Splitter3\input;
+            Splitter7\output -> output;
             Splitter7\output -> Splitter5\input;
             Splitter9\output -> rotBeam1\input;
             TF1\p2 => ZeroJunction1\p;
@@ -2019,58 +2136,82 @@ implementation_end;
             text 'Motors
 ' -72 16 color 0 16;
           implementation_end;
-         plug input 532.3 240;
-         plug output 832 240;
-         PlusMinus1 712 240
-          description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+        end;
+        connections
+         Hold1\output -> Submodel1\input;
+         MotorSignal -> Hold1\input;
+         PendAngle <- Sample1\output;
+         Sample1\input <- Submodel1\output;
+        end;
+       implementation_end;
+      Observer 416 176
+       description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate></Description></Information>';
+       type 'Submodel-Equation'
+        ports
+         signal out output_xhat [3,1];
+         signal in input_u;
+         signal in input_y;
+       end;
+       implementation eq
+parameters
+		real Ad[3,3] = 
+		[	1.000005555707467,		1.407746977967767e-04,	-0.037249462979221;
+			0.335571401964340,		1.000023619915738,		-0.006249909895842;
+			9.371882804453442e-07,	2.374718210590495e-05,	0.949732035009617];
+
+	real Bd[3] = [-0.001242268382132;	-2.084342923040952e-04;	-0.001676435001936];
+	real Cd[1, 3] = [0.005305849739116,	0.031623150065343,		-9.881975220844010e-05];
+	real Ld[3] = [0.354964001204526;	2.645066236442426;	-0.033562374030447];
+
+variables
+	real xhat[3];
+	real u;
+	real y;
+
+equations
+	u = input_u;
+	y = input_y;
+	xhat = Ad*previous(xhat) + Bd*u + Ld*(y - Cd*previous(xhat));
+	output_xhat = xhat;
+ implementation_end;
+      PlusMinus1 680 240
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
    <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
   <TimeStamp>2007-9-27 10:15:13</TimeStamp>
 </Description>';
-          knot PlusMinus
-           ports
-            signal knot duplicatable in plus [1];
-            signal knot duplicatable in minus [1];
-            signal knot out output [1];
-          end;
-          icon bg ellipse
-           figures
-            ellipse 704 232 720 248 color 0 fill 16777215;
-          end;
-          implementation eq
+       knot PlusMinus
+        ports
+         signal knot duplicatable in plus [1];
+         signal knot duplicatable in minus [1];
+         signal knot out output [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 672 232 688 248 color 0 fill 16777215;
+       end;
+       implementation eq
 equations
     output = sum (collect (plus)) - sum (collect (minus));
     implementation_end;
-         Sample1 768 240
-          description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Discrete\Sample.emx</LibraryPath>
-  <TimeStamp>2007-9-27 15:20:31</TimeStamp>
+      PlusMinus2 176 176
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
 </Description>';
-          type Sample
-           ports
-            signal in input;
-            signal out output;
-          end;
-          icon bg bottom
-           figures
-            rectangle 752 224 784 256 color 0 fill 15132390;
-            line 754.3 230.8 757.2 230.8 757.2 226.9 761.3 226.9 761.3 230.8 765.2 230.8 765.2 226.9 767.1 226.9 color 16711680 fill 15132390;
-            line 767.5 232.4 769.7 232.4 769.7 238.4 770.6 236.9 color 0 fill 15132390;
-            line 769 237.1 769.7 238.4 color 0 fill 15132390;
-            line 755.9 243.9 763.9 243.9 776 240 color 0 fill 15132390 width 2;
-          end;
-          implementation eq
+       knot PlusMinus
+        ports
+         signal knot duplicatable in plus [1];
+         signal knot duplicatable in minus [1];
+         signal knot out output [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 168 168 184 184 color 0 fill 16777215;
+       end;
+       implementation eq
 equations
-	output = sample (input);
-      implementation_end;
-        end;
-        connections
-         Hold\output -> model\MotorSignal;
-         input -> Hold\input;
-         model\PendAngle -> PlusMinus1\plus;
-         PlusMinus1\output -> Sample1\input;
-         Sample1\output -> output;
-        end;
-       implementation_end;
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
       Rotation 760 176
        description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate></Description></Information>';
        type 'Submodel-Equation'
@@ -2101,31 +2242,29 @@ equations
 	output = rotationMatrix;
 	color = min(0.5, 0.2 - abs (theta));
  implementation_end;
-      SignalMonitor 576 552
-       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-  <LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath>
-  <TimeStamp>2007-9-26 12:14:4</TimeStamp>
-</Description>
-';
-       type SignalMonitor
+      Splitter2 424 240
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
         ports
-         signal in input;
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
        end;
-       icon bg bottom
+       icon bg ellipse
         figures
-         rectangle 560 536 592 568 color 0 fill 15132390;
-         rectangle 565.7 541.8 586.3 562.6 color 16711680 fill 11776947 width 2;
-         rectangle 567.8 544.4 583.9 560 color -1 fill 16777215;
-         line 569.9 546.7 569.9 558 color 0 fill 16777215;
-         line 568 556.4 580.5 556.4 color 0 fill 16777215;
-         line 569.5 556.1 582.4 549.7 color 255 fill 16777215;
+         ellipse 420.8 236.8 427.2 243.2 color -1 fill 0;
+         ellipse 419.7 235.7 428.3 244.3 color -1;
+        terminals
+         input 424 240 fixed;
        end;
        implementation eq
-variables
-	real interesting plot;
 equations
-	plot = input;
-   implementation_end;
+    collect (output) = input;
+implementation_end;
       Splitter3 680 176
        description '<Description><Version>4.0</Version>
    <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
@@ -2149,42 +2288,22 @@ equations
 equations
     collect (output) = input;
 implementation_end;
-      Splitter4 416 240
-       description '<Description><Version>4.0</Version>
-   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
-  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-</Description>';
-       knot Splitter
-        ports
-         signal knot duplicatable out output [1];
-         signal knot in input [1];
-       end;
-       icon bg ellipse
-        figures
-         ellipse 412.8 236.8 419.2 243.2 color -1 fill 0;
-         ellipse 411.7 235.7 420.3 244.3 color -1;
-        terminals
-         input 416 240 fixed;
-       end;
-       implementation eq
-equations
-    collect (output) = input;
-implementation_end;
      end;
      connections
-      Constant\output -> Plant\input;
-      Controller\output_u -> Splitter4\input 296 240;
-      Cycloid\output -> Controller\input_u_ref;
-      LinearSystem\y -> Splitter3\input 680 240;
+      Controller\output_u -> Splitter2\input 296 240;
+      Cycloid\output -> PlusMinus2\plus;
+      Cycloid1\output -> PlusMinus2\minus;
+      Gain1\output -> Controller\input_u_ref;
+      GaussianNoise\output -> PlusMinus1\plus;
+      model\PendAngle -> PlusMinus1\plus;
       Observer\output_xhat -> Controller\input_x;
-      Plant\output -> SignalMonitor\input;
+      PlusMinus1\output -> Splitter3\input;
+      PlusMinus2\output -> Gain1\input;
+      Splitter2\output -> model\MotorSignal;
+      Splitter2\output -> Observer\input_u;
       Splitter3\output -> Controller\input_y 680 112 296 112;
       Splitter3\output -> Observer\input_y;
       Splitter3\output -> Rotation\input;
-      Splitter4\output -> LinearSystem\u;
-      Splitter4\output -> Observer\input_u;
      end;
     implementation_end;
   end;
@@ -2217,31 +2336,37 @@ implementation_end;
   </Constants>
   <Parameters>
    <Variable>
-    <Name>model\Plant\model\gearbox\r</Name>
+    <Name>model\model\Submodel1\gearbox\r</Name>
     <Value>-0.0320888889</Value>
    </Variable>
    <Variable>
-    <Name>model\Plant\model\R6\r</Name>
+    <Name>model\model\Submodel1\R6\r</Name>
     <Value>0.001939</Value>
    </Variable>
    <Variable>
-    <Name>model\Plant\model\Wheel_inertia_1\i</Name>
+    <Name>model\model\Submodel1\Wheel_inertia_1\i</Name>
     <Value>8.56e-4</Value>
    </Variable>
   </Parameters>
   <Initials>
    <Variable>
-    <Name>model\Plant\model\pendulum_mass\p.e_initial</Name>
+    <Name>model\model\Submodel1\pendulum_mass\p.e_initial</Name>
     <Rows>2</Rows>
     <Columns>1</Columns>
     <Value>0.0 0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\Plant\model\pendulum_rotational_inertia\state_initial</Name>
+    <Name>model\model\Submodel1\pendulum_rotational_inertia\state_initial</Name>
     <Value>0.0</Value>
    </Variable>
    <Variable>
-    <Name>model\Plant\model\Wheel_inertia_1\state_initial</Name>
+    <Name>model\model\Submodel1\Wheel_inertia_1\state_initial</Name>
+    <Value>0.0</Value>
+   </Variable>
+   <Variable>
+    <Name>model\Controller\z_previous_initial</Name>
+    <VarType>B</VarType>
+    <DiscreteIndex>1</DiscreteIndex>
     <Value>0.0</Value>
    </Variable>
    <Variable>
@@ -2265,11 +2390,13 @@ implementation_end;
  <PlotSpecs>
   <VarNames>
    <VarName>time</VarName>
-   <VarName>model\Cycloid\output</VarName>
-   <VarName>model\LinearSystem\y</VarName>
-   <VarName>model\LinearSystem\x[1]</VarName>
-   <VarName>model\LinearSystem\x[2]</VarName>
-   <VarName>model\LinearSystem\x[3]</VarName>
+   <VarName>model\Observer\xhat[1]</VarName>
+   <VarName>model\Observer\xhat[2]</VarName>
+   <VarName>model\Observer\xhat[3]</VarName>
+   <VarName>model\model\PendAngle</VarName>
+   <VarName>model\model\Submodel1\pendulum_rotational_inertia\state</VarName>
+   <VarName>model\model\Submodel1\Wheel_inertia_1\state</VarName>
+   <VarName>model\Gain1\input</VarName>
   </VarNames>
   <Plots>
    <Plot>
@@ -2344,7 +2471,7 @@ implementation_end;
     <XAxes>
      <Axis>
       <Minimum>0.0</Minimum>
-      <Maximum>20.0</Maximum>
+      <Maximum>10.0</Maximum>
       <Linear>true</Linear>
       <Scaling>3</Scaling>
       <Label>time</Label>
@@ -2352,27 +2479,27 @@ implementation_end;
     </XAxes>
     <YAxes>
      <Axis>
-      <Minimum>-0.004</Minimum>
-      <Maximum>0.016</Maximum>
+      <Minimum>-2.5e-4</Minimum>
+      <Maximum>2.5e-4</Maximum>
       <Linear>true</Linear>
-      <Scaling>2</Scaling>
-      <Label>Reference</Label>
+      <Scaling>1</Scaling>
+      <Label>state</Label>
      </Axis>
      <Axis>
-      <Minimum>-1.0e47</Minimum>
-      <Maximum>9.0e47</Maximum>
+      <Minimum>-0.05</Minimum>
+      <Maximum>0.05</Maximum>
       <Linear>true</Linear>
-      <Scaling>2</Scaling>
-      <Label>y</Label>
+      <Scaling>1</Scaling>
+      <Label>xhat[1]</Label>
      </Axis>
     </YAxes>
     <ZAxes>
     </ZAxes>
     <Curves>
      <Curve>
-      <LineColor>6076255</LineColor>
+      <LineColor>3355111</LineColor>
       <LineStyle>1</LineStyle>
-      <TickColor>6076255</TickColor>
+      <TickColor>3355111</TickColor>
       <TickStyle>0</TickStyle>
       <CurveVisible>true</CurveVisible>
       <PixelThresshold>1</PixelThresshold>
@@ -2385,7 +2512,7 @@ implementation_end;
       </XCurveData>
       <YCurveData>
        <ShowUnit>true</ShowUnit>
-       <VarName>model\Cycloid\output</VarName>
+       <VarName>model\model\Submodel1\pendulum_rotational_inertia\state</VarName>
       </YCurveData>
      </Curve>
      <Curve>
@@ -2404,7 +2531,151 @@ implementation_end;
       </XCurveData>
       <YCurveData>
        <ShowUnit>true</ShowUnit>
-       <VarName>model\LinearSystem\y</VarName>
+       <VarName>model\Observer\xhat[1]</VarName>
+       <MulOffsetMValue>0.031623150065343</MulOffsetMValue>
+      </YCurveData>
+     </Curve>
+    </Curves>
+    <Legenda>
+     <ShowLegenda>true</ShowLegenda>
+     <BorderPenColor>0</BorderPenColor>
+     <BackgroundColor>16777215</BackgroundColor>
+    </Legenda>
+   </Plot>
+   <Plot>
+    <PlotType>GraphPlot</PlotType>
+    <BasePlot>
+     <PlotId>3</PlotId>
+     <UseWindowsBGColor>false</UseWindowsBGColor>
+     <BGColor>16777215</BGColor>
+     <PlotIsVisible>true</PlotIsVisible>
+     <Solo>false</Solo>
+    </BasePlot>
+    <Grid>
+     <DrawGrid>true</DrawGrid>
+     <GridColor>15780518</GridColor>
+     <GridBorderLineColor>12624260</GridBorderLineColor>
+     <GridZeroLineColor>0</GridZeroLineColor>
+     <XTicks>10</XTicks>
+     <YTicks>10</YTicks>
+     <ZTicks>10</ZTicks>
+     <Use3DLook>false</Use3DLook>
+    </Grid>
+    <PlotBGColor>16777215</PlotBGColor>
+    <ShowPlotTitle>true</ShowPlotTitle>
+    <TitlePosition>1</TitlePosition>
+    <PlotTitle>model(2)</PlotTitle>
+    <ShowXValues>true</ShowXValues>
+    <Fonts>
+     <TitleFont>
+      <Name>Arial</Name>
+      <Height>12</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </TitleFont>
+     <LabelFont>
+      <Name>Arial</Name>
+      <Height>12</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </LabelFont>
+     <ValuesFont>
+      <Name>Arial</Name>
+      <Height>10</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </ValuesFont>
+     <LegendFont>
+      <Name>Arial</Name>
+      <Height>12</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </LegendFont>
+    </Fonts>
+    <SharedXAxis>true</SharedXAxis>
+    <SharedYAxis>true</SharedYAxis>
+    <SharedZAxis>false</SharedZAxis>
+    <XAxes>
+     <Axis>
+      <Minimum>0.0</Minimum>
+      <Maximum>10.0</Maximum>
+      <Linear>true</Linear>
+      <Scaling>3</Scaling>
+      <Label>time</Label>
+     </Axis>
+    </XAxes>
+    <YAxes>
+     <Axis>
+      <Minimum>-0.08000000000000002</Minimum>
+      <Maximum>0.02</Maximum>
+      <Linear>true</Linear>
+      <Scaling>1</Scaling>
+      <Label>xhat[3]</Label>
+     </Axis>
+     <Axis>
+      <Minimum>-0.006</Minimum>
+      <Maximum>0.004</Maximum>
+      <Linear>true</Linear>
+      <Scaling>1</Scaling>
+      <Label>state</Label>
+     </Axis>
+    </YAxes>
+    <ZAxes>
+    </ZAxes>
+    <Curves>
+     <Curve>
+      <LineColor>6076255</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>12553035</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>model\Observer\xhat[3]</VarName>
+       <MulOffsetMValue>0.031623150065343</MulOffsetMValue>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>3355111</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>6076255</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>model\model\Submodel1\Wheel_inertia_1\state</VarName>
       </YCurveData>
      </Curve>
     </Curves>
@@ -2486,7 +2757,7 @@ implementation_end;
     <XAxes>
      <Axis>
       <Minimum>0.0</Minimum>
-      <Maximum>20.0</Maximum>
+      <Maximum>10.0</Maximum>
       <Linear>true</Linear>
       <Scaling>3</Scaling>
       <Label>time</Label>
@@ -2494,34 +2765,34 @@ implementation_end;
     </XAxes>
     <YAxes>
      <Axis>
-      <Minimum>-1.4000000000000001</Minimum>
-      <Maximum>0.6000000000000001</Maximum>
+      <Minimum>-0.04000000000000001</Minimum>
+      <Maximum>0.15999999999999998</Maximum>
       <Linear>true</Linear>
       <Scaling>2</Scaling>
-      <Label>x[1]</Label>
+      <Label>PendAngle</Label>
      </Axis>
      <Axis>
-      <Minimum>0.0</Minimum>
-      <Maximum>10.0</Maximum>
+      <Minimum>-0.04</Minimum>
+      <Maximum>0.16</Maximum>
       <Linear>true</Linear>
       <Scaling>2</Scaling>
-      <Label>x[2]</Label>
+      <Label>xhat[2]</Label>
      </Axis>
      <Axis>
-      <Minimum>0.0</Minimum>
-      <Maximum>10.0</Maximum>
+      <Minimum>-0.04</Minimum>
+      <Maximum>0.16</Maximum>
       <Linear>true</Linear>
       <Scaling>2</Scaling>
-      <Label>x[3]</Label>
+      <Label>input</Label>
      </Axis>
     </YAxes>
     <ZAxes>
     </ZAxes>
     <Curves>
      <Curve>
-      <LineColor>6076255</LineColor>
+      <LineColor>3355111</LineColor>
       <LineStyle>1</LineStyle>
-      <TickColor>6076255</TickColor>
+      <TickColor>3355111</TickColor>
       <TickStyle>0</TickStyle>
       <CurveVisible>true</CurveVisible>
       <PixelThresshold>1</PixelThresshold>
@@ -2534,7 +2805,27 @@ implementation_end;
       </XCurveData>
       <YCurveData>
        <ShowUnit>true</ShowUnit>
-       <VarName>model\LinearSystem\x[1]</VarName>
+       <VarName>model\model\PendAngle</VarName>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>6076255</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>12553035</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>model\Observer\xhat[2]</VarName>
+       <MulOffsetMValue>0.031623150065343</MulOffsetMValue>
       </YCurveData>
      </Curve>
      <Curve>
@@ -2553,26 +2844,7 @@ implementation_end;
       </XCurveData>
       <YCurveData>
        <ShowUnit>true</ShowUnit>
-       <VarName>model\LinearSystem\x[2]</VarName>
-      </YCurveData>
-     </Curve>
-     <Curve>
-      <LineColor>15086320</LineColor>
-      <LineStyle>1</LineStyle>
-      <TickColor>15086320</TickColor>
-      <TickStyle>0</TickStyle>
-      <CurveVisible>true</CurveVisible>
-      <PixelThresshold>1</PixelThresshold>
-      <LineThickness>2</LineThickness>
-      <LineOrder>1</LineOrder>
-      <ShowYValues>true</ShowYValues>
-      <XCurveData>
-       <ShowUnit>true</ShowUnit>
-       <VarName>time</VarName>
-      </XCurveData>
-      <YCurveData>
-       <ShowUnit>true</ShowUnit>
-       <VarName>model\LinearSystem\x[3]</VarName>
+       <VarName>model\Gain1\input</VarName>
       </YCurveData>
      </Curve>
     </Curves>
@@ -2588,17 +2860,18 @@ implementation_end;
     <PlotPanelId>1</PlotPanelId>
     <PlotPanelVisible>true</PlotPanelVisible>
     <Name>PlotWindow</Name>
-    <Tiling>1</Tiling>
+    <Tiling>2</Tiling>
     <PlotIds>
      <PlotId>1</PlotId>
      <PlotId>2</PlotId>
+     <PlotId>3</PlotId>
     </PlotIds>
     <ToggleState>Base</ToggleState>
    </PlotPanel>
   </PlotPanels>
   <WindowRectangles virtualDesktopWidth="1536" virtualDesktopHeight="960">
    <WindowRectangle monitor="0" left="0" top="0" right="1536" bottom="960" plotpanelid="1">
-0.0104167 0.00416667 0.989583 0.929167
+0.0208333 0.00416667 0.979167 0.953125
    </WindowRectangle>
   </WindowRectangles>
  </PlotSpecs>
@@ -2618,37 +2891,7 @@ implementation_end;
    <PreferredArchitecture>0</PreferredArchitecture>
    <DiscreteSystems>
     <DiscreteSystem>
-     <DiscreteID>model\LinearSystem\x_next</DiscreteID>
-     <TimeInterval>0.001</TimeInterval>
-     <InitialSampleTimeDelay>0.0</InitialSampleTimeDelay>
-     <FixedSampleTimeDelay>0.0</FixedSampleTimeDelay>
-     <VariableTimeDelayMin>0.0</VariableTimeDelayMin>
-     <VariableTimeDelayMax>0.0</VariableTimeDelayMax>
-     <VariableTimeDelayMean>0.0</VariableTimeDelayMean>
-     <VariableTimeDelayDeviation>0.0</VariableTimeDelayDeviation>
-     <UseVariableTimeDelay>false</UseVariableTimeDelay>
-     <UniformVariableTimeDelay>false</UniformVariableTimeDelay>
-     <UseGlobalTime>true</UseGlobalTime>
-     <HoldTimeDelay>0.0</HoldTimeDelay>
-     <ActionOnSampleMissed>0</ActionOnSampleMissed>
-    </DiscreteSystem>
-    <DiscreteSystem>
-     <DiscreteID>model\Constant\output</DiscreteID>
-     <TimeInterval>0.001</TimeInterval>
-     <InitialSampleTimeDelay>0.0</InitialSampleTimeDelay>
-     <FixedSampleTimeDelay>0.0</FixedSampleTimeDelay>
-     <VariableTimeDelayMin>0.0</VariableTimeDelayMin>
-     <VariableTimeDelayMax>0.0</VariableTimeDelayMax>
-     <VariableTimeDelayMean>0.0</VariableTimeDelayMean>
-     <VariableTimeDelayDeviation>0.0</VariableTimeDelayDeviation>
-     <UseVariableTimeDelay>false</UseVariableTimeDelay>
-     <UniformVariableTimeDelay>false</UniformVariableTimeDelay>
-     <UseGlobalTime>true</UseGlobalTime>
-     <HoldTimeDelay>0.0</HoldTimeDelay>
-     <ActionOnSampleMissed>0</ActionOnSampleMissed>
-    </DiscreteSystem>
-    <DiscreteSystem>
-     <DiscreteID>model\Plant\Sample1\output</DiscreteID>
+     <DiscreteID>model\model\Sample1\output</DiscreteID>
      <TimeInterval>0.001</TimeInterval>
      <InitialSampleTimeDelay>0.0</InitialSampleTimeDelay>
      <FixedSampleTimeDelay>0.0</FixedSampleTimeDelay>

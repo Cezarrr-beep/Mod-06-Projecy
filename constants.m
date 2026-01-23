@@ -1,64 +1,82 @@
-        clear; clc; close all;
+clear; clc; close all;
 
-%% Continuous-time system
-   % linear system matrices
-    A(1,1) = 1.0000055557074674;
-	A(1,2) = 1.4077469779677672e-4;
-	A(1,3) = -0.03724946297922129;
-	A(2,1) = 0.33557140196434015;
-	A(2,2) = 1.000023619915738;
-	A(2,3) = -0.006249909895842499;
-	A(3,1) = 9.371882804452956e-7;
-	A(3,2) = 2.374718210590495e-5;
-	A(3,3) = 0.9497320350096172;
-	B(1,1) = -0.0012422683821324072;
-	B(2,1) = -2.0843429230409523e-4;
-	B(3,1) = -0.0016764350019361567;
-	C(1,1) = 0.005305849739116081;
-	C(1,2) = 0.03162315006534316;
-	C(1,3) = -9.88197522084401e-5;
-	D(1,1) = -3.2956355308312313e-6;
+%% Plant
 
-	SS = ss (A, B, C, D, 0.0);
+A = [ -0.018122374991498984,   0.14122799209516126,  -38.20972164751147;
+      335.5704697986577,       0.0,                  0.0;
+     -0.003125793391744057,   0.02435936374936598,  -51.56395461829034 ];
+
+B = [ -0.040296682154882524;
+       0.0;
+      -0.054380304286706566 ];
+
+C = [0 1 0];
+D = 0;
+
+sys_c = ss(A, B, C, D);
+
+%%  Discretization
 
 
-%% Discretize system
-Ts = 1e-3;
+Ts = 1e-3;   % 1000 Hz
 
-SSd = c2d(SS, Ts);
-Ad = SSd.A;
-Bd = SSd.B;
-Cd = SSd.C;
-Dd = SSd.D;
+sys_d = c2d(sys_c, Ts, 'zoh');
 
-A_noise = 0.005;
+Ad = sys_d.A;
+Bd = sys_d.B;
+Cd = sys_d.C;
+Dd = sys_d.D;
+
+%% Augment with integrator
+%  z[k+1] = z[k] + Ts*(r - y)
 
 
-%% State-feedback controller design
-A_aug = [ Ad        zeros(3,1);
-         -Cd        1 - 1e-10 ];
+A_aug = [ Ad,           zeros(3,1);
+         -Ts*Cd,        1 ];
 
 B_aug = [ Bd;
-           0  ];
+           Ts ];
 
-Q_aug = diag([1, 10, 1, 1]);
+C_aug = [ Cd, 0 ];
 
-R = 1e2;
+%%  Discrete LQR design
+
+% State order: [x; x_dot; theta; integral]
+Q_aug = diag([1, 10, 100, 500]);
+
+R = 1;     
 
 K_aug = dlqr(A_aug, B_aug, Q_aug, R);
+
 Kx = K_aug(1:3);
-Ki = K_aug(4); 
-%% Observer design (Luenberger)
-% Process noise (model uncertainty)
-qObs = diag([1e-5, 1e-5, 1e-5]);
- 
-% Measurement noise (sensor noise)
-rObs = A_noise^2;  % variance, not std dev
+Ki = K_aug(4);
 
-% Compute discrete-time Kalman gain
-[Ld, P, ~] = dlqe(Ad, eye(3), Cd, qObs, rObs);
+disp('State feedback gain Kx = ');
+disp(Kx)
 
+disp('Integral gain Ki = ');
+disp(Ki)
 
+%%  Kalman observer
 
+% Process noise
+Qn = diag([1e-4, 1e-3, 1e-3]);
 
+% Measurement noise
+Rn = 1e-3;
 
+[Ld, P, E] = dlqe(Ad, eye(3), Cd, Qn, Rn);
+
+disp('Observer gain Ld = ');
+disp(Ld)
+
+%%  Closed-loop check
+
+Acl = [Ad - Bd*Kx,    Bd*Ki;
+       -Ts*Cd,       1 ];
+
+eig_cl = eig(Acl);
+
+disp('Closed-loop eigenvalues:');
+
+Nbar = 1 / (Cd * ((eye(size(Ad)) - Ad + Bd*Kx) \ Bd));
