@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Model version="5.1" build="5.1.6.14106">
+  <Sidops><![CDATA[model 128 184
+ description '<Information>
+  <Description>
+    <Version>5.1</Version>
+    <IsMainModel>0</IsMainModel>
+    <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>C:\Users\0905l\Downloads\Controller_Realization(1).emx</LibraryPath>
+    <TimeStamp>2026-1-28 18:57:11</TimeStamp>
+  </Description>
+</Information>';
+ type 'Mainmodel-179B'
+ end;
+ implementation bg
+  submodels
+   CartPosition 432 208
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Sources\Constant.emx</LibraryPath><TimeStamp>2007-10-19 14:48:44</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Constant
+     ports
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 416.1 192 447.9 224 color 0 fill 15132390;
+      line 420.9 203.6 442.9 203.6 color 16711680 width 2;
+      line 418.2 214.7 443.9 214.7 color 0;
+      line 420.5 198.7 420.5 217 color 0;
+    end;
+    implementation eq
+parameters
+	real C = 0.0;		// output value
+equations
+	output = C;
+     implementation_end;
+   CartPosition1 432 144
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Sources\Constant.emx</LibraryPath><TimeStamp>2007-10-19 14:48:44</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Constant
+     ports
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 416.1 128 447.9 160 color 0 fill 15132390;
+      line 420.9 139.6 442.9 139.6 color 16711680 width 2;
+      line 418.2 150.7 443.9 150.7 color 0;
+      line 420.5 134.7 420.5 153 color 0;
+    end;
+    implementation eq
+parameters
+	real C = 0.0;		// output value
+equations
+	output = C;
+     implementation_end;
+   Controller 568 240
+    description '<Information><Description><Version>5.1</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Submodel
+     ports
+      signal out ControlSignal [2,1];
+      signal in PendAngle;
+      signal in CartPosition;
+      signal in cart_position2;
+    end;
+    implementation bg
+     submodels
+      Attenuate2 456 248
+       description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\Attenuate.emx</LibraryPath>
+  <TimeStamp>2007-10-31 13:47:6</TimeStamp>
+</Description>';
+       type Attenuate
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 440 232 472 264 color 0 fill 15132390;
+         text 'K' 463.5 254.4 color 16711680 16 bold;
+         text '1' 449.6 242.7 color 16711680 16 bold;
+         line 449.6 258.7 463.5 239.5 color 16711680 width 2;
+       end;
+       implementation eq
+parameters
+	real K = 12.0;		// attenuation (divison parameter) 
+equations
+	output = input / K;
+       implementation_end;
+      Attenuate3 184 352
+       description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\Attenuate.emx</LibraryPath>
+  <TimeStamp>2007-10-31 13:47:6</TimeStamp>
+</Description>';
+       type Attenuate
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 168 336 200 368 color 0 fill 15132390;
+         text 'K' 191.5 358.4 color 16711680 16 bold;
+         text '1' 177.6 346.7 color 16711680 16 bold;
+         line 177.6 362.7 191.5 343.5 color 16711680 width 2;
+       end;
+       implementation eq
+parameters
+	real K = 2;		// attenuation (divison parameter) 
+equations
+	output = input / K;
+       implementation_end;
+      Constant 96 240
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\Constant.emx</LibraryPath>
+  <TimeStamp>2007-10-19 14:48:44</TimeStamp>
+</Description>';
+       type Constant
+        ports
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 80.1 224 111.9 256 color 0 fill 15132390;
+         line 84.9 235.6 106.9 235.6 color 16711680 width 2;
+         line 82.2 246.7 107.9 246.7 color 0;
+         line 84.5 230.7 84.5 249 color 0;
+       end;
+       implementation eq
+parameters
+	real C = -0.039;		// output value
+equations
+	output = C;
+     implementation_end;
+      Controller1 376 240
+       description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate></Description></Information>';
+       type 'Submodel-Equation'
+        ports
+         signal in input_x [4,1];
+         signal out output_u;
+       end;
+       implementation eq
+parameters
+	real Kx[1, 4] = [-0.314635558830365,-10.385435042582168,8.186462460817631e+02,54.998603854081150];
+
+variables
+	real x[4];
+	real u;
+
+equations
+	x = input_x;
+
+  	u = -Kx * x + 0;
+
+	output_u = u;
+implementation_end;
+      Limit 728 240
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram Non-Linear\SignalLimiter-Limit.emx</LibraryPath>
+  <TimeStamp>2007-9-26 12:47:40</TimeStamp>
+</Description>';
+       type 'SignalLimiter-Limit'
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         group
+          rectangle 712 224 744 256 color 0 fill 15132390;
+          line 727.9 228.5 727.9 253 color 0 fill 15132390;
+          line 715 240.2 740.7 240.2 color 0 fill 15132390;
+          spline 721.9 247.1 733.9 233.4 color 16711680 fill 15132390 width 2;
+          spline 733.3 234.2 741.9 233.8 color 16711680 fill 15132390 width 2;
+          spline 715 247.6 721.9 247.1 color 16711680 fill 15132390 width 2;
+         end;
+       end;
+       implementation eq
+parameters
+	real maximum = 1;
+	real minimum = -1;
+equations
+	output = limit (input, minimum, maximum);
+  implementation_end;
+      Limit1 728 280
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram Non-Linear\SignalLimiter-Limit.emx</LibraryPath>
+  <TimeStamp>2007-9-26 12:47:40</TimeStamp>
+</Description>';
+       type 'SignalLimiter-Limit'
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         group
+          rectangle 712 264 744 296 color 0 fill 15132390;
+          line 727.9 268.5 727.9 293 color 0 fill 15132390;
+          line 715 280.2 740.7 280.2 color 0 fill 15132390;
+          spline 721.9 287.1 733.9 273.4 color 16711680 fill 15132390 width 2;
+          spline 733.3 274.2 741.9 273.8 color 16711680 fill 15132390 width 2;
+          spline 715 287.6 721.9 287.1 color 16711680 fill 15132390 width 2;
+         end;
+       end;
+       implementation eq
+parameters
+	real maximum = 1;
+	real minimum = -1;
+equations
+	output = limit (input, minimum, maximum);
+  implementation_end;
+      Mux 895 264
+						specifications active 'inputs_2'
+							specification 'inputs_2'
+ description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal out output [2,1];
+   signal in input2;
+ end;
+ icon bg bottom
+  figures
+   line 888 248 888 280 color 0 width 2;
+   rectangle 888 248 904 280 color -1;
+   text '2' 894 274 color 8421504 8;
+  terminals
+   input1 888 256 fixed;
+   output 888 264 fixed;
+   input2 888 272 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2];implementation_end;
+specification_end;
+							specification 'inputs_3'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal out output [3,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 32 width 2;
+   rectangle 0 0 16 32 color -1;
+   text '3' 6 26 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 24 fixed;
+   output 0 16 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3];implementation_end;
+specification_end;
+							specification 'inputs_4'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal out output [4,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 48 width 2;
+   rectangle 0 0 16 48 color -1;
+   text '4' 6 42 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 32 fixed;
+   input4 0 40 fixed;
+   output 0 24 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4];implementation_end;
+specification_end;
+							specification 'inputs_5'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal out output [5,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 48 width 2;
+   rectangle 0 0 16 48 color -1;
+   text '5' 6 42 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 24 fixed;
+   input4 0 32 fixed;
+   input5 0 40 fixed;
+   output 0 24 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5];implementation_end;
+specification_end;
+							specification 'inputs_6'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal out output [6,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 64 width 2;
+   rectangle 0 0 16 64 color -1;
+   text '6' 6 58 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 24 fixed;
+   input4 0 40 fixed;
+   input5 0 48 fixed;
+   input6 0 56 fixed;
+   output 0 32 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6];implementation_end;
+specification_end;
+							specification 'inputs_7'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal in input7;
+   signal out output [7,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 64 width 2;
+   rectangle 0 0 16 64 color -1;
+   text '7' 6 58 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 24 fixed;
+   input4 0 32 fixed;
+   input5 0 40 fixed;
+   input6 0 48 fixed;
+   input7 0 56 fixed;
+   output 0 32 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6; input7];implementation_end;
+specification_end;
+							specification 'inputs_8'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal in input7;
+   signal in input8;
+   signal out output [8,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 80 width 2;
+   rectangle 0 0 16 80 color -1;
+   text '8' 6 72 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 24 fixed;
+   input4 0 32 fixed;
+   input5 0 48 fixed;
+   input6 0 56 fixed;
+   input7 0 64 fixed;
+   input8 0 72 fixed;
+   output 0 40 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6; input7; input8];implementation_end;
+specification_end;
+							specification 'inputs_9'
+description '<Description>
+   <Version>4.8</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2019-06-26 12:00:00</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal in input7;
+   signal in input8;
+   signal in input9;
+   signal out output [9,1];
+ end;
+ icon bg bottom
+  figures
+   line 0 0 0 80 width 2;
+   rectangle 0 0 16 80  color -1;
+   text '9' 6 74 color 8421504 8;
+  terminals
+   input1 0 8 fixed;
+   input2 0 16 fixed;
+   input3 0 24 fixed;
+   input4 0 32 fixed;
+   input5 0 40 fixed;
+   input6 0 48 fixed;
+   input7 0 56 fixed;
+   input8 0 64 fixed;
+   input9 0 72 fixed;
+   output 0 40 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6; input7; input8; input9];implementation_end;
+specification_end;
+						end;
+      Negate2 664 280
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\Negate.emx</LibraryPath>
+  <TimeStamp>2007-9-26 12:14:11</TimeStamp>
+</Description>';
+       type Negate
+        ports
+         signal in input;
+         signal out output;
+       end;
+       icon bg bottom
+        figures
+         rectangle 648 264 680 296 color 0 fill 15132390;
+         text '-1' 664 280 color 16711680 16 bold;
+       end;
+       implementation eq
+equations
+	output = - input;
+     implementation_end;
+      plug CartPosition -16 352;
+      plug cart_position2 -16 408;
+      plug PendAngle -8 304;
+      plug ControlSignal 960 264;
+      Observer 376 304
+       description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate></Description></Information>';
+       type 'Submodel-Equation'
+        ports
+         signal out output_x [4,1];
+         signal in input_u;
+         signal in input_y;
+         signal in input_pos;
+       end;
+       implementation eq
+parameters
+		real Ad[4,4] = 
+		[1,	0.000623661678714466,	-4.09425413373023e-09,	1.90784576914327e-07,
+		0,	0.964745174238998,	-6.85814013375751e-06,	0.000597397630195974,
+		0,	-0.000564565131278833,	0.999997006916597,	0.000256907974052033,
+		0,	-1.68030327179127e-05,	0.0591714340516163,	1.00000760252449];
+			
+		
+
+	real Bd[4] = [2.192540367023827e-06;0.006865434699092;1.099419713050040e-04;3.272179662823372e-06];
+	real Cd[1, 4] = [1,0,0,1];
+	real Dd = 0;
+	real Ld[4] = [-0.051745558380904;0.807160277915561;0.018555251486607;0.114902349842039];
+	
+
+
+variables
+	real xhat[4];
+	real u;
+	real y;
+	real pos;
+	
+equations
+	u = input_u;
+	y = input_y;
+	pos = input_pos;
+	xhat = Ad*previous(xhat) + Bd*u + Ld*((y - pos) - (Cd*previous(xhat) + Dd*u));
+	output_x = xhat;
+ implementation_end;
+      PlusMinus1 112 376
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+       knot PlusMinus
+        ports
+         signal knot duplicatable in plus [1];
+         signal knot duplicatable in minus [1];
+         signal knot out output [1];
+       end;
+       icon bg ellipse bottom
+        figures
+         ellipse 104 368 120 384 color 0 fill 16777215;
+       end;
+       implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+      PlusMinus4 96 304
+       description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+       knot PlusMinus
+        ports
+         signal knot duplicatable in plus [1];
+         signal knot duplicatable in minus [1];
+         signal knot out output [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 88 296 104 312 color 0 fill 16777215;
+       end;
+       implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+      Splitter2 600 248
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 596.8 244.8 603.2 251.2 color -1 fill 0;
+         ellipse 595.7 243.7 604.3 252.3 color -1;
+        terminals
+         input 600 248 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter3 800 272
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 796.8 268.8 803.2 275.2 color -1 fill 0;
+         ellipse 795.7 267.7 804.3 276.3 color -1;
+        terminals
+         input 800 272 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter5 272 304
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 268.8 300.8 275.2 307.2 color -1 fill 0;
+         ellipse 267.7 299.7 276.3 308.3 color -1;
+        terminals
+         input 272 304 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter7 600 280
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 596.8 276.8 603.2 283.2 color -1 fill 0;
+         ellipse 595.7 275.7 604.3 284.3 color -1;
+        terminals
+         input 600 280 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter8 480 256
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 476.8 252.8 483.2 259.2 color -1 fill 0;
+         ellipse 475.7 251.7 484.3 260.3 color -1;
+        terminals
+         input 480 256 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Switch1 512 248
+						specifications active 'real'
+							specification 'boolean'
+description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram Non-Linear\Switch.emx</LibraryPath>
+  <TimeStamp>2008-1-21 12:28:27</TimeStamp>
+</Description>';
+ type 'Switch-Boolean'
+  ports
+   signal in input_high;
+   signal in input_low;
+   signal boolean in condition;
+   signal out output;
+ end;
+ icon bg bottom
+  figures
+   rectangle 448 368 480 400 fill 15132390;
+   ellipse 467 382.3 471 386.7 color 16711680;
+   ellipse 455.5 373.9 459.6 377.9 color 16711680;
+   line 460.4 377.8 466.8 382.8 color 16711680 width 2;
+   line 471 384.2 477.8 384.2 color 16711680 width 2;
+   line 451.2 394 455.4 394 color 16711680 width 2;
+   line 451.1 375.9 455.3 375.9 color 16711680 width 2;
+   ellipse 455.7 392.3 459.4 396.1 color 16711680;
+   line 465.6 374.9 466.9 377.6 468.5 374.6 468.5 374.6 color 16711680 fill 16711680 open;
+   line 466.7 370.7 466.9 376.7 color 16711680 open;
+  terminals
+   input_high 448 392 fixed;
+   input_low 448 376 fixed;
+   condition 464 368 fixed;
+   output 480 384 fixed;
+ end;
+ implementation eq
+equations
+	output = if condition then
+		input_high
+	else
+		input_low
+	end;        implementation_end;
+specification_end;
+							specification 'real'
+ description '<Information>
+ <Description>
+    <Version>4.4</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Signal\Block Diagram Non-Linear\Switch.emx</LibraryPath>
+  <TimeStamp>2014-9-18 09:37:34</TimeStamp>
+</Description>
+</Information>';
+ type 'Switch-Default'
+  ports
+   signal in input_high;
+   signal in condition;
+   signal out output;
+ end;
+ icon bg bottom
+  figures
+   rectangle 496 232 528 264 color 0 fill 15132390;
+   ellipse 515 246.3 519 250.7 color 16711680;
+   ellipse 503.5 237.9 507.6 241.9 color 16711680;
+   line 508.4 241.8 514.8 246.8 color 16711680 width 2;
+   line 519 248.2 525.8 248.2 color 16711680 width 2;
+   line 499.2 258 503.4 258 color 16711680 width 2;
+   line 499.1 239.9 503.3 239.9 color 16711680 width 2;
+   ellipse 503.7 256.3 507.4 260.1 color 16711680;
+   line 513.6 238.9 514.9 241.6 516.5 238.6 516.5 238.6 color 16711680 fill 16711680 open;
+   line 514.7 234.7 514.9 240.7 color 16711680 open;
+  terminals
+   input_high 496 256 fixed;
+   condition 512 232 fixed;
+   output 528 248 fixed;
+ end;
+ implementation eq
+equations
+	output = if abs(condition) <= 0.15 then
+		input_high
+	else
+			[0.0]
+	end;        implementation_end;
+specification_end;
+						end;
+     end;
+     connections
+      Attenuate2\output -> Splitter8\input;
+      Attenuate3\output -> Observer\input_pos 376 352;
+      cart_position2 -> PlusMinus1\minus;
+      CartPosition -> PlusMinus1\plus;
+      Constant\output -> PlusMinus4\plus;
+      Controller1\output_u -> Attenuate2\input;
+      Limit\output -> Mux\input1;
+      Limit1\output -> Splitter3\input;
+      Mux\output -> ControlSignal;
+      Negate2\output -> Limit1\input;
+      Observer\output_x -> Controller1\input_x;
+      PendAngle -> PlusMinus4\plus;
+      PlusMinus1\output -> Attenuate3\input;
+      PlusMinus4\output -> Splitter5\input;
+      Splitter2\output -> Limit\input;
+      Splitter2\output -> Splitter7\input;
+      Splitter3\output -> Mux\input2;
+      Splitter5\output -> Observer\input_y;
+      Splitter5\output -> Switch1\condition 272 176 512 176;
+      Splitter7\output -> Negate2\input;
+      Splitter8\output -> Observer\input_u 480 304;
+      Splitter8\output -> Switch1\input_high;
+      Switch1\output -> Splitter2\input;
+     end;
+    implementation_end;
+   ControlSignal 688 240
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath><TimeStamp>2007-9-26 12:14:4</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type SignalMonitor
+     ports
+      signal in input [2,1];
+    end;
+    icon bg bottom
+     figures
+      rectangle 672 224 704 256 color 0 fill 15132390;
+      rectangle 677.7 229.8 698.3 250.6 color 16711680 fill 11776947 width 2;
+      rectangle 679.8 232.4 695.9 248 color -1 fill 16777215;
+      line 681.9 234.7 681.9 246 color 0 fill 16777215;
+      line 680 244.4 692.5 244.4 color 0 fill 16777215;
+      line 681.5 244.1 694.4 237.7 color 255 fill 16777215;
+    end;
+    implementation eq
+variables
+	real interesting plot;
+equations
+	plot = input[1];
+	plot = input[2];
+   implementation_end;
+   PendAngle 432 288
+    description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Sources\Constant.emx</LibraryPath><TimeStamp>2007-10-19 14:48:44</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
+    type Constant
+     ports
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 416.1 272 447.9 304 color 0 fill 15132390;
+      line 420.9 283.6 442.9 283.6 color 16711680 width 2;
+      line 418.2 294.7 443.9 294.7 color 0;
+      line 420.5 278.7 420.5 297 color 0;
+    end;
+    implementation eq
+parameters
+	real C = 0.0;		// output value
+equations
+	output = C;
+     implementation_end;
+  end;
+  connections
+   CartPosition\output -> Controller\CartPosition 568 208;
+   CartPosition1\output -> Controller\cart_position2 584 144;
+   Controller\ControlSignal -> ControlSignal\input;
+   PendAngle\output -> Controller\PendAngle 568 288;
+  end;
+ implementation_end;
+]]></Sidops>
+ </Model>
+ <Experiments>
+  <DefaultExperiment><![CDATA[Experiment 1]]></DefaultExperiment>
+<Experiment>
+   <Name>Experiment 1</Name>
+   <CreatedBy></CreatedBy>
+   <Info></Info>
+<ExpData>
+ <VersionNumber>5.1</VersionNumber>
+ <ModelProperties>
+  <ModelProperty section="tools\graph editor" entry="showGrid" value="0"/>
+  <ModelProperty section="CCodeDialog" entry="SubmodelName" value="Controller"/>
+  <ModelProperty section="CCodeDialog" entry="TargetName" value="20-sim 4C 3.0 (Real data type)"/>
+  <ModelProperty section="CCodeDialog" entry="TargetDirectory" value="c:\temp\20-sim-4C-3.0\%SUBMODEL_NAME%"/>
+ </ModelProperties>
+ <RealTimeSyncTimeUs>1000</RealTimeSyncTimeUs>
+ <Variables>
+  <Parameters>
+  </Parameters>
+  <Initials>
+   <Variable>
+    <Name>Controller\Observer\xhat_previous_initial</Name>
+    <Rows>4</Rows>
+    <Columns>1</Columns>
+    <VarType>B</VarType>
+    <DiscreteIndex>1</DiscreteIndex>
+    <Value>0.0 0.0 0.0 0.0</Value>
+   </Variable>
+   <Variable>
+    <Name>Controller\Observer\xhat_previous1_initial</Name>
+    <Rows>4</Rows>
+    <Columns>1</Columns>
+    <VarType>B</VarType>
+    <DiscreteIndex>1</DiscreteIndex>
+    <Value>0.0 0.0 0.0 0.0</Value>
+   </Variable>
+  </Initials>
+ </Variables>
+ <PlotSpecs>
+  <VarNames>
+   <VarName>time</VarName>
+   <VarName>PlusMinus1\output</VarName>
+   <VarName>Controller\PendAngle</VarName>
+  </VarNames>
+  <Plots>
+   <Plot>
+    <PlotType>GraphPlot</PlotType>
+    <BasePlot>
+     <PlotId>1</PlotId>
+     <UseWindowsBGColor>false</UseWindowsBGColor>
+     <BGColor>16777215</BGColor>
+     <PlotIsVisible>true</PlotIsVisible>
+     <Solo>false</Solo>
+    </BasePlot>
+    <Grid>
+     <DrawGrid>true</DrawGrid>
+     <GridColor>15780518</GridColor>
+     <GridBorderLineColor>12624260</GridBorderLineColor>
+     <GridZeroLineColor>0</GridZeroLineColor>
+     <XTicks>10</XTicks>
+     <YTicks>10</YTicks>
+     <ZTicks>10</ZTicks>
+     <Use3DLook>false</Use3DLook>
+    </Grid>
+    <PlotBGColor>16777215</PlotBGColor>
+    <ShowPlotTitle>true</ShowPlotTitle>
+    <TitlePosition>1</TitlePosition>
+    <PlotTitle>model</PlotTitle>
+    <ShowXValues>true</ShowXValues>
+    <Fonts>
+     <TitleFont>
+      <Name>Arial</Name>
+      <Height>12</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </TitleFont>
+     <LabelFont>
+      <Name>Arial</Name>
+      <Height>12</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </LabelFont>
+     <ValuesFont>
+      <Name>Arial</Name>
+      <Height>10</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </ValuesFont>
+     <LegendFont>
+      <Name>Arial</Name>
+      <Height>12</Height>
+      <PitchFamily>34</PitchFamily>
+      <Weight>400</Weight>
+      <Italic>0</Italic>
+      <UnderLine>0</UnderLine>
+      <StrikeOut>0</StrikeOut>
+      <Color>0</Color>
+     </LegendFont>
+    </Fonts>
+    <SharedXAxis>true</SharedXAxis>
+    <SharedYAxis>true</SharedYAxis>
+    <SharedZAxis>false</SharedZAxis>
+    <XAxes>
+     <Axis>
+      <Minimum>0.0</Minimum>
+      <Maximum>10.0</Maximum>
+      <Linear>true</Linear>
+      <Scaling>3</Scaling>
+      <Label>time</Label>
+     </Axis>
+    </XAxes>
+    <YAxes>
+     <Axis>
+      <Minimum>-0.5000000000000001</Minimum>
+      <Maximum>0.5</Maximum>
+      <Linear>true</Linear>
+      <Scaling>2</Scaling>
+      <Label>output</Label>
+     </Axis>
+     <Axis>
+      <Minimum>-2.0e-4</Minimum>
+      <Maximum>0.0018</Maximum>
+      <Linear>true</Linear>
+      <Scaling>2</Scaling>
+      <Label>PendAngle</Label>
+     </Axis>
+    </YAxes>
+    <ZAxes>
+    </ZAxes>
+    <Curves>
+     <Curve>
+      <LineColor>3355111</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>3355111</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>PlusMinus1\output</VarName>
+      </YCurveData>
+     </Curve>
+     <Curve>
+      <LineColor>6076255</LineColor>
+      <LineStyle>1</LineStyle>
+      <TickColor>6076255</TickColor>
+      <TickStyle>0</TickStyle>
+      <CurveVisible>true</CurveVisible>
+      <PixelThresshold>1</PixelThresshold>
+      <LineThickness>2</LineThickness>
+      <LineOrder>1</LineOrder>
+      <ShowYValues>true</ShowYValues>
+      <XCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>time</VarName>
+      </XCurveData>
+      <YCurveData>
+       <ShowUnit>true</ShowUnit>
+       <VarName>Controller\PendAngle</VarName>
+      </YCurveData>
+     </Curve>
+    </Curves>
+    <Legenda>
+     <ShowLegenda>true</ShowLegenda>
+     <BorderPenColor>0</BorderPenColor>
+     <BackgroundColor>16777215</BackgroundColor>
+    </Legenda>
+   </Plot>
+  </Plots>
+  <PlotPanels>
+   <PlotPanel>
+    <PlotPanelId>1</PlotPanelId>
+    <PlotPanelVisible>true</PlotPanelVisible>
+    <Name>Window 1</Name>
+    <Tiling>2</Tiling>
+    <PlotIds>
+     <PlotId>1</PlotId>
+    </PlotIds>
+    <ToggleState>Base</ToggleState>
+   </PlotPanel>
+  </PlotPanels>
+  <WindowRectangles virtualDesktopWidth="1536" virtualDesktopHeight="960">
+   <WindowRectangle monitor="0" left="0" top="0" right="1536" bottom="960" plotpanelid="1">
+0.0260417 0.00416667 0.973958 0.885417
+   </WindowRectangle>
+  </WindowRectangles>
+ </PlotSpecs>
+ <RunSpecs>
+  <SimulatorSettings>
+   <StartTime>0.0</StartTime>
+   <FinishTime>10.0</FinishTime>
+   <AllowPassFinishTime>false</AllowPassFinishTime>
+   <Warp>false</Warp>
+   <SimulationMode>0</SimulationMode>
+   <FPGonio>false</FPGonio>
+   <UseOutputAfterEach>false</UseOutputAfterEach>
+   <OutputAfterEach>0.1</OutputAfterEach>
+   <EventEpsilon>1.0e-6</EventEpsilon>
+   <AlgebraicTolerance>1.0e-7</AlgebraicTolerance>
+   <SteadyStateAnalysis>false</SteadyStateAnalysis>
+   <UpdateHoldInstructions>true</UpdateHoldInstructions>
+   <DiscreteSystems>
+    <DiscreteSystem>
+     <DiscreteID>Controller\Observer\xhat</DiscreteID>
+     <TimeInterval>0.001</TimeInterval>
+     <InitialSampleTimeDelay>0.0</InitialSampleTimeDelay>
+     <FixedSampleTimeDelay>0.0</FixedSampleTimeDelay>
+     <VariableTimeDelayMin>0.0</VariableTimeDelayMin>
+     <VariableTimeDelayMax>0.0</VariableTimeDelayMax>
+     <VariableTimeDelayMean>0.0</VariableTimeDelayMean>
+     <VariableTimeDelayDeviation>0.0</VariableTimeDelayDeviation>
+     <UseVariableTimeDelay>false</UseVariableTimeDelay>
+     <UniformVariableTimeDelay>false</UniformVariableTimeDelay>
+     <UseGlobalTime>true</UseGlobalTime>
+     <HoldTimeDelay>0.0</HoldTimeDelay>
+     <ActionOnSampleMissed>0</ActionOnSampleMissed>
+    </DiscreteSystem>
+   </DiscreteSystems>
+  </SimulatorSettings>
+  <IntegrationMethods>
+   <IntegrationMethod>
+    <Name>Euler</Name>
+    <StepSize>0.01</StepSize>
+    <AutoStepSize>false</AutoStepSize>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>BackwardEuler</Name>
+    <AbsoluteTolerance>1.0e-5</AbsoluteTolerance>
+    <RelativeTolerance>1.0e-5</RelativeTolerance>
+    <AlgebraicAbsoluteTolerance>1.0e-5</AlgebraicAbsoluteTolerance>
+    <AlgebraicRelativeTolerance>1.0e-5</AlgebraicRelativeTolerance>
+    <StepSize>0.01</StepSize>
+    <Alpha>1.0</Alpha>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>AdamsBashforth</Name>
+    <StepSize>0.01</StepSize>
+    <AutoStepSize>false</AutoStepSize>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>RungeKutta2</Name>
+    <StepSize>0.01</StepSize>
+    <AutoStepSize>false</AutoStepSize>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>RungeKutta4</Name>
+    <StepSize>0.01</StepSize>
+    <AutoStepSize>false</AutoStepSize>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>RungeKutta8</Name>
+    <UseInitialStepSize>false</UseInitialStepSize>
+    <InitialStepSize>0.0</InitialStepSize>
+    <UseMaximumStepSize>false</UseMaximumStepSize>
+    <MaximumStepSize>0.0</MaximumStepSize>
+    <AbsoluteTolerance>1.0e-6</AbsoluteTolerance>
+    <RelativeTolerance>1.0e-6</RelativeTolerance>
+    <SafetyFactor>0.9</SafetyFactor>
+    <Factor1>0.33</Factor1>
+    <Factor2>6.0</Factor2>
+    <Beta>0.0</Beta>
+    <UseMaxNrSteps>false</UseMaxNrSteps>
+    <MaxNrSteps>100000</MaxNrSteps>
+    <UseStiffDetection>false</UseStiffDetection>
+    <MaxNrStiffnessSteps>1000</MaxNrStiffnessSteps>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>RungeKuttaFehlberg</Name>
+    <UseInitialStepSize>false</UseInitialStepSize>
+    <InitialStepSize>0.0</InitialStepSize>
+    <UseMaximumStepSize>false</UseMaximumStepSize>
+    <MaximumStepSize>0.0</MaximumStepSize>
+    <AbsoluteTolerance>1.0e-6</AbsoluteTolerance>
+    <RelativeTolerance>1.0e-6</RelativeTolerance>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>VodeAdams</Name>
+    <UseInitialStepSize>false</UseInitialStepSize>
+    <InitialStepSize>0.0</InitialStepSize>
+    <UseMaximumStepSize>false</UseMaximumStepSize>
+    <MaximumStepSize>0.0</MaximumStepSize>
+    <AbsoluteTolerance>1.0e-6</AbsoluteTolerance>
+    <RelativeTolerance>1.0e-6</RelativeTolerance>
+    <VodeUseBDF>true</VodeUseBDF>
+    <VodeUseNewton>true</VodeUseNewton>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>BDFMethod</Name>
+    <AbsoluteTolerance>1.0e-5</AbsoluteTolerance>
+    <RelativeTolerance>1.0e-5</RelativeTolerance>
+    <AlgebraicAbsoluteTolerance>1.0e-5</AlgebraicAbsoluteTolerance>
+    <AlgebraicRelativeTolerance>1.0e-5</AlgebraicRelativeTolerance>
+    <UseInitialStepSize>false</UseInitialStepSize>
+    <InitialStepSize>0.0</InitialStepSize>
+    <UseMaximumStepSize>false</UseMaximumStepSize>
+    <MaximumStepSize>0.0</MaximumStepSize>
+   </IntegrationMethod>
+   <IntegrationMethod>
+    <Name>MeBDFiMethod</Name>
+    <AbsoluteTolerance>1.0e-5</AbsoluteTolerance>
+    <RelativeTolerance>1.0e-5</RelativeTolerance>
+    <AlgebraicAbsoluteTolerance>1.0e-5</AlgebraicAbsoluteTolerance>
+    <AlgebraicRelativeTolerance>1.0e-5</AlgebraicRelativeTolerance>
+    <UseInitialStepSize>false</UseInitialStepSize>
+    <InitialStepSize>0.0</InitialStepSize>
+    <UseMaximumStepSize>false</UseMaximumStepSize>
+    <MaximumStepSize>0.0</MaximumStepSize>
+   </IntegrationMethod>
+   <SelectedIntegrationMethod>8</SelectedIntegrationMethod>
+  </IntegrationMethods>
+ </RunSpecs>
+ <MultipleRun>
+  <NrSteps>10</NrSteps>
+  <CopyFromStates>false</CopyFromStates>
+  <JoinParameterVariation>true</JoinParameterVariation>
+  <ClearAfterRun>true</ClearAfterRun>
+  <RedrawAfterRun>false</RedrawAfterRun>
+  <DrawDuringSimulation>true</DrawDuringSimulation>
+  <ActionBeforeOptimization>0</ActionBeforeOptimization>
+  <CompareValue>0.0</CompareValue>
+  <UseCompareValue>true</UseCompareValue>
+  <MultipleRunType>MultipleRun</MultipleRunType>
+  <Minimize>true</Minimize>
+  <OptimizationVariable></OptimizationVariable>
+  <ResulVarUsage>UseEndValue</ResulVarUsage>
+  <Tolerance>0.001</Tolerance>
+  <OptimizationMethod>BroydonFletcherGoldfarbShanno</OptimizationMethod>
+  <MultipleRunVariables>
+  </MultipleRunVariables>
+ </MultipleRun>
+ <ExportData>
+  <WriteAsText>true</WriteAsText>
+  <ReadAsText>true</ReadAsText>
+  <WriteHeader>true</WriteHeader>
+  <ReadHeader>true</ReadHeader>
+  <ReadFilename></ReadFilename>
+  <WriteFilename></WriteFilename>
+  <DoWrite>false</DoWrite>
+  <ExportVariables>
+  </ExportVariables>
+  <ImportVariables>
+  </ImportVariables>
+ </ExportData>
+ <BreakPoints>
+ </BreakPoints>
+</ExpData>
+  </Experiment>
+</Experiments>
+</Document>
